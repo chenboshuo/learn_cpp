@@ -23,4 +23,15 @@ main() {
 - The library also defines two other *ostream* objects,named **cerr** and **clog**(pronounced see-err and see-log,respectively). We typically use `cerr` referred to as the **standard error**,for warning and eooro messages and `clog` for general information about the execution of the problem.
 
 **A problem That uses the IO Library**
--[sum.cpp]()
+
+-[sum.cpp](https://github.com/chenboshuo/cpp_learning/blob/master/cpp_primer/chaper_1_getting_started/sum.cpp)
+
+The first line of our Program
+
+```cpp
+##include <isostream>
+```
+
+tells the complier that we want to use the `iostream` library.THe name inside angle brackets(`isostream` in this case) refers to a header. Every program that use a library faility must include its associated header.The`#include` directive must be written on a single line--the name of the header and the `#include` must appear on the same line.
+
+**Writing to a Stream**

@@ -12,3 +12,5 @@ c++学习内容
 -----------------
 复制这条信息，￥0vGJbqvLkh2￥ ，打开【手机淘宝】即可下单
 ```
+## 结构
+### [cpp_primer](https://github.com/chenboshuo/cpp_learning/tree/master/cpp_primer/chaper_1_getting_started)
