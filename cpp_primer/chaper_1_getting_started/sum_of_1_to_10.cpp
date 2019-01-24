@@ -1,4 +1,4 @@
-#include "isostream"
+#include "iostream"
 int main(int argc, char const *argv[]) {
   int sum = 0, var = 1;
   // keeping executing the while as long as val is less than or equal to 10
