@@ -70,6 +70,7 @@
 
 ### 1.4.1 The `while` statement
   -[sum_of_1_to_10.cpp](./sum_of_1_to_10.cpp)
+
   A **while statement** repeatedly executes a section of code as a given condition is true.A while has the form
   ```
   while (/* condition */) {
@@ -86,4 +87,6 @@
   The `increment operator` (the ** ++ operator**) add 1 to its operand.
 
 ### 1.4.2 The `for` statement
-  
+  [sum_of_1_to_10_for.cpp](./sum_of_1_to_10_for.cpp)
+
+  Each `for` statement has two parts:a header hand and a body. The hand itself consists of three parts:an *initement*, a *condition*, and an *expression*.
