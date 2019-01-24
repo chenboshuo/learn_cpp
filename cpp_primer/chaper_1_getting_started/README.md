@@ -63,3 +63,5 @@
 
 ### Reading from a Stream
   The input operator(the **>>operator**) behaves analogously(类似地) to the output operator.It takes an `istream` as its left-hand operand and an objects as right-hand operator.
+
+## 1.3 Word about comments
