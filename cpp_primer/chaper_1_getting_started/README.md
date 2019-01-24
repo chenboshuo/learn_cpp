@@ -65,3 +65,25 @@
   The input operator(the **>>operator**) behaves analogously(类似地) to the output operator.It takes an `istream` as its left-hand operand and an objects as right-hand operator.
 
 ## 1.3 Word about comments
+
+## 1.4 Flow of control
+
+### 1.4.1 The `while` statement
+  -[sum_of_1_to_10.cpp](./sum_of_1_to_10.cpp)
+  A **while statement** repeatedly executes a section of code as a given condition is true.A while has the form
+  ```
+  while (/* condition */) {
+    /* statement */
+  }
+  ```
+
+  A **condition** is an expression that yeilds a result that is either true or false.
+
+  the less-than-or-equal operantor :**<= operator**
+
+  The compound assignment operator(the **+= operator**) adds its right-hand operand to its left-hand operand and stores the result in the left-hand operand.
+
+  The `increment operator` (the ** ++ operator**) add 1 to its operand.
+
+### 1.4.2 The `for` statement
+  
