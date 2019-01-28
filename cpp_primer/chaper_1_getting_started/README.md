@@ -90,3 +90,9 @@
   [sum_of_1_to_10_for.cpp](./sum_of_1_to_10_for.cpp)
 
   Each `for` statement has two parts:a header hand and a body. The hand itself consists of three parts:an *initement*, a *condition*, and an *expression*.
+
+### 1.4.2 Reading an Unknown Number of Inputs
+
+  [sum_of_some_numbers.cpp](./sum_of_some_numbers.cpp)
+
+  
