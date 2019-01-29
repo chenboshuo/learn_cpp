@@ -99,3 +99,18 @@ An `istream` besomes invalid when we hit the **end-of-file** or encounter an inv
 
 ### 1.4.4 The `if` statement
 -[cout](./cout.cpp)
+
+## 1.5 Inteoducting Classes
+In C++ we define our own *data structures* by defining a **class**. A class defines a type alone with a collection of operations that related to that type.The class mechanism is one of the most important features in C++.In fact, a primary focus of the design of C++ is to make it possible to define **class types** that behave as natually as the built-in types.
+
+For our bookstore problem,we'll assume that calss is nemed Sales_item and that it is already defined in a header named `Sales_item.h`
+
+### 1.5.1 The Sales_items Class
+
+Every class defines a type.The type name is the same as the name of class.Hense,our `Sales_items` class defines a type named `Sales_items`.As with the build-in types, we can define a variable of a class type.When we writes
+``Sales_items item``
+we are saying that item is a object of type `Sales_items`.We often contract the phase "an object of type `Sales_items`" to" a `Sales_items` object" or even simply to "a `Sales_items`"
+
+
+#### Reading and Writing `Sales_items`
+-[bookstore_problem.cpp](./bookstore_problem.cpp)
