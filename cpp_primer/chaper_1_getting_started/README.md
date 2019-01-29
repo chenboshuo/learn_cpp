@@ -91,8 +91,11 @@
 
   Each `for` statement has two parts:a header hand and a body. The hand itself consists of three parts:an *initement*, a *condition*, and an *expression*.
 
-### 1.4.2 Reading an Unknown Number of Inputs
+### 1.4.3 Reading an Unknown Number of Inputs
 
   [sum_of_some_numbers.cpp](./sum_of_some_numbers.cpp)
 
-  
+An `istream` besomes invalid when we hit the **end-of-file** or encounter an invalid input, such as read a value that is not an integer.
+
+### 1.4.4 The `if` statement
+-[cout](./cout.cpp)
