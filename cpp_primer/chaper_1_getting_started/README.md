@@ -116,3 +116,5 @@ we are saying that item is a object of type `Sales_items`.We often contract the 
 -[bookstore_problem.cpp](./bookstore_problem.cpp)
 
 This program starts with two `#include`directives,one of which use a new form.Headers from the standard library are enclosed in the angle brackets(`<>`).Those part are not of the library are enclosed in double  quotes(`" "`)
+
+### 1.5.2 A First look at Member functions
