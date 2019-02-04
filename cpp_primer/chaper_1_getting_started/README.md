@@ -118,3 +118,17 @@ we are saying that item is a object of type `Sales_items`.We often contract the 
 This program starts with two `#include`directives,one of which use a new form.Headers from the standard library are enclosed in the angle brackets(`<>`).Those part are not of the library are enclosed in double  quotes(`" "`)
 
 ### 1.5.2 A First look at Member functions
+```cpp
+item_1.isbn() == item_2.isbn()
+```
+calls a **member function** named `isbn`.A member function that is defined as part of a class.Member functions are sometimes reffered to as **methods**.
+
+Ordinality, we call a member function on behalf of an object.For example,the first part of the left-hand operand of equality expression
+```
+item_1.isbn
+```
+uses the dot operator(the **"." operator**)to say that we want"the isbn member of the object neamed `item_1`The dot operator applies only to objects of class type.
+
+When we use the dot operator to access a member function, we usually do so to call that function.We call a function using the call operator(the **() operator**).The call operator is a pair of parentheses that enclose a list of *arguments*.
+
+## [1.6 The bookstore Program](./bookstore_problem_.cpp)

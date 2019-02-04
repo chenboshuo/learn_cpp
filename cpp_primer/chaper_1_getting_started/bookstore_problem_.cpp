@@ -2,17 +2,29 @@
 
 #include "Sales_item.h"
 int main(int argc, char const *argv[]) {
-  Sales_item item_1, item_2;
-  // read ISBN,number of copies sold,and sales princee
-  std::cin >> item_1 >> item_2;
-  if (item_1.isbn() == item_2.isbn()) {
-    // werit ISBN,number of cpoies sold,total revenue, and average princee
-    std::cout << item_1 + item_2 << '\n';
-    return 0; //indicate success
+  Sales_item total; // varible to hold data from the nest transaction
+  // rad the first transaction and ensure that here are data to process
+  if (std::cin >> total) {
+    Sales_item trans; // varible to hold the running sum
+    //read and process the remain transactions
+    while (std::cin >> trans) {
+      // if we're still processing the same book
+      if (total.isbn() == trans.isbn()) {
+        total += trans; // update the running total
+        /* code */
+      }else{
+        // print the result of privious book
+        std::cout << total << '\n';
+        total = trans; // total now refers to the next book
+      }
+    }
+    std::cout << total << '\n'; //print the last transaction
   } else {
-    std::cerr << "Data must refer to same ISBN" << '\n';
+    // no input! warn the user
+    std::cerr << "No data?!" << '\n';
     return -1; // indicate failure
   }
+  return 0;
 }
 // input
 // 0-201 3 20.00
@@ -24,4 +36,16 @@ int main(int argc, char const *argv[]) {
 // 12x 3 10.00
 // 11x 5 25.00
 // output
-// Data must refer to same ISBN
+// 12x 3 30 10
+// input
+// 11x 1 10
+// output
+// 11x 6 135 22.5
+
+
+// input
+
+// input
+// ^Z
+// output
+// No data?!
