@@ -92,3 +92,67 @@ Using scientific notation, the expoent is indiciated by either `e` or `E`:
 The type of a string literal is **array** of constant chars.
 
 #### Escape Sequences
+Some characters, such as backspace or control character,have no visible image.Such characters are **nonprintable**.We use an **escape sequence** to represent such characters.
+
+| name         |       | name            |       |
+|:------------ |:----- | --------------- | ----- |
+| newline      | `\n`  | horizontial tab | `\t ` |
+| vertical tab | `\v`  | alert(bell)     | `\a`  |
+| backspace    | `\b ` | double quote    | `\"`  |
+| blackslash   | `\\`  | question mark   | `\?`  |
+| single quote | `\'`  | carriage return | `\r`  |
+| formfeed     | `\f`  |                 |       |
+
+We can also write a generalized escape sequence,which is \x followed by one or more hexadecimal digits or a \ followed by one,two,or three octal digits.
+```
+\7 bell \12 newline  \40 blank
+\0 null \115 'M' \x4d 'M'
+```
+
+Note that if a \ is followed by more than three octal digits,only the first three sociated with the \.
+```cpp
+\1234
+```
+represents two characters: the character represented by the octal value `123` and the character `4`. In contrast, `\x` uses up all the hex digits following it.
+```cpp
+\x1234
+```
+reprents a single, 16-bit character composed from the bits corresponding to these for hexadecimal digits.
+
+#### Specifying the type of a Literal
+```cpp
+L'a' // wide character literal,type is wchar_t
+u8"hi!"// utf-8 string literal
+42ULL // unsigned integer literal, type is unsigned long long
+1E - 3F //single-percision floating-point literal,type is float
+3.14159L // extended-persion floating-point literal,type is long double
+```
+
+Character and character String Literals
+
+| prefix | meaning                    | type     |
+|:------ |:-------------------------- | -------- |
+| u      | unicode 16 character       | char16_t |
+| U      | unicode 32 character       | char32_t |
+| L      | wide character             | wchar_t  |
+| u8     | utf-8(string liters only ) | char     |
+
+Integer Literals
+
+| Suffix   | Minium Type |
+|:-------- |:----------- |
+| u or U   | unsigned    |
+| l or L   | long        |
+| ll or LL | long long   |
+
+Floating- point Literals
+
+| suffix | type        |
+|:------ |:----------- |
+| f or F | float       |
+| l or L | long double |
+
+#### boolean and Pointer Liters
+the word `true` and `False` are literals of type *bool*
+
+The world `nullptr` is a pointer literal.
