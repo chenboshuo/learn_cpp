@@ -156,3 +156,68 @@ Floating- point Literals
 the word `true` and `False` are literals of type *bool*
 
 The world `nullptr` is a pointer literal.
+
+## 2.2 Variables
+A *variable* provides us with named storage that our program can manipulate.
+
+### 2.2.1 Variable Definitions
+
+A simple variable definition consists of a **type specifier**, followed by a list of one or more variable names separated by commas,and ends with semicolon.
+```cpp
+int sum = 0 , value;
+std::string book("0-201-78345-x")// book initalized from string literal
+```
+
+#### Initalizers
+An object that is **initalized** gets the specified value at the moment it is created.
+
+#### List Initialization
+
+We can use any of the following ways to define an int variable named units_sold and ititalize it to 0:
+```cpp
+int units_sold = 0;
+int units_sold = {0};
+int units_sold{0};
+int units_sold(0);
+```
+The gengeralized use of curly brace for Initialization was introduced as part of the new standard.
+
+When used with variables of built-in type, this form of Initialization has one important property: The compiler will not let us initialize variables of  build-in type if the initializer might lead to the loss of information:
+```cpp
+long double ld = 3.1415926536;
+int a{ld}, b = {ld}; //error narrowing conversion required
+int c(ld), d = ld; // ok: but value will be truncated
+```
+#### Default Initialization
+When we defined a variable without an initializer, the variable is **default initalized**.Such variables are given the "default" value.What that default value is depends on the type of the variable and may also depend on where the value is depends.
+
+The value of an object of build-in type that is not explicitly initialized depends on where it is defined,Variables defined outside any function body are initalized to zero.
+
+Most classes let us define objects without explicitly initializers. Such class supply an appropriate default value for us.For example, as we've seen,the library string class says that if we do not supply an initializer,then the resulting string is the empty string:
+```cpp
+std::string empty;// empty implicitly initialized to the empty string
+Sales_item item; // default-initialized Sales_item object
+```
+
+Some classes require that every object be explicitly initialized. The compiler will complain if we try to create an object of such a class with no initializer.
+
+### 2.2.2 Variable Declarations and Definitions
+
+To allow programs to be written in logical parts,C++ supports what is commonly known as **sparate compilation**.Separate compilation lets us split our programs into several files, each of which can be compiled independently.
+
+A **declaration** makes a name known to the program.A file that wants to use a name defined elsewhere includes a declaration for that time. A **definition** creats the assoicated entity.
+
+To obtain a declaration is not also a definition, we add `extern` key-word and may not provide an explicit initalizer:
+```cpp
+extern int i; // declares but does not define i
+int j; // declares and defines j
+```
+Any declaration that includes an exp;ict initialzer is a definition. We can provide an ititializer on a variable defined as `extern`, but doing so overrides the `extern`. An extern that has an initalizer is a definition:
+```cpp
+extern double pi = 3.1416; // definition (ERROR:extern double pi = 3.1416;)
+
+```
+It is an error to provide an initialzer on an `extern` inside a function
+
+*Variables must be defined exactly once but can be declared many times*
+To use a variable in more than one file requires declarations that are separate from the variable's definition.To use the same variable in multiple files,we must define that variable in one——and only one——file.Other files that use the variable must declare--but not define--that variable.
