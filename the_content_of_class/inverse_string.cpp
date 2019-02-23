@@ -1,23 +1,24 @@
 /* file: inverse_string.cpp */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
 int main(int argc, char const *argv[]) {
   int i,len;
-  char *str;
+  string str;
   if (argc != 2) {
     printf("%s\n", "usage: inverse_string <string>");
     return 1;
   }
-  len = strlen(argv[1]);
-  str = (char*)malloc(len+1);
-  for (i = 0; i < len; i++) {
-    str[i] = argv[1][len-1-i];
+  str = argv[1];
+  len = str.length();
+  for (i = 0; i < len/2; i++) {
+    char temp = str[i];
+    str[i] = str[len-i-1];
+    str[len-i-1] = temp;
   }
-  str[i] = '\0';
-  printf("%s\n", str);
-  free(str);
+  cout << str << '\n';
+  delete &str;
   return 0;
 }
 // $ inverse_string abcde
