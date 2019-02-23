@@ -1,13 +1,15 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>// malloc
+#include <cstring>
+#include <iostream>
+using namespace std;
+
 main(){
 char *str1;
 char *str2="Test" ;
-str1=(char *)malloc(5);
+str1=new char[50];
 strcpy(str1,str2);
-printf("%s\n", str1);
-free(str1);
+cout<<str1<<endl;
+delete[] str1;
+
 }
 // output
 // Test
