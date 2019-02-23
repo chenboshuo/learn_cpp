@@ -221,3 +221,5 @@ It is an error to provide an initialzer on an `extern` inside a function
 
 *Variables must be defined exactly once but can be declared many times*
 To use a variable in more than one file requires declarations that are separate from the variable's definition.To use the same variable in multiple files,we must define that variable in one——and only one——file.Other files that use the variable must declare--but not define--that variable.
+
+### 2.2.3 Identifiers
