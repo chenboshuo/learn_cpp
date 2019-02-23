@@ -27,3 +27,6 @@ c++学习内容
 
 > [课上内容](./the_content_of_class)
 >> - [hello world 第一个程序](./the_content_of_class/hello_world.cpp)
+>> -[inverse_string 直接在命令行反转字符串](./the_content_of_class./inverse_string.cpp)
+>> -[simple_string_processing.cpp C++对字符串的简单处理](./the_content_of_class./simple_string_processing.cpp)
+>> [note笔记](./the_content_of_class./note)
