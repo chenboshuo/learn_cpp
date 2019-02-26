@@ -7,8 +7,15 @@
 using namespace std;
 
 // GradeBook class definition
-class Gradebook {
+class GradeBook {
 public:
+  // construstor initialize courseName with string supplied as argument
+  explicit GradeBook(string name)
+    : courseName(name){// member initializer to initialize courseName
+      // empty body
+  }
+
+
   // function that sets the course name
   void set_course_name(string name ) {
     courseName = name;
@@ -30,29 +37,17 @@ private:
 
 // funstion main begins program execution
 int main(int argc, char const *argv[]) {
-  string nameOfCourse;
-  Gradebook myGradeBook;// create a GradeBook object named myGradeBook
+  // create two GradeBook objects
+  GradeBook gradeBook1("Introduction to C++ Programing");
+  GradeBook gradeBook2("Data strustures in C++");
 
-  // display initial value of CourseName
-  std::cout << "Initial course name is:" << myGradeBook.get_course_name() << '\n';
+  // display initial value of courseName for each GradeBook
+  cout << "gradeBook1 created for course: " << gradeBook1.get_course_name()
+    << "\ngradeBook2 created for course: "<< gradeBook2.get_course_name()
+    << '\n';
 
-  // prompt for and input course name
-  cout << "Place enter the course name " << '\n';
-  getline(cin, nameOfCourse);// read a course name with blanks
-  cout << '\n';
-
-  // call myGrade's displayMessage function
-  // and pass nameOfCourse as an argument
-  myGradeBook.display_message(nameOfCourse); // call object's displayMessage function
-  return 0;
 }
-/*
-input
-cpp
-
-output
-Initial course name is:
-// 说明私有对象不可访问
-Welcome to the Grade Book for
-cpp
+/* output
+gradeBook1 created for course: Introduction to C++ Programing
+gradeBook2 created for course: Data strustures in C++
 */
