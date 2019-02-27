@@ -58,3 +58,8 @@ int main(int argc, char const *argv[]) {
   my_wechat.debit(4);
   return 0;
 }
+// balance should be nonnegative
+// my_alipay:  0
+// my_alipay:  5
+// the balance is 3
+// the balance is 1
