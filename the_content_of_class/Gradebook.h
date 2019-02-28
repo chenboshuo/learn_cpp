@@ -15,6 +15,9 @@ public:
   // function that displays a welcome message to the GradeBook user
   void set_teacher_name(std::string name);//sets the teacher's name
   std::string get_teacher_name();
+  ~GradeBook(){
+    std::cout << "The destructor function is called" << '\n';
+  }
 
 private:
   std::string courseName; // course name for this GradeBook

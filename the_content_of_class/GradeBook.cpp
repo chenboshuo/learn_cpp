@@ -28,4 +28,7 @@ gradeBook1 created for course: Introduction to C++ Programing
 This course is presented by: a
 gradeBook2 created for course: Data strustures in C++
 This course is presented by: b
+The destructor function is called
+The destructor function is called
+// 说明析构函数自动被调用
 */
