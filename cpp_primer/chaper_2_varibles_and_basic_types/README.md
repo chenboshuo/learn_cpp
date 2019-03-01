@@ -223,3 +223,80 @@ It is an error to provide an initialzer on an `extern` inside a function
 To use a variable in more than one file requires declarations that are separate from the variable's definition.To use the same variable in multiple files,we must define that variable in one——and only one——file.Other files that use the variable must declare--but not define--that variable.
 
 ### 2.2.3 Identifiers
+
+**Identifiers** in C++ can be composed of letters,digits,and the underscore character.
+
+#### Conventions of variable Names
+- An identifier should give some indication of its meaning.
+- Variable names normally are lowercase.
+- Class we difine usually begin with an uppercase letter.
+
+### Scope of Name
+A **scpoe** is a part of the program in which a name has a particular meaning. Most of C++ are delimited by curly braces.
+
+The dame name can refer to diffierent entities(实体) in different scopes.
+
+```cpp
+int main(int argc, char const *argv[]) {
+  int sum = 0, var = 1;
+  // keeping executing the while as long as val is less than or equal to 10
+  for (int val = 1; val <= 10; val++) {
+    sum += val;
+  }
+  std::cout << "Sum of 1 to 10 inclusive is " << sum << std::endl;
+  return 0;
+}
+```
+The name `main` defined outside any curly braces. The name `main` -- like most names difines outside a function--has **global scope**.Once declared, names at the global scope are accessible throughout the problem.The variable `sum` has **block scope**.The naem `val` is difined in the scope of the `for` statement. It can be used in that statement but not elsewhere in main.
+
+#### Nested Scopes
+scopes can contain other scopes. The contain(or nested) scope is reffered to as an **inner scope**,the containing scope is the outer scope.
+
+Once a name has been declared in a scope,that name can be used by scopes nested inside that scope. Names declared in the outer scope can also be redefined in an inner scope:
+
+[区分全局变量与局部变量](./nested_scope.cpp)
+
+It is almost a;ways a bad idea to defined a local variable with the same name as a global variable that the function uses or might use.
+
+## 2.3 Compound Types
+
+**A compound type** is a type that is defined in terms of another type. C++ has several compound types, two of which--reference and pointers--we'll cover in this chapter.
+
+A declaration is a *base type* followed by a list of **declarators**.Each declarator names a variable and gives the variable a type that is ralated to the base type.
+
+### 2.3.1 References
+
+A **reference** defines an alternative name for an object. A referenc type "refers to" another type. We define a type by writing a declartor of the form `&d` where `d` is the name being declared:
+```cpp
+int ival = 1024;
+int &refVal = ival; // refval refers to(is another name for) ival
+int &refVal2; // error: a reference must be initialized
+```
+Ordinarily when we initialize a variable, the value of the initalizer is copied into the object we are creating. When we define a reference, instead of copying the initializer's value,we **bind** the reference to its initializer. Once initialized, a reference remains bound to its initial object.Because there is no way to rebind a reference,references must be initialized.
+
+#### A reference is an Alias
+
+- A reference is not an object.Instead a reference is *just another name for an already existing object.*
+
+After a reference has been defined, all operations on that reference are actually operations on the objects to which the reference is bound:
+```cpp
+refVal = 2; // assigns 2 to the object which refval refers,i.e.,to ival
+int ii = refVal; // same as ii = ival
+```
+reference is not objects,we may not define a reference to a deference.
+```cpp
+int &refVal3 = refval;// ok:refVal3 is bound to the object to which refVal is bound,i.e,to ival
+int i = refVal; // ok:initializes i to the same value as ival
+```
+
+#### Reference Definitions
+We can define mutiple reference in a single definition.Each identifier that is a reference must be preceded by the `&` symbol.
+
+```cpp
+int &refVal = 10; // error: initializer must be an objects
+double dval = 3.14;
+int &refVal5 = dval; //error: initializer must be an int object
+```
+
+### 2.3.2 Pointers
+A **pointer** is a compound type that "point to" another type.
