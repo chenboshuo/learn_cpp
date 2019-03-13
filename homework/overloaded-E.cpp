@@ -46,7 +46,7 @@ double max(double a,double b){
 
 int main()
 {
-cout<<max(4,5)<<endl;
-cout<<max(45.23,2.3)<<endl;
+cout<<"int compare "<<max(4,5)<<endl;
+cout<<"double compare "<<max(45.23,2.3)<<endl;
     return 0;
 }
