@@ -21,6 +21,7 @@
 88 66 99 99
  */
 #include <iostream>
+#include <limits.h>
 int max(int a, int b, int c = INT_MIN){
   int _ = a;
   if (a > _) {
@@ -35,12 +36,10 @@ int max(int a, int b, int c = INT_MIN){
   return _;
 }
 int main(int argc, char const *argv[]) {
-  int a1,a2;
-  std::cin >> a1 >> a2;
-  std::cout << max(a1, a2) << '\n';
 
   int b1,b2,b3;
   std::cin >> b1 >> b2 >> b3;
-  std::cout << max(b1,b2,b3) << '\n';
+  std::cout << b1 << " "<< b2 << " " <<max(b1,b2) << '\n';
+  std::cout << b1 << " "<< b2 << " "<< b3 <<" " <<max(b1,b2,b3) << '\n';
   return 0;
 }
