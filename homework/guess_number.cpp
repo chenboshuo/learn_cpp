@@ -12,6 +12,13 @@
  * Too low. try again.
  * 如果玩家猜测是不正确的, 程序应继续循环,直到玩家猜对为止.
  * 此过程需要一直提醒玩家是猜大了还是猜小了,从而让玩家尽快获得答案
+ *
+ * 6.35 猜数字游戏的修改
+ * 修改6.34 的程序
+ * 统计玩家猜数次数,
+ * 如果次数没有超过10次,打印"Either you know the secret or you got lucky"
+ * 如果玩家10次猜中,打印"Ahah! You know the secret".
+ * 如果超过10次猜中,打印"you should be able to do better!"
  */
 #include <iostream>
 #include <stdlib.h>
@@ -33,12 +40,13 @@ int main(int argc, char const *argv[]) {
   while (1) {
     int target = random(1000);
     int guess = 1001; // 为了防止生成随机数直接与该变量相等
+    int guess_times; //存储猜的次数
 
     std::cout << "I can have a number between 1 and 1000.\n"
     << "Can you guess my number?\n"
     << "Plase type your first guess\n" << '\n';
 
-    while (target != guess) {
+    for(guess_times = 1; target != guess; guess_times++) {
       std::cin >> guess;
       if(guess > target){
         std::cout << "\n\tToo high. try again" << '\n';
@@ -47,8 +55,19 @@ int main(int argc, char const *argv[]) {
         std::cout << "\n\tToo low. try again" << '\n';
       }
     }
-    std::cout << "Excellent! You guessed the number!\n"
-      << "Would you like to try again?  (y or n) " << '\n';
+
+    // 输出提示语,判断游戏等级
+    std::cout << "Excellent! You guessed the number!\n" << '\n';
+    if (guess_times < 10) {
+      std::cout << "Either you know the secret or you got lucky" << '\n';
+    } else if (guess_times == 10) {
+      std::cout << "Ahah! You know the secret" << '\n';
+    } else {
+      std::cout << "you should be able to do better!" << '\n';
+    }
+
+    // 让玩家决定是否继续
+    std::cout << "\nWould you like to try again?  (y or n) " << '\n';
     // 判断结束
     char sign = 0;
     std::cin >> sign;
@@ -59,3 +78,39 @@ int main(int argc, char const *argv[]) {
   }
   return 0;
 }
+
+/**
+ * outcome
+ * I can have a number between 1 and 1000.
+Can you guess my number?
+Plase type your first guess
+
+500
+
+        Too high. try again
+250
+
+        Too high. try again
+125
+
+        Too low. try again
+180
+
+        Too low. try again
+220
+
+        Too low. try again
+235
+
+        Too low. try again
+241
+
+        Too high. try again
+238
+Excellent! You guessed the number!
+
+Either you know the secret or you got lucky
+
+Would you like to try again?  (y or n)
+n
+ */
