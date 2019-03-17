@@ -1,6 +1,6 @@
 /**
- * A popular problem puzzle of the late nineteenth centery invented by
- * French mathemician Edouard Lucas, called the Tower of Hanoi,
+ * A popular problem puzzle of the late nineteenth century invented by
+ * French mathematician Edouard Lucas, called the Tower of Hanoi,
  * consists of three pegs mounted on a board together
  * with the disks of different sizes. Initially these disks
  * are placed on the first in order of size, with the largest on the bottom.
@@ -54,6 +54,110 @@ void move(int disks, int peg1, int peg2, int peg_) {
   move(disks-1, peg_, peg2, peg1);// 把disks-1也移动到目标
 }
 int main(int argc, char const *argv[]) {
-  move(3,1,3,2);
+  move(17,1,3,2);
   return 0;
 }
+// move(18,1,3,2); Output Limit Exceeded
+// move(17,1,3,2); Finished in 28 ms
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 3->1
+// 2->1
+// 3->2
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 2->1
+// 3->2
+// 3->1
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 3->1
+// 2->1
+// 3->2
+// 1->3
+// 1->2
+// 3->2
+// 3->1
+// 2->1
+// 2->3
+// 1->3
+// 2->1
+// 3->2
+// 3->1
+// 2->1
+// 3->2
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 3->1
+// 2->1
+// 3->2
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 2->1
+// 3->2
+// 3->1
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// 2->1
+// 2->3
+// 1->3
+// 2->1
+// 3->2
+// 3->1
+// 2->1
+// 3->2
+// 1->3
+// 1->2
+// 3->2
+// 3->1
+// 2->1
+// 2->3
+// 1->3
+// 2->1
+// 3->2
+// 3->1
+// 2->1
+// 2->3
+// 1->3
+// 1->2
+// 3->2
+// 1->3
+// ... 130971 more lines
+// data from leetcode playground
