@@ -33,7 +33,7 @@ private:
   int score;
 
 public:
-  Student (string n, int s){
+  Student (string n="", int s=-1){
     number = n;
     score = s;
   };
@@ -48,10 +48,21 @@ public:
   // virtual ~Student ();
 };
 
-int max(Student* a, int len){
-  int _ = a->getScore();
+// int max(Student* a, int len){
+//   int _ = a->getScore();
+//   for (int i = 1; i < len; i++) {
+//     _ = (_ > (a+i)->getScore())  ? _ : (a+i)->getScore();
+//   }
+//   return _;
+// }
+// 这个函数仅用于找出最大数,无法返回学号
+
+Student find_max(Student* a, int len){
+  Student _ = *a;
   for (int i = 1; i < len; i++) {
-    _ = (_ > (a+i)->getScore())  ? _ : (a+i)->getScore();
+    if (a[i].getScore() > _.getScore()) {
+      _ = a[i];
+    }
   }
   return _;
 }
@@ -59,7 +70,7 @@ int max(Student* a, int len){
 int main(int argc, char const *argv[]) {
   int count = 5;
   // std::cin >> count;
-  Student a_test[count];
+  Student a_test[5];
 
   for (int i = 0; i < count; i++) {
     string number;
@@ -67,6 +78,6 @@ int main(int argc, char const *argv[]) {
     std::cin >> number >> score;
     a_test[i] = Student(number, score);
   }
-  std::cout << max(a_test,count) << '\n';
+  find_max(a_test, count).showScore();
   return 0;
 }
