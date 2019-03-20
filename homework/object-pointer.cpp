@@ -41,18 +41,32 @@ public:
   void showScore() {
     std::cout << number << " " << score << '\n';
   }
+
+  int getScore(){
+    return score;
+  }
   // virtual ~Student ();
 };
 
+int max(Student* a, int len){
+  int _ = a->getScore();
+  for (int i = 1; i < len; i++) {
+    _ = (_ > (a+i)->getScore())  ? _ : (a+i)->getScore();
+  }
+  return _;
+}
+
 int main(int argc, char const *argv[]) {
-  int count;
-  std::cin >> count;
-  while (count--) {
+  int count = 5;
+  // std::cin >> count;
+  Student a_test[count];
+
+  for (int i = 0; i < count; i++) {
     string number;
     int score;
     std::cin >> number >> score;
-    Student a_student(number,score);
-    a_student.showScore();
+    a_test[i] = Student(number, score);
   }
+  std::cout << max(a_test,count) << '\n';
   return 0;
 }
