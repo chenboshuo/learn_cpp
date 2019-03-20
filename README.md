@@ -21,17 +21,18 @@ c++学习内容
 ```
 ## 结构
 
+> [homwork.md 课上作业](./homework.md)
+
 > [cpp_primer](./cpp_primer/)
 >> - [chaper 1 getting started](./cpp_primer/chaper_1_getting_started)
 >> - [chaper 2 varibles and basic types](./cpp_primer/chaper_2_varibles_and_basic_types)
 
 > [课上内容](./the_content_of_class)
-
 >> - [hello world 第一个程序](./the_content_of_class/hello_world.cpp)
 >> - [inverse_string 直接在命令行反转字符串](./the_content_of_class./inverse_string.cpp)
 >> - [simple_string_processing.cpp C++对字符串的简单处理](./the_content_of_class./simple_string_processing.cpp)
 >> - GradeBook 类的初级用法
-  - [头文件](./the_content_of_class/GradeBook.cpp)
-  - [主函数](./the_content_of_class/Gradebook.h)
->> - array 数组的相关用法(./the_content_of_class/array.cpp)
+>>>  - [头文件](./the_content_of_class/GradeBook.cpp)
+>>>  - [主函数](./the_content_of_class/Gradebook.h)
+>> - [ array 数组的相关用法](./the_content_of_class/array.cpp)
 >> - [note笔记](./the_content_of_class/note)
