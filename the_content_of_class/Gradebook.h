@@ -15,9 +15,6 @@ public:
   // function that displays a welcome message to the GradeBook user
   void set_teacher_name(std::string name);//sets the teacher's name
   std::string get_teacher_name();
-  ~GradeBook(){
-    std::cout << "The destructor function is called" << '\n';
-  }
 
 private:
   std::string courseName; // course name for this GradeBook
@@ -26,13 +23,26 @@ private:
 
 // construstor initialize courseName with std::string supplied as argument
 GradeBook::GradeBook(std::string name, std::string teacher_name)
-: courseName(name), teacher_name(teacher_name){// member initializer to initialize courseName
-  // empty body
+: teacher_name(teacher_name){// member initializer to initialize courseName
+  set_course_name(name);
 }
 
 // function that sets the course name
+// ensure that the course name has most 25 characters
 void GradeBook::set_course_name(std::string name ) {
-  courseName = name;
+
+  if (name.size() <= 25) {// if name has 25 or fewer characters
+    courseName = name;// store the course name in the object
+  }
+
+  if (name.size() > 25) {
+    // set course name to the first 25 characters of parameter name
+    courseName = name.substr(0,25); // start at 0,length of 25
+
+    std::cerr << "name:" << '\n' << name << "\nexceeds maxium length(25)\n"
+      << "Limiting courseName to the first 25 characters.\n\n";
+
+  }
 }
 
 // function that gets the course name

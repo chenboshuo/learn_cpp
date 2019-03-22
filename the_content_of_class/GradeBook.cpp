@@ -4,7 +4,7 @@
  */
 #include <iostream>
 #include <string>
-#include "Gradebook.h" 
+#include "Gradebook.h"
 using namespace std;
 
 
@@ -18,17 +18,20 @@ int main(int argc, char const *argv[]) {
   // display initial value of courseName for each GradeBook
   cout << "gradeBook1 created for course: " << gradeBook1.get_course_name()
     << "\n" << "This course is presented by: " << gradeBook1.get_teacher_name()
-    << "\ngradeBook2 created for course: "<< gradeBook2.get_course_name()
+    << "\n\ngradeBook2 created for course: "<< gradeBook2.get_course_name()
     << "\n" << "This course is presented by: " << gradeBook2.get_teacher_name()
     << '\n' ;
 
 }
 /* output
-gradeBook1 created for course: Introduction to C++ Programing
+name:
+Introduction to C++ Programing
+exceeds maxium length(25)
+Limiting courseName to the first 25 characters.
+
+gradeBook1 created for course: Introduction to C++ Progr
 This course is presented by: a
+
 gradeBook2 created for course: Data strustures in C++
 This course is presented by: b
-The destructor function is called
-The destructor function is called
-// 说明析构函数自动被调用
 */
