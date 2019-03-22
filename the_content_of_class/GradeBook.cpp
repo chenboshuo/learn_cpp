@@ -11,27 +11,28 @@ using namespace std;
 
 // funstion main begins program execution
 int main(int argc, char const *argv[]) {
-  // create two GradeBook objects
-  GradeBook gradeBook1("Introduction to C++ Programing", "a");
-  GradeBook gradeBook2("Data strustures in C++", "b");
+  // creat GradeBook object myGradeBook and
+  // pass course name to constructor
+  GradeBook myGradeBook("CS101 C++ programing", "yourself");
 
-  // display initial value of courseName for each GradeBook
-  cout << "gradeBook1 created for course: " << gradeBook1.get_course_name()
-    << "\n" << "This course is presented by: " << gradeBook1.get_teacher_name()
-    << "\n\ngradeBook2 created for course: "<< gradeBook2.get_course_name()
-    << "\n" << "This course is presented by: " << gradeBook2.get_teacher_name()
-    << '\n' ;
+  myGradeBook.display_message(); // display welcome messages
+  myGradeBook.determine_class_average();// find average of 10 grades
 
 }
 /* output
-name:
-Introduction to C++ Programing
-exceeds maxium length(25)
-Limiting courseName to the first 25 characters.
+Welcome to the Grade Book for
+CS101 C++ programing
+Enter grade: 67
+Enter grade: 78
+Enter grade: 89
+Enter grade: 67
+Enter grade: 87
+Enter grade: 98
+Enter grade: 93
+Enter grade: 85
+Enter grade: 82
+Enter grade: 100
 
-gradeBook1 created for course: Introduction to C++ Progr
-This course is presented by: a
-
-gradeBook2 created for course: Data strustures in C++
-This course is presented by: b
+Total of all 100 grade is 846
+Class average is 84
 */
