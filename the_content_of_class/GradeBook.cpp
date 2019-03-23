@@ -22,17 +22,12 @@ int main(int argc, char const *argv[]) {
 /* output
 Welcome to the Grade Book for
 CS101 C++ programing
-Enter grade: 67
-Enter grade: 78
-Enter grade: 89
-Enter grade: 67
-Enter grade: 87
-Enter grade: 98
-Enter grade: 93
-Enter grade: 85
-Enter grade: 82
-Enter grade: 100
 
-Total of all 100 grade is 846
-Class average is 84
+Enter grade or -1 to quit: 97
+Enter grade or -1 to quit: 88
+Enter grade or -1 to quit: 72
+Enter grade or -1 to quit: -1
+
+Total of all 3 grades is 257
+Class average is 85.67
 */

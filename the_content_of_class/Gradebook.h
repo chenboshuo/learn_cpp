@@ -2,7 +2,8 @@
 // GradeBook calss definition in a sparate file from main.
 #include <iostream>
 #include <string>
-
+#include <iomanip> // setprecision()
+using namespace std;
 
 // GradeBook class definition
 class GradeBook {
@@ -57,7 +58,7 @@ std::string GradeBook::get_course_name() const {
 
 // function that displays a welcome message to the GradeBook user
 void GradeBook::display_message() const {
-  std::cout << "Welcome to the Grade Book for\n" << courseName <<'\n';
+  std::cout << "Welcome to the Grade Book for\n" << courseName << "\n\n";
 }
 
 /**
@@ -78,21 +79,40 @@ std::string GradeBook::get_teacher_name(){
 void GradeBook::determine_class_average() const{
   // initialization phase
   int total = 0;// sum of grades entered by user
-  unsigned int gradeCounter = 1;// number of grade to be by entered next
+  unsigned int gradeCounter = 0;// number of grade to be by entered next
 
   // processing phase
-  while (gradeCounter <= 10) {
-    std::cout << "Enter grade: "; // prompt for input
-    int grade = 0;// grade value entered by user
-    std::cin >> grade;// input next grade
+  // prompt for input and read grade from user
+  std::cout << "Enter grade or -1 to quit: ";
+  int grade = 0;// grade value entered by user
+  std::cin >> grade;// input grade or sentinel(守卫) value
+
+  // loop until sentinel value read from user
+  while (grade != -1) {
     total += grade;// add grade to tatal
     gradeCounter++;// increment counter by 1
+
+    // prompt for input and read next grade from user
+    std::cout << "Enter grade or -1 to quit: ";
+    std::cin >> grade; // input grade value or sentinel value
   }
 
   // termination phase
-  int average = total / 10; // ok to mix declaration and calculation
+  if (gradeCounter != 0) {// if user entered at least one grade
+    // calculate average of all grades entered
+    /**
+     * static_cast<double> 生成了临时的浮点数
+     * 像这样利用强制类型转换运算符进行的转换成为显式转换(explict conversion)
+     * 存储在total中的值仍为整数
+     */
+    double average = static_cast<double>(total) / gradeCounter; // ok to mix declaration and calculation
 
   // display total and average of grades
-  std::cout << "\nTotal of all 100 grade is "<< total << '\n';
+  std::cout << "\nTotal of all " << gradeCounter <<" grades is "
+    << total << '\n';
+  std::cout << setprecision(2) << fixed;
   std::cout << "Class average is " << average << '\n';
+}else{
+  std::cout << "No grades were entered" << '\n';
+}
 }
