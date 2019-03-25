@@ -79,23 +79,21 @@ std::string GradeBook::get_teacher_name(){
 void GradeBook::determine_class_average() const{
   // initialization phase
   int total = 0;// sum of grades entered by user
-  unsigned int gradeCounter = 0;// number of grade to be by entered next
+  unsigned int gradeCounter = -1;// number of grade to be by entered next
+  // and get rid of invalid data
 
   // processing phase
   // prompt for input and read grade from user
-  std::cout << "Enter grade or -1 to quit: ";
   int grade = 0;// grade value entered by user
-  std::cin >> grade;// input grade or sentinel(守卫) value
-
   // loop until sentinel value read from user
-  while (grade != -1) {
+  do {
     total += grade;// add grade to tatal
     gradeCounter++;// increment counter by 1
-
     // prompt for input and read next grade from user
     std::cout << "Enter grade or -1 to quit: ";
-    std::cin >> grade; // input grade value or sentinel value
-  }
+    std::cin >> grade; // input grade value or sentinel(守卫) value
+  }while (grade != -1);
+
 
   // termination phase
   if (gradeCounter != 0) {// if user entered at least one grade
