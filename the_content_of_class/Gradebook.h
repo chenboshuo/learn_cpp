@@ -11,18 +11,17 @@ public:
   explicit GradeBook(std::string name, std::string teacher_name);
   // construstor initialize courseName with std::string supplied as argument
 
-  void set_course_name(std::string name ); // function that sets the course name
 
+  void set_course_name(std::string name ); // function that sets the course name
   std::string get_course_name() const; // function that gets the course name
+  void set_teacher_name(std::string name);//sets the teacher's name
+  std::string get_teacher_name();
 
   void display_message() const;
   // function that displays a welcome message to the GradeBook user
 
-  void set_teacher_name(std::string name);//sets the teacher's name
-
   void determine_class_average() const; // averages user-entered grades
 
-  std::string get_teacher_name();
 
 private:
   std::string courseName; // course name for this GradeBook
@@ -105,12 +104,12 @@ void GradeBook::determine_class_average() const{
      */
     double average = static_cast<double>(total) / gradeCounter; // ok to mix declaration and calculation
 
-  // display total and average of grades
-  std::cout << "\nTotal of all " << gradeCounter <<" grades is "
-    << total << '\n';
-  std::cout << setprecision(2) << fixed;
-  std::cout << "Class average is " << average << '\n';
-}else{
-  std::cout << "No grades were entered" << '\n';
-}
+    // display total and average of grades
+    std::cout << "\nTotal of all " << gradeCounter <<" grades is "
+      << total << '\n';
+    std::cout << setprecision(2) << fixed;
+    std::cout << "Class average is " << average << '\n';
+  }else{
+    std::cout << "No grades were entered" << '\n';
+  }
 }
