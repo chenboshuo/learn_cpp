@@ -16,18 +16,24 @@ int main(int argc, char const *argv[]) {
   GradeBook myGradeBook("CS101 C++ programing", "yourself");
 
   myGradeBook.display_message(); // display welcome messages
-  myGradeBook.determine_class_average();// find average of 10 grades
+  myGradeBook.input_grades();// read grades based on user
+  myGradeBook.display_grade_report();// display report based on grades
 
 }
 /* output
+Finished in 4 ms
 Welcome to the Grade Book for
 CS101 C++ programing
 
-Enter grade or -1 to quit: 97
-Enter grade or -1 to quit: 88
-Enter grade or -1 to quit: 72
-Enter grade or -1 to quit: -1
+Enter the letter geades
+Enter the EOF character to hte end input
+Incorrect letter grade enteredEnter a new grade
 
-Total of all 3 grades is 257
-Class average is 85.67
+
+Numbers of students who received each letter grade:
+A: 3
+B: 2
+C: 3
+D: 2
+F: 1
 */
