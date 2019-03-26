@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include <iomanip> // setprecision()
-using namespace std;
 
 // GradeBook class definition
 class GradeBook {
@@ -120,7 +119,7 @@ void GradeBook::determine_class_average() const{
     // display total and average of grades
     std::cout << "\nTotal of all " << gradeCounter <<" grades is "
       << total << '\n';
-    std::cout << setprecision(2) << fixed;
+    std::cout << std::setprecision(2) << std::fixed;
     std::cout << "Class average is " << average << '\n';
   }else{
     std::cout << "No grades were entered" << '\n';
@@ -136,7 +135,7 @@ void GradeBook::input_grades(){
      << "Enter the EOF character to hte end input" << '\n';
 
   // loop until user types end-of-file key sequence
-  while ((grade = cin.get()) != EOF) {
+  while ((grade = std::cin.get()) != EOF) {
     // determine which grade was entered
     switch (grade) {
       case 'A':// grade was upcase 'A'
