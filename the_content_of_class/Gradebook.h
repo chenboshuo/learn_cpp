@@ -3,12 +3,23 @@
 #include <iostream>
 #include <string>
 #include <iomanip> // setprecision()
+#include <array>
+using namespace std;
 
 // GradeBook class definition
 class GradeBook {
 public:
-  explicit GradeBook(std::string name, std::string teacher_name);
-  // construstor initialize courseName with std::string supplied as argument
+  // constant -- number of student who took the test
+  static const size_t students = 10;
+  /*用`stastic`声明限定外部变量与函数,
+  可以将其后声明的对象的作用域限定为被编译源文件的剩余部分.
+  通过`static`限定外部对象,可以达到隐藏外部对象的目的
+  */
+
+  GradeBook(std::string &name,
+    std::string teacher_name,
+    const std::array<int, students> &grades_array);
+    // construstor initialize courseName with std::string supplied as argument
 
 
   void set_course_name(std::string name ); // function that sets the course name
@@ -24,9 +35,16 @@ public:
   void input_grades();// input arbitrary report based on user input
   void display_grade_report()const;// display report based on user inputvoid
 
+  void process_grades()const;// perform operations on the grade data
+  int get_minium()const; // find the minium on the test
+  int get_maxium()const; // find the maxium on the test
+  double get_average() const;// determine the average grade for the test
+  void output_bar_chart() const; // output bar chart of grade distribution
+  void output_grades()const; // output the contests of the grade array
 private:
   std::string courseName; // course name for this GradeBook
   std::string teacher_name;
+  std::array<int, students> grades; // array of student grades
   unsigned int aCount;// count of A grades
   unsigned int bCount;// count of B grades
   unsigned int cCount;// count of C grades
@@ -35,13 +53,16 @@ private:
 };
 
 // construstor initialize courseName with std::string supplied as argument
-GradeBook::GradeBook(std::string name, std::string teacher_name)
+GradeBook::GradeBook(std::string &name,
+  std::string teacher_name,
+  const std::array<int, students> &grades_array)
 : teacher_name(teacher_name),
   aCount(0), // initialize count of A grades to 0
   bCount(0), // initialize count of B grades to 0
   cCount(0), // initialize count of C grades to 0
   dCount(0), // initialize count of D grades to 0
-  fCount(0)  // initialize count of F grades to 0
+  fCount(0),  // initialize count of F grades to 0
+  grades(grades_array)
 {// member initializer to initialize courseName
   set_course_name(name);
 }
@@ -83,6 +104,7 @@ void GradeBook::set_teacher_name(std::string name) {
 std::string GradeBook::get_teacher_name(){
   return teacher_name;
 }
+
 
 /**
  * determine class average based on 10 grades entered by user
@@ -128,6 +150,8 @@ void GradeBook::determine_class_average() const{
 /**
  * input arbitary number of grades from user; update grade counter
  */
+
+
 void GradeBook::input_grades(){
   int grade;// grade intered by user
 
@@ -163,4 +187,117 @@ void GradeBook::display_grade_report()const{
   << "\nA: " << aCount << "\nB: " << bCount
   << "\nC: " << cCount << "\nD: " << dCount
   << "\nF: " << fCount << '\n';
+}
+
+/**
+ * perform various operations on the data
+ */
+void GradeBook::process_grades()const{
+  // output grades array
+  output_grades();
+
+  // call funstion get_average to calculate the averge grade
+  std::cout << setprecision(2) << fixed;
+  std::cout << "\nClass averge is "<< get_average() << '\n';
+
+  // call funstions get_minium and get_maxium
+  std::cout << "Lowest grades is "<< get_minium()
+    << "\nHighist grades is "<< get_maxium()<< '\n';
+
+  // call function output_bar_chart to print grades distribution chart
+  output_bar_chart();
+}
+
+/**
+ * find minium grade
+ * @return lower grgade
+ */
+int GradeBook::get_minium()const{
+  int lower_grgade = 100;
+
+  // loop through grades array
+  for(int grade: grades){
+    // if current grade lower than lowcase, assign it to lower_grgade
+    if (grade < lower_grgade) {
+      lower_grgade = grade;
+    }
+  }
+  return lower_grgade;
+}
+
+/**
+ * find maxium grade
+ * @return highest grgade
+ */
+int GradeBook::get_maxium()const{
+  int high_grgade = 0;
+
+  // loop through grades array
+  for(int grade: grades){
+    // if current grade lower than lowcase, assign it to lower_grgade
+    if (grade > high_grgade) {
+      high_grgade = grade;
+    }
+  }
+
+  return high_grgade;
+}
+
+/**
+ * determine average grade for test
+ * @return average of grades
+ */
+double GradeBook::get_average() const{
+  int total = 0;
+
+  // sum grades in array
+  for(int grade: grades){
+    total += grade;
+  }
+
+  return static_cast<double>(total) / grades.size();
+}
+
+
+/**
+ * output bar chart displaying grade distribution
+ */
+void GradeBook::output_bar_chart() const {
+  std::cout << "\nGrade distribution: " << '\n';
+
+  // stores frequency of grades in each range of 10 grades
+  const size_t frequency_size = 11;
+  array<unsigned int, frequency_size>frequency = {}; //init to 0s
+
+  // for each grade, increasement the appropriate frequency
+  for(int grade: grades){
+    ++frequency[grade / 10];
+  }
+
+  // for each grade frequency, print bar in chart
+  for (size_t count = 0; count < frequency_size; count++) {
+    // output bar labels
+    if (0 == count) {
+      std::cout << " 0-9 : ";
+    } else if (10 == count) {
+      std::cout << "  100: ";
+    } else {
+      std::cout << count * 10 << "-" << count*10+9 << ": ";
+    }
+
+    for (unsigned int stars = 0; stars < frequency[count]; stars++) {
+      std::cout << "*";
+    }
+    std::cout << '\n';
+  }
+}
+
+void GradeBook::output_grades() const {
+  std::cout << "The grade are: \n" << '\n';
+
+  // output each student's grade
+  for (size_t student = 0; student < grades.size(); student++) {
+    std::cout << "Student"<< setw(2) << student + 1 << ":"
+      <<setw(3) << grades[student] << '\n';
+  }
 }

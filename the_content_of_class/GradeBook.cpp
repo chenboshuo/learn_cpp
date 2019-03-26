@@ -11,29 +11,44 @@ using namespace std;
 
 // funstion main begins program execution
 int main(int argc, char const *argv[]) {
-  // creat GradeBook object myGradeBook and
-  // pass course name to constructor
-  GradeBook myGradeBook("CS101 C++ programing", "yourself");
+  // array of students grades
+  const array<int, GradeBook::students> grades =
+    {87, 68, 94, 100, 83, 78, 85, 91, 76, 87};
+  std::string courseName = "CS101 C++ programing";
+  GradeBook myGradeBook( courseName, "yourself",grades);
 
   myGradeBook.display_message(); // display welcome messages
-  myGradeBook.input_grades();// read grades based on user
-  myGradeBook.display_grade_report();// display report based on grades
+  myGradeBook.process_grades();
 
 }
 /* output
-Finished in 4 ms
-Welcome to the Grade Book for
-CS101 C++ programing
+The grade are:
 
-Enter the letter geades
-Enter the EOF character to hte end input
-Incorrect letter grade enteredEnter a new grade
+Student 1: 87
+Student 2: 68
+Student 3: 94
+Student 4:100
+Student 5: 83
+Student 6: 78
+Student 7: 85
+Student 8: 91
+Student 9: 76
+Student10: 87
 
+Class averge is 84.90
+Lowest grades is 68
+Highist grades is 100
 
-Numbers of students who received each letter grade:
-A: 3
-B: 2
-C: 3
-D: 2
-F: 1
+Grade distribution:
+ 0-9 :
+10-19:
+20-29:
+30-39:
+40-49:
+50-59:
+60-69: *
+70-79: **
+80-89: ****
+90-99: **
+  100: *
 */
