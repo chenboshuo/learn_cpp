@@ -1,4 +1,7 @@
 # cpp_learning
+
+[![Join the chat at https://gitter.im/cpp_learning/community](https://badges.gitter.im/cpp_learning/community.svg)](https://gitter.im/cpp_learning/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 learning c++
 c++学习内容
 ## 参考
