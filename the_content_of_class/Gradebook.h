@@ -11,6 +11,8 @@ class GradeBook {
 public:
   // constant -- number of student who took the test
   static const size_t students = 10;
+  static const size_t tests = 3; // number of tests
+
   /*用`stastic`声明限定外部变量与函数,
   可以将其后声明的对象的作用域限定为被编译源文件的剩余部分.
   通过`static`限定外部对象,可以达到隐藏外部对象的目的
@@ -18,7 +20,7 @@ public:
 
   GradeBook(std::string &name,
     std::string teacher_name,
-    const std::array<int, students> &grades_array);
+    const array<array<int,tests>, students> &grades_array);
     // construstor initialize courseName with std::string supplied as argument
 
 
@@ -38,24 +40,26 @@ public:
   void process_grades()const;// perform operations on the grade data
   int get_minium()const; // find the minium on the test
   int get_maxium()const; // find the maxium on the test
-  double get_average() const;// determine the average grade for the test
+  double get_average(const array<int, tests> &set_of_grades) const;
+  // determine the average grade for the test
   void output_bar_chart() const; // output bar chart of grade distribution
   void output_grades()const; // output the contests of the grade array
 private:
   std::string courseName; // course name for this GradeBook
   std::string teacher_name;
-  std::array<int, students> grades; // array of student grades
+  array<array<int, tests>, students> grades; // array of student grades
   unsigned int aCount;// count of A grades
   unsigned int bCount;// count of B grades
   unsigned int cCount;// count of C grades
   unsigned int dCount;// count of D grades
   unsigned int fCount;// count of F grades
+
 };
 
 // construstor initialize courseName with std::string supplied as argument
 GradeBook::GradeBook(std::string &name,
   std::string teacher_name,
-  const std::array<int, students> &grades_array)
+  const array<array<int,tests>, students> &grades_array)
 : teacher_name(teacher_name),
   aCount(0), // initialize count of A grades to 0
   bCount(0), // initialize count of B grades to 0
@@ -196,13 +200,9 @@ void GradeBook::process_grades()const{
   // output grades array
   output_grades();
 
-  // call funstion get_average to calculate the averge grade
-  std::cout << setprecision(2) << fixed;
-  std::cout << "\nClass averge is "<< get_average() << '\n';
-
   // call funstions get_minium and get_maxium
-  std::cout << "Lowest grades is "<< get_minium()
-    << "\nHighist grades is "<< get_maxium()<< '\n';
+  std::cout << "Lowest in the gradebook is "<< get_minium()
+    << "\nHighist in the gradebook is "<< get_maxium()<< '\n';
 
   // call function output_bar_chart to print grades distribution chart
   output_bar_chart();
@@ -215,11 +215,14 @@ void GradeBook::process_grades()const{
 int GradeBook::get_minium()const{
   int lower_grgade = 100;
 
-  // loop through grades array
-  for(int grade: grades){
-    // if current grade lower than lowcase, assign it to lower_grgade
-    if (grade < lower_grgade) {
-      lower_grgade = grade;
+  // loop through rows of grades array
+  for(auto const &student: grades){
+    // loop through colums of curent row
+    for(auto const &grade : student){
+      // if current grade lower than lowcase, assign it to lower_grgade
+      if (grade < lower_grgade) {
+        lower_grgade = grade;
+      }
     }
   }
   return lower_grgade;
@@ -232,11 +235,14 @@ int GradeBook::get_minium()const{
 int GradeBook::get_maxium()const{
   int high_grgade = 0;
 
-  // loop through grades array
-  for(int grade: grades){
-    // if current grade lower than lowcase, assign it to lower_grgade
-    if (grade > high_grgade) {
-      high_grgade = grade;
+  // loop through rows of grades array
+  for(auto const &student: grades){
+    // loop through colums of curent row
+    for(auto const &grade : student){
+      // if current grade greater than lowcase, assign it to lower_grgade
+      if (grade > high_grgade) {
+        high_grgade = grade;
+      }
     }
   }
 
@@ -247,15 +253,15 @@ int GradeBook::get_maxium()const{
  * determine average grade for test
  * @return average of grades
  */
-double GradeBook::get_average() const{
+double GradeBook::get_average(const array<int, tests> &set_of_grades) const{
   int total = 0;
 
   // sum grades in array
-  for(int grade: grades){
+  for(int grade: set_of_grades){
     total += grade;
   }
 
-  return static_cast<double>(total) / grades.size();
+  return static_cast<double>(total) / set_of_grades.size();
 }
 
 
@@ -263,15 +269,17 @@ double GradeBook::get_average() const{
  * output bar chart displaying grade distribution
  */
 void GradeBook::output_bar_chart() const {
-  std::cout << "\nGrade distribution: " << '\n';
+  std::cout << "\nOverall grade distribution: " << '\n';
 
   // stores frequency of grades in each range of 10 grades
   const size_t frequency_size = 11;
   array<unsigned int, frequency_size>frequency = {}; //init to 0s
 
   // for each grade, increasement the appropriate frequency
-  for(int grade: grades){
-    ++frequency[grade / 10];
+  for(auto const &student : grades){
+    for(auto const &test : student){
+      ++frequency[test / 10];
+    }
   }
 
   // for each grade frequency, print bar in chart
@@ -293,11 +301,23 @@ void GradeBook::output_bar_chart() const {
 }
 
 void GradeBook::output_grades() const {
-  std::cout << "The grade are: \n" << '\n';
+  std::cout << "\nThe grades are: \n" << '\n';
+  std::cout << "            " ;// align(排队,排成一行) colum heads
 
-  // output each student's grade
-  for (size_t student = 0; student < grades.size(); student++) {
-    std::cout << "Student"<< setw(2) << student + 1 << ":"
-      <<setw(3) << grades[student] << '\n';
+  // crate for a colum heading for each of the tests
+  for(size_t test = 0; test < tests; ++test){
+    cout << "Test " << test+1 << ' ';
+  }
+  cout << "Average" << endl; // student average colum headinng
+
+  // create rows/colums of text represent array grades
+  for (size_t student = 0; student < grades.size(); ++student) {
+    std::cout << "Student"<< setw(2) << student + 1 ;
+    // output student's grades
+    for(size_t test = 0; test < grades[student].size(); ++test){
+      cout <<setw(8) << grades[student][test];
+    }
+    double average = get_average(grades[student]);
+    cout << setw(9) << setprecision(2) << fixed << average << endl;
   }
 }
