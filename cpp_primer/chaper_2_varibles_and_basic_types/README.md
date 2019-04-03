@@ -299,4 +299,36 @@ int &refVal5 = dval; //error: initializer must be an int object
 ```
 
 ### 2.3.2 Pointers
-A **pointer** is a compound type that "point to" another type.
+A **pointer** is a compound type that "point to" another type. Like reference,pointers are used for indirect access to others objects. Unlike a reference, a pointer is an onject in its own right. Pointers can be assigned and copied; a single pointer can point to several different objects over its lifetime.
+
+#### Taking the Adress of an Object
+A pointer holds the adress of another object. We get the adress of an object by using the address-of operator(the **& operator**)
+
+The type must match because the type of the pointer is used to infer the type of the object to which the pointer points. If a pointer adressed an object of another type, operations performed on the underlying(基本的) object would fail.
+
+#### Pointer Value
+The value(i.e., the adress) stored in a pointer can be in one of four states:
+1. It can point to an object.
+2. It can point to the location just immediatelly past the end of an object.
+3. It can be a null pointer, incicatiing that it is not bound to any object.
+4. It can be invailed; values other than the preceding three are invalid.
+
+Although pointers int case 2 and 3 are valid ,there are limits on what we can do with such pointers. Because these pointers do not to any object, we may not use them to access the (supposed) object to which the pointer points.If we do attempt to access an object through such pointers, the behavior is undifined.
+
+#### Using a Pointer to Access Object
+When a pointer pointers to an object, we can use the dereference operator(the **`*` operator**) to access that object.
+
+Dereferencing a pointer yields the object to which the pointer points. We assign to that object by assigning to the dereference.
+
+#### Null Pointers
+A **null pointer** does not point to any object. Code can check whether a pointer is null before attempting to use it. There are several ways to obtain a null pointer:
+```cpp
+int *p1 = nullptr; // equivalent to int *p1 = 0
+int *p2 = 0;// directly initialize p2 from the literal constant 0
+// must #include <ctdlib>
+int *p3 = NULL;
+```
+
+The most direct approach is to initialize the pointer usng the literal **nullptr**, which was introduced to any other pointer type. Alternatively, we can initalize a pointer to the literal 0.
+
+Other programs sometimes use a **preprocessor variable** named `NULL`,which the `cstdio` header defines as 0.
