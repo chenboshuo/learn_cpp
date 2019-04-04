@@ -31,6 +31,7 @@ public:
 
   void print_universal() const;
   void print_standard() const;
+  void tick(int s=1);// increase by s second
 };
 
 #endif
@@ -94,7 +95,27 @@ void Time::print_universal() const {
 }
 
 void Time::print_standard() const {
-  std::cout << ((hour == 0 || hour == 12) ? 12 : hour %12 )<< ":"
+  std::cout << setfill('0') << setw(2)
+    << ((hour == 0 || hour == 12) ? 12 : hour %12 )<< ":"
     << setw(2) << minute << ":"
     << setw(2) << second << (hour < 12 ? " AM" : " PM");
+}
+
+/**
+ * increase by s second
+ * @param s second
+ */
+void Time::tick(int s) {
+  second += s;
+  while(second >= 60) {
+    minute ++;
+    second -= 60;
+  }
+  while(minute >= 60){
+    hour ++;
+    minute -= 60;
+  }
+  while (hour >= 24) {
+    hour -= 24;
+  }
 }
