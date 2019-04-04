@@ -332,3 +332,12 @@ int *p3 = NULL;
 The most direct approach is to initialize the pointer usng the literal **nullptr**, which was introduced to any other pointer type. Alternatively, we can initalize a pointer to the literal 0.
 
 Other programs sometimes use a **preprocessor variable** named `NULL`,which the `cstdio` header defines as 0.
+
+#### void* Pointers
+The type void* is a special type that can hold the adress of any object.Like other pointer, a void* pointer holds an adress, but type of the object at that adress unknown:
+```cpp
+double obj = 3.14, *pd = &obj;
+void *pv = &obj;// ok:obj can be an object of any type
+pv = pd;// pv can hold a pointer to any type.
+```
+We cannot use a void* to operate on the object it adress--we don't know that object's type, and type determines what operations we can perform on the object.
