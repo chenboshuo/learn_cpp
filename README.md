@@ -44,3 +44,6 @@ c++学习内容
 >> - [sorting-and-searching-arrays 使用算法库进行排序和二叉搜索](./the_content_of_class/sorting-and-searching-arrays.cpp)
 >> - [global-variable 尝试全局变量](./the_content_of_class/global-variable.cpp)
 >> -[pointer-and-const.cpp 使用const修饰指针](https://github.com/chenboshuo/cpp_learning/commits/ce078744fb17115991f4111dcecce23ce039bca4/the_content_of_class/pointer-and-const.cpp)
+>> - Time 类
+>>> [头文件](./the_content_of_class/Time.h) [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/Time.h)
+>> [主函数](./the_content_of_class/time.cpp) [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/time.cpp)

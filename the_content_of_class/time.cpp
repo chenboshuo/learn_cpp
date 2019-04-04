@@ -1,53 +1,63 @@
 // filename: time.cpp
 #include "Time.h"
- int main(int argc, char const *argv[]) {
-   Time t; // instantiate object t of calss time
+int main(int argc, char const *argv[]) {
+  Time t1;// all arguments defaulted
+  std::cout << "Constructed with:\n\nt1:all arguments defaulted\n  ";
+  t1.print_universal(); // 00:00:00
+  std::cout << "\n  ";
+  t1.print_standard();//12:00:00 AM
 
-   // output Time object t's initial values
-   std::cout << "The initial universal time is ";
-   t.print_univwersal();
-   std::cout << "\nThe initial standard time is " ;
-   t.print_standard();
+  Time t2(2);// minute and second defaulted
+  std::cout << "\n\nt2:minute and second defaulted\n  ";
+  t2.print_universal(); // 02:00:00
+  std::cout << "\n  ";
+  t2.print_standard();// 2:00:00 AM
 
-   t.set_time(13, 27, 6); // change times
+  Time t3(21, 34);// second defaulted
+  std::cout << "\n\nt3: second defaulted\n  ";
+  t3.print_universal(); // 21:34:00
+  std::cout << "\n  ";
+  t3.print_standard();// 9:34:00 PM
 
-   // output Time object t's new values
-   std::cout << "\n\nUniversal time after set_time is " ;
-   t.print_univwersal();
-   std::cout << "\nStandard after set_time is " ;
-   t.print_standard();
+  Time t4(12, 25, 42);// hour, minute and second specified
+  std::cout << "\n\nt4:hour, minute and second specified\n  ";
+  t4.print_universal(); // 12:25:42
+  std::cout << "\n  ";
+  t4.print_standard();// 12:25:42 AM
 
-   // attempt to set the time with invalid invalid values
-   try{
-     t.set_time(99, 99, 99); // all values out of range
-   }
-   catch(invalid_argument &e){
-     std::cout << "Exception:" << e.what() << '\n';
-   }
+  // attempt to initialize t5 with invalid value
+  try{
+    Time t5(27, 74, 99);// all bad value specified
+  }
+  catch( invalid_argument &e){
+    std::cerr << "\n\nExpection while initializing t5: "<< e.what() << '\n';
+  }
 
-   // output t's values after specifying invalid values
-   std::cout << "\n\nAfter attempting invalid settings:"
-    << "\nUniversal time: ";
-   t.print_univwersal();
-   std::cout << "\nStandard time:" ;
-   t.print_standard();
+  return 0;
+}
+  /*
+9.5 Time实例探究：具有默认值的构造函数
+  同时修改了一个拼写错误
+  两个打印的函数去掉回车
 
-   return 0;
- }
- /*
- The initial universal time is 00:00:00
+  通过构造函数提供默认的实参， 可以保证即使在构造函数中没有任何值，构造函数仍可以初始化成员
+output：
+  Finished in 4 ms
+  Constructed with:
 
-The initial standard time is 12:00:00 AM
+  t1:all arguments defaulted
+    00:00:00
+    12:00:00 AM
 
+  t2:minute and second defaulted
+    02:00:00
+    2:00:00 AM
 
-Universal time after set_time is 13:27:06
+  t3: second defaulted
+    21:34:00
+    9:34:00 PM
 
-Standard after set_time is 1:27:06 PM
-Exception:hour, minute and/or second was out of range
-
-
-After attempting invalid settings:
-Universal time: 13:27:06
-
-Standard time:1:27:06 PM
-  */
+  t4:hour, minute and second specified
+    12:25:42
+    12:25:42 PM
+ */
