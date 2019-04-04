@@ -160,3 +160,16 @@ disks  = 3
 | 3 -> 1 | 1----3------2   | t3 -> x3 | x2 = 3, y2 = 2 |
 | 3 -> 2 | 1----2/3----0   | t3 -> y3 | \               |
 | 1 -> 2 | 0----1/2/3--0   | x3 -> y3 |                |
+
+
+## 9.7 增强的Time类
+- [] 修改Time函数，使他包含一个tick成员函数。该函数存放在Time对象中的时间增加1秒。Time对象应该始终保持可靠状态。
+- [] 编写一个程序，在循环中测试tick函数，每次循环过程中以标准格式打印时间，以显示tick是否正常
+
+程序应该保证以下情况：
+1. 递增到下一分钟
+2. 递增到下一小时
+3. 递增到下一小时（11:59:59 PM 到 12:00:00 AM)
+
+- [代码对比](https://github.com/chenboshuo/cpp_learning/commit/0dfdbce07017abafac564199c5b9710a789dd576)
+- [头文件完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/Time.h) [主函数完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/time.cpp)
