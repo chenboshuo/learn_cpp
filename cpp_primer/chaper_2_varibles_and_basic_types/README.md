@@ -346,9 +346,23 @@ We cannot use a void* to operate on the object it adress--we don't know that obj
 #### Pointers to points
 In general, there are no limits to how many type midifiers can be applied to a declarator. When there is more than modifier, they combine that are logical but not always obvious.
 
+[code](https://github.com/chenboshuo/cpp_learning/blob/619a3d9ada9b1321305c752d08577b028db30553/cpp_primer/chaper_2_varibles_and_basic_types/pointers-to-pointers.cpp)
+
 ```cpp
   int ival = 1024;
   int *pi = &ival;
   int **ppi = &pi;
 ```
 ppi -> pi -> ival
+
+#### Reference to Pointers
+A reference is not an object. Hence, we may not have a pointer to a reference.However, because a pointer is an object, we can define a reference to a pointer:
+```cpp
+int i = 42;
+int *p; // p is a pointer to int
+int *&r = p; // r is a reference to the pointer p
+
+r = &i;// r refers to a pointer; assigning &i to r makes p point to i
+*r = 0;// dereference r yields i, the object tp which p points; change i to 0
+```
+The easiest way to understand the type of r is to read the definition right to left. The symbol closest to the name of the variable(in this case the & in &r) is the one that has the most immediate effect on the variable's type. Thus, we know that r is a reference. The rest of declarator determines the type to is a pointer type. Finally, the base type of the declaration says that r is a reference to a pointer to an `int`.
