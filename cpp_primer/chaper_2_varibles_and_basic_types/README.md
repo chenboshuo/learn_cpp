@@ -341,3 +341,14 @@ void *pv = &obj;// ok:obj can be an object of any type
 pv = pd;// pv can hold a pointer to any type.
 ```
 We cannot use a void* to operate on the object it adress--we don't know that object's type, and type determines what operations we can perform on the object.
+
+### 2.3.3 Understanding Compound Type Declarations
+#### Pointers to points
+In general, there are no limits to how many type midifiers can be applied to a declarator. When there is more than modifier, they combine that are logical but not always obvious.
+
+```cpp
+  int ival = 1024;
+  int *pi = &ival;
+  int **ppi = &pi;
+```
+ppi -> pi -> ival
