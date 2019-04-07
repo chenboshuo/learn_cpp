@@ -1,7 +1,8 @@
 # cpp_learning
 
 [![Join the chat at https://gitter.im/chenboshuo/cpp_learning](https://badges.gitter.im/chenboshuo/cpp_learning.svg)](https://gitter.im/chenboshuo/cpp_learning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![HitCount](http://hits.dwyl.io/chenboshuo/cpp_learning.svg)](http://hits.dwyl.io/chenboshuo/cpp_learning)
+[![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
 learning c++
 c++学习内容
 ## 参考
