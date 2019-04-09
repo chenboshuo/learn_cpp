@@ -1,6 +1,8 @@
+// time.h
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
+using namespace std;
 
 #ifndef TIME_H
 
@@ -32,11 +34,9 @@ unsigned int second;
 
 // include "Time.h"
 
-using namespace std;
-
 Time::Time(int hour, int minute, int second){
   setTime(hour, minute, second);
-  tick(hour, minute, second);
+  // tick(hour, minute, second);
 }
 
 void Time::setTime(int h, int m, int s){
@@ -50,18 +50,18 @@ void Time::setHour(int h){
   if (h >= 0 && h < 24)
     hour = h;
   else
-    throw invalid_argument("hour must be 0-23");
+    throw std::invalid_argument("hour must be 0-23");
 }
 
 void Time::setMinute(int m){
-  if (m >= 0 && m < 59)
+  if (m >= 0 && m <= 59)// 这里之前的范围没有包括59
     minute = m;
   else
-    throw invalid_argument("minute must be 0-59");
+    throw std::invalid_argument("minute must be 0-59");
 }
 
 void Time::setSecond(int s){
-  if (s >= 0 && s < 59)
+  if (s >= 0 && s <= 59)// 这里之前的范围没有包括59
     second = s;
   else
     throw std::invalid_argument("second must be 0-59");
@@ -103,15 +103,15 @@ using namespace std;
 int main() {
   Time t(12, 54, 59);
   t.printStandard();
+  cout<< "\n";
   try{
     Time t2(99, 99, 99);
-  }catch (invalid_argument &e){
-    cerr << e.what();
+   }catch (invalid_argument &e){
+    cerr <<e.what();
   }
-  system("pause");
+
 }
 /*
-报错信息
-terminate called after throwing an instance of 'std::invalid_argument'
-  what():  second must be 0-59
- *、
+12:54:59
+our must be 0-23
+*/
