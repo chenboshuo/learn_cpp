@@ -366,3 +366,90 @@ r = &i;// r refers to a pointer; assigning &i to r makes p point to i
 *r = 0;// dereference r yields i, the object tp which p points; change i to 0
 ```
 The easiest way to understand the type of r is to read the definition right to left. The symbol closest to the name of the variable(in this case the & in &r) is the one that has the most immediate effect on the variable's type. Thus, we know that r is a reference. The rest of declarator determines the type to is a pointer type. Finally, the base type of the declaration says that r is a reference to a pointer to an `int`.
+
+## 2.4 `const` Qualifier
+We can make a variable unchangeable by defining the variable's type as **const**:
+```cpp
+const int bufSize = 512;
+```
+Any attempt ro assign to bufSize is an error. Because we can't change the value of a const object after we create it, it must be initialized.  As uaual, the initializer may be an srbitrarily complicated expression:
+```cpp
+const int i = get_size();// ok: initialized at run time
+const int j = 42; // ok: initialized at compile time
+const int l; // errror: l is uninitialize const
+```
+
+#### by default, const objects are local to file
+When a `const` object is initialize from a compile-time constant, the compiler will usually replace uses of the variable with its corredponding value.
+
+To substitute the value for the variable, the complier has to see the valable's initializer. When we split a program into mutiple files, every file that uses the const must have access to its initializer. In order to see the initializer, the variable must be defined in every file that wants to use the variable's value. To support this usage, yet avoid multiple definitions of the same variable, const variables are difined as local to the file. When we define a const in a const with the same name in mutiple files, it is as if we had written definition for separate variables in each file.
+
+Sometimes we have a const variable that we want to share across mutiple files but whose initializer is not a constant expression. In that case, we don't want the compiler to generate a separate variable in each file. Instead, we want the compiler to have behave like other object. We want to define the const in one file, and declare it in the other files that use that objects.
+
+To define a single instance of a const object, we use the keyword `extern` on both definition and declarations:
+```cpp
+// file_1.cc defines and initializes a const that is accessible to other file
+extern const int bufSize = fcn();
+
+// file_1.h
+extern const int bufSize; // same bufSize as defined in file_c.cc
+```
+
+To share a const object among mutiple files, you must define the variables as extern.
+
+### 2.4.1 References to `const`
+
+As with any other object, we can bind a reference to an object of a const type. To do so we use a **reference to const**, which is a reference that refers to a const type. Unlike an ordinary reference, a reference to const cannot be used to change the object to which the reference is bound:
+```cpp
+const int ci = 1024;
+const int &r1 = ci; // ok: both reference and underlying object are const
+r1 = 42; // error: r1 is a reference to constant
+int &r2 = ci;//error: nonconst reference to a const object  
+```
+
+Because we cannot assign dirctly to ci, we also should not be able to use a reference to change ci. Therefore, the Initialization r2 is an error.
+
+TERMINOLOGY(术语): CONST REFERENCE IS REFERENCE TO CONST
+
+C++ programmers tend to abbreviate the phase "reference to const" as "const reference." This abbreviation makes sense-- if you remember that it is an abbreviation.
+
+Technically speaking, there are no const. Indeed, because there is no way to make a reference refer to a different objection.
+
+#### Initialization and reference to const
+In `2.3.1` we noted that there are two expections to the rule that the type of a reference must match the type of the objects which it refers. The first exception is that we can initialize a reference to const from any expression that can converted to the type of the reference. In particular, we can bind a reference to const to a nonconst object, a literal, or a more general expression:
+```cpp
+int i = 42;
+const int &r1 = i; // we can bind a const int& to a plain int object
+const int &r2 = 42; // ok: r1 is a reference to const
+const int &r3 = r1 * 2; // ok: r3 is a reference to const
+int &r4 = r * 2; // error: r4 is a plain, nonconst reference
+```
+
+The easiest way to understand this difference in initialization rules is to consider what happens when we bind a feference to an object of a different type:
+
+```cpp
+double dval = 3.14;
+const int &ri = dval;
+```
+
+Here `ri` referes to an int. Operations on `ri` will be integer operations, but `dval` is a float-point number, not an integer. To ensure that the object to which `ri` is bound is an `int`, the compiler transforms this code into something like
+```cpp
+const int temp = dval; // create a temporary const int from the double
+const int &ri = temp; // bind ri to that temporary
+```
+In this case, `ri` is bound to a **temporary** object. A temporary object is an unnamed object created by the compiler when it needs a place to store a result from evaluatong an expression. C++ programmers often use the word temporary as an abbreviation for temporary object.
+
+Now consider what could happen if this initialization were allowed but was not a const. If `ri` weren't const, we could assign to `ri`. Doing so would change the object to which `ri` is bound. That object is a temporary, not `dival`. The programmer who made `ri` to `dval` would probably expcect that assigning to `ri` would change `dval`. After all, why assign to `ri` unless the intent is to change the object to whcih `ri` is bound? Because binding a reference to a temporary is almost surely not what the programmer intended, the language makes it illegal.
+
+#### A Reference to `const` May Refer to an Object That Is Not `const`
+
+It is imprortant to realize that a reference to const retricts only what we can through that reference. Binding a reference const to an object says nothing about whether the underlying object itself is const. Because the underlying object might be nonconst, it might be changed by means:
+```cpp
+int i = 42;
+int &r1 = i; // r1 bound to i
+const int &r2 = i; // r2 also bound to i; but cannot be used to change i
+r1 = 0; // r1 is not const; i is now 0
+r2 = 0; // error : r2 is a reference to const
+```
+
+Binding r2 to the (nonconst) int i is legal. However, we cannot use r2 to change i. Even so, the value in i still might change. We can change i by assigning to it directly, or by assigning to another reference bound to i, such as r1.
