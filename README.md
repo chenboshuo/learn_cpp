@@ -49,5 +49,7 @@ c++学习内容
 >> - [void_pointer.cpp void 类型的指针](./the_content_of_class/void_pointer.cpp)
 >> [inline-function.cpp 内联函数的简单性能测试](./the_content_of_class/inline-function.cpp)
 >> - Time 类
->>> [头文件](./the_content_of_class/Time.h) [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/Time.h)
->> [主函数](./the_content_of_class/time.cpp) [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/time.cpp)
+>>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/Time.h) |
+>>> [头文件](./the_content_of_class/Time.h)  |
+>> [主函数](./the_content_of_class/time.cpp)
+>> - [order_of_destror 析构函数的调用次数](./the_content_of_class/order_of_destror.cpp)
