@@ -453,3 +453,11 @@ r2 = 0; // error : r2 is a reference to const
 ```
 
 Binding r2 to the (nonconst) int i is legal. However, we cannot use r2 to change i. Even so, the value in i still might change. We can change i by assigning to it directly, or by assigning to another reference bound to i, such as r1.
+
+### 2.4.2 Pointers and const
+
+As with reference, we can define pointers that point to either const or nonconst types. Like a reference to const, a **pointer to const** may not be used to const:
+```cpp
+const double pi = 3.14;
+double *ptr = &pi; // error: ptr is a plain pointer
+const double *cptr = &pi;
