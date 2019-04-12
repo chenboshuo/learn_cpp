@@ -1,10 +1,11 @@
 # cpp_learning
 
+learning c++
+c++学习内容
+
 [![Join the chat at https://gitter.im/chenboshuo/cpp_learning](https://badges.gitter.im/chenboshuo/cpp_learning.svg)](https://gitter.im/chenboshuo/cpp_learning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![HitCount](http://hits.dwyl.io/chenboshuo/cpp_learning.svg)](http://hits.dwyl.io/chenboshuo/cpp_learning)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
-learning c++
-c++学习内容
 ## 参考
 - [课件](https://www.lanzous.com/i377dbg)
 - [C++ Primer](https://m.tb.cn/h.3IxqiS9)
@@ -53,3 +54,8 @@ c++学习内容
 >>> [头文件](./the_content_of_class/Time.h)  |
 >> [主函数](./the_content_of_class/time.cpp)
 >> - [order_of_destror 析构函数的调用次数](./the_content_of_class/order_of_destror.cpp)
+>> - [friend_function.cpp 通过friend函数修改private数据](./the_content_of_class/friend_function.cpp)
+
+
+## 许可
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
