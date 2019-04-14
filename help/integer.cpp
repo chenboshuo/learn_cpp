@@ -7,7 +7,7 @@ class Integer
 private:
   int val;					// 整数值
 public:
-  Integer(){ val = 0; }					// 无参数的构造函数
+  // Integer(){ val = 0; }					// 这一行多余,下一行已经有默认值了
   Integer(int v = 0){ val = v; }			// 带参数的构造函数
   void Show(){ cout << val << endl; }	// 显示整数值
 };
