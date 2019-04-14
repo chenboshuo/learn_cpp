@@ -25,6 +25,7 @@ c++学习内容
 复制这条信息，￥OfJ3buhVolB￥ ，打开【手机淘宝】即可下单
 ```
 ## 结构
+> [help 收集同学的bug,很有意义](./help)
 
 > [homwork.md 课上作业](./homework.md)
 
