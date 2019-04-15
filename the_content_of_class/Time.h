@@ -28,6 +28,7 @@ public:
   unsigned int get_hour() const;
   unsigned int get_minute() const;
   unsigned int get_second() const;
+  unsigned int &bad_set_hour(int); // dangous reference return
 
   void print_universal() const;
   void print_standard() const;
@@ -118,4 +119,12 @@ void Time::tick(int s) {
   while (hour >= 24) {
     hour -= 24;
   }
+}
+
+// poor practice : returning a reference to a private data number
+unsigned int &Time::bad_set_hour(int hh){
+  if (hh >= 0 && hh < 24) {
+    hour = hh;
+  }
+  return hour;// dangous return
 }
