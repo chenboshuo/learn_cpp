@@ -6,104 +6,47 @@
 #include <iostream>
 using namespace std;
 
-class Date {
-friend ostream &operator<<(ostream &,Date &);
+class Time {
+        friend ostream &operator<<(ostream &,Time &);
+        friend istream &operator>>(istream &,Time &);
+    private:
+        int hour,minute,second;
+    public:
+        Time(int h=1,int m=1,int s=1) {
+            hour=(h>=0&&h<=23)?h:0;
+            minute=(m>=0&&m<=59)?m:0;
+            second=(s>=0&&s<=59)?s:0;
+        }
+        Time operator+(Time &);
+        Time operator-(Time &);
+        int getHour() {
+            return hour;
+        }
+        int getMinute() {
+            return minute;
+        }
+        int getSecond() {
+            return second;
+        }
 
-private:
-    int day,month,year;
-    static const int days[];
-    void increment1();
-    void decrement1();
-
-public:
-    Date(int y=2019,int m=1,int d=1) {
-        year=(y>=1900&&y<=2100)?y:2000;
-        month=(m>=1&&m<=12)?m:1;
-        if(month!=2) {
-            day=(d>=1&&d<days[month])?d:1;
-        } else day=(d>=1&&d<=29)?d:1;
-    }
-    Date operator+(int );
-    Date operator-(int );
-    const Date &operator+=(int);
-    bool leapyear(int ) const;
-    bool endofmonth(int ) const;
-    bool topofmonth(int )const;
 };
-
-const int days[]= {0,31,28,31,30,31,30,31,31,30,31,30,31};
-
-void Date::increment1() {
-  if(!endofmonth(day)) day++;
-    else {
-      if(month<12) {
-        month++;
-        day=1;
-      } else {
-        year++;
-        month=1;
-        day=1;
-    }
-  }
+Time Time::operator+(Time &t1) {
+    this->hour +=t1.hour ;
+    this->minute +=t1.minute ;
+    this->second +=t1.second ;
 }
 
-void Date::decrement1() {
-  if(!topofmonth(day)) day--;
-  else {
-    if(month>1) {
-      --month;
-      day=days[month];
-    } else {
-      --year;
-      month=12;
-      day=31;
-    }
-  }
-
+ostream &operator<<(ostream &out,Time &t) {
+    out << t.hour << ":" << t.minute << ":" << t.second;
+    return out;
 }
 
-bool Date::endofmonth(int testday) const {
-  if(month==2 && leapyear(year)) {
-    return testday==29;
-  } else {
-    return testday==days[month];
-  }
-}
-
-bool Date::topofmonth(int testday) const {
-  return testday==1;
-}
-
-bool Date::leapyear(int testyear) const {
-  if(testyear%400==0||(testyear%100!=0&&testyear%4==0))
-    return true;
-  else
-    return false;
-}
-
-Date Date::operator+(int x) {
-  while(x--) {
-    Date::increment1();
-    return *this;
-  }
-}
-
-Date Date::operator-(int x) {
-  while(x--) {
-    Date::decrement1();
-    return *this;
-  }
-}
-
-ostream & operator<<(ostream &output,Date &d) {
-  output<<d.year<<"/"<<d.month<<"/"<<d.day<<endl;
-  return output;
-}
 
 int main() {
-  Date d1;
+    Time t1(20,20,20);
+    Time t2(1,1,1);
+    cout << t1+t2;
 }
-
 /**
  * clang的报错
  Start
