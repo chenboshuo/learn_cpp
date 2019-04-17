@@ -1,25 +1,30 @@
 #include "Date.h"
+#include "Employee.h"
+
+using namespace std;
 
 int main(int argc, char const *argv[]) {
-  Date date1(7, 4, 2004);
-  Date date2; // date2 default memberwise assignment
+  Date birth(7, 24, 1949);
+  Date hire(3, 12, 1988);
+  Employee manager("Bob", "Blue", birth, hire);
 
-  cout << "Date1 = ";
-  date1.print();
-  cout << "Date2 = ";
-  date2.print();
-
-  date2 = date1; // default memberwise assignment
-
-  cout << "\nAfter default memberwise assignment, date2 = " ;
-  date2.print();
-
-  return 0;
+  cout << endl;
+  manager.print();
 }
 /**
  * output
- * Date1 = 7/4/2004
-Date2 = 1/1/2000
+Date object constructor for date 7/24/1949
+Date object constructor for date 3/12/1988
+Employee object constructor: Bob Blue
 
-After default memberwise assignment, date2 = 7/4/2004
+Blue, Bob Hired: 3/12/1988 Birthday: 7/24/1949
+Employ object destructor: Blue, Bob
+Date object destructor for date 3/12/1988
+Date object destructor for date 7/24/1949
+Date object destructor for date 3/12/1988
+Date object destructor for date 7/24/1949
+
+这些输出确认 Employee 对象是由外而内进行撤销的, 即Employee的析构函数首先运行,
+然后成员对象与他们构造相反的顺序撤销.
+
  */
