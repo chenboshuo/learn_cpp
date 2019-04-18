@@ -1,3 +1,4 @@
+// file: Employee.h
 #ifndef EMPLOYE_E
 #define EMPLOYE_E
 
@@ -11,35 +12,55 @@ class Employee{
 private:
   string first_name; // composition: member object
   string last_name; // composition: member object
-  const Date birth_date; // composition: member object
-  const Date hire_date; // composition: member object
+  // const Date birth_date; // composition: member object
+  // const Date hire_date; // composition: member object
+
+  // static member data
+  static unsigned int count; // number of objects instantiated
 
 public:
-  Employee(const string &first, const string &last,
-           const Date &date_of_bitrh, const Date &date_of_hire);
-  void print() const;
+  Employee(const string &first, const string &last);
   ~Employee(); // provide to confirm destruction order
+
+  string get_first_name() const;
+  string get_last_name() const;
+  static unsigned int get_count(); // return # of objects instantiated
 };
 
-Employee::Employee(const string &first, const string &last,
-  const Date &date_of_bitrh, const Date &date_of_hire)
-  : first_name(first), last_name(last), birth_date(date_of_bitrh),
-    hire_date(date_of_hire){
+#endif
+
+// define and initialize static at global namespace scope
+unsigned int Employee::count = 0;// cannot include keyword static
+
+/**
+ * define static memer function that returns numbers of
+ * Employee objects instantiated
+ * @return count
+ */
+unsigned int Employee::get_count(){
+  return count;
+}
+
+
+Employee::Employee(const string &first, const string &last)
+  : first_name(first), last_name(last){
+  ++count; // increment static count of employees
   cout << "Employee object constructor: "
     << first_name << ' ' << last_name << endl;
 };
 
-void Employee::print() const {
-  cout << last_name << ", " << first_name << " Hired: ";
-  hire_date.print();
-  cout << " Birthday: ";
-  birth_date.print();
-  cout << endl;
-}
 
 Employee::~Employee(){
   cout << "Employ object destructor: "
     << last_name << ", " << first_name << endl;
+  --count;
 }
 
-#endif
+
+string Employee::get_first_name() const {
+  return first_name;
+}
+
+string Employee::get_last_name() const {
+  return last_name;
+}
