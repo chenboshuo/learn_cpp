@@ -1,25 +1,28 @@
 // filename: time.cpp
 #include "Time.h"
 int main(int argc, char const *argv[]) {
-  Time wake_up(6, 45, 0);// non-const object
-  const Time noon(12, 0, 0);// const object
-                          // onject      member function
-  wake_up.set_hour(18);   // non-const  non-const
-  noon.set_hour(12);      // const      non-const ---- error
-  wake_up.get_hour();     // non-const  const
-  noon.get_minute();      // const      const
-  noon.print_universal(); // const      const
-  noon.print_standard();  // const      non-const ---- error
-}
- /*
-time.cpp: In function 'int main(int, const char**)':
-time.cpp:8:19: error: passing 'const Time' as 'this' argument discards qualifiers [-fpermissive]
-   noon.set_hour(12);      // const      const
-                   ^
-In file included from time.cpp:2:
-Time.h:56:6: note:   in call to 'void Time::set_hour(int)'
- void Time::set_hour(int h) {
-      ^~~~
+  Time t; // create Time object
 
-toggle line 8, line 12 comments,Build success
- */
+  // cascaded function calls
+  t.set_hour(18).set_minute(30).set_second(22);
+
+  // output time in universal and standard formats;
+  cout << "Universal time: ";
+  t.print_universal();
+
+  cout << "\nStandard time: ";
+  t.print_standard();
+
+  cout << "\n\nNew standard time: ";
+  t.set_time(20, 20, 20).print_standard();
+  cout << endl;
+}
+/*
+9.13 使用this指针（使函数串联形成可能）
+output
+
+Universal time: 18:30:22
+Standard time: 06:30:22 PM
+
+New standard time: 08:20:20 PM
+*/
