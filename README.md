@@ -3,6 +3,7 @@
 learning c++
 c++学习内容
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0161e45ea9534d5db6674a716393313a)](https://app.codacy.com/app/chenboshuo/cpp_learning?utm_source=github.com&utm_medium=referral&utm_content=chenboshuo/cpp_learning&utm_campaign=Badge_Grade_Settings)
 [![Join the chat at https://gitter.im/chenboshuo/cpp_learning](https://badges.gitter.im/chenboshuo/cpp_learning.svg)](https://gitter.im/chenboshuo/cpp_learning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![HitCount](http://hits.dwyl.io/chenboshuo/cpp_learning.svg)](http://hits.dwyl.io/chenboshuo/cpp_learning)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
