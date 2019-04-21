@@ -46,7 +46,7 @@ double pi = 1; // pi has value 3.0
 unsigned char c = -1; // assuming 8-bit cahrs, c has value 255
 signed char c2 = 256; // assuming 8-bit cahrs,the value of c2 si undefined
 ```
-- if we assigned an out-of-range value to an object of signed type, the result is **undifined**.The program might appear to work, it might crash, or it might produce garbage values.
+-   if we assigned an out-of-range value to an object of signed type, the result is **undifined**.The program might appear to work, it might crash, or it might produce garbage values.
 
 #### Expressions Involving Unsigned Types
 ```cpp
@@ -61,7 +61,7 @@ std::cout << u + i << '\n'; // if 32-bits ints, prints 4294967264
 >>> _ + 10 - 42
 4294967264
 ```
-- Don't mix signed and unsigned types
+-   Don't mix signed and unsigned types
 
 ```cpp
 unsigned u1 =  42, u2 = 10;
@@ -227,9 +227,9 @@ To use a variable in more than one file requires declarations that are separate 
 **Identifiers** in C++ can be composed of letters,digits,and the underscore character.
 
 #### Conventions of variable Names
-- An identifier should give some indication of its meaning.
-- Variable names normally are lowercase.
-- Class we difine usually begin with an uppercase letter.
+-   An identifier should give some indication of its meaning.
+-   Variable names normally are lowercase.
+-   Class we difine usually begin with an uppercase letter.
 
 ### Scope of Name
 A **scpoe** is a part of the program in which a name has a particular meaning. Most of C++ are delimited by curly braces.
@@ -276,7 +276,7 @@ Ordinarily when we initialize a variable, the value of the initalizer is copied 
 
 #### A reference is an Alias
 
-- A reference is not an object.Instead a reference is *just another name for an already existing object.*
+-   A reference is not an object.Instead a reference is *just another name for an already existing object.*
 
 After a reference has been defined, all operations on that reference are actually operations on the objects to which the reference is bound:
 ```cpp
@@ -334,7 +334,7 @@ The most direct approach is to initialize the pointer usng the literal **nullptr
 Other programs sometimes use a **preprocessor variable** named `NULL`,which the `cstdio` header defines as 0.
 
 #### void* Pointers
-The type void* is a special type that can hold the adress of any object.Like other pointer, a void* pointer holds an adress, but type of the object at that adress unknown:
+The type `void*` is a special type that can hold the adress of any object.Like other pointer, a void* pointer holds an adress, but type of the object at that adress unknown:
 ```cpp
 double obj = 3.14, *pd = &obj;
 void *pv = &obj;// ok:obj can be an object of any type
