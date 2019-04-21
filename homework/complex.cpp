@@ -11,16 +11,13 @@ class Complex
  public:
   Complex(double real = 0, double image = 0): realPart(real), imagePart(image){ }	   double GetRealPart() const{ return realPart; }
   double GetImagePart() const{ return imagePart; }
-  /****    1
-    [1]   operator+(const Complex &a) const			// 重载加法运算符+
-    */
-  {
+
+  // 重载加法运算符
+  Complex operator+(const Complex &a) const{
     Complex b;									// 定义复数对象
     b.realPart = this->realPart + a.realPart;		// 和的实部
     b.imagePart = this->imagePart + a.imagePart;	// 和的虚部
-    /******** 2
-    return   [2]  ;								// 返回和
-    */
+    return   b  ;								// 返回和
   }
 };
 
@@ -35,3 +32,8 @@ int main()
 
   return 0;                    	// 返回值0, 返回操作系统
 }
+/*
+a=1+2i
+b=2+6i
+c=3+8i
+ */
