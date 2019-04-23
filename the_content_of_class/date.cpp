@@ -1,63 +1,83 @@
 // filename: date.cpp
-// #include "Date.h"
-#include "Employee.h"
+#include "Date.h"
+#include <iostream>
+// #include "Employee.h"
 
 using namespace std;
 
 
 int main(int argc, char const *argv[]) {
-  // no objects exist; use class name and binary score resolution
-  // operator to access static member function get_count
-  cout << "Number of employees before instantiation of any objects is "
-    << Employee:: get_count() << endl;
+  Date d1(12, 27, 2010);
+  Date d2; // defaults to January 1, 1900
 
+  cout << "d1 is " << d1 << endl;
+  cout << "d2 is " << d2 << endl;
+  /* output
+    d1 is December 27, 2010
+    d2 is January 1, 1900
+   */
 
-  // the following scope creates and destroys
-  // Employee objects before main terminates
-  {
-    Employee e1("Susan", "Baker");
-    Employee e2("Robert", "Jones");
+  cout << "\n\nd1 += 7 is " << (d1 += 7) << endl;
+  /* output
+    d1 += 7 is January 3, 2011
+   */
 
-    // two objects exist; call static member function get_count again
-    // using the class name and the scope resolution operator
-    cout << "Number of employees after objects are instantiated is "
-      << Employee::get_count();
+  d2.set_date(2, 28, 2008);
+  cout << "\n\n  d2 is " << d2 << endl;
+  cout << "++d2 is " << ++d2 << endl;
+  /* output
+    d2 is February 28, 2008
+    ++d2 is February 29, 2008
+   */
 
-    cout << "\n\nEmployee 1: "
-      << e1.get_first_name() << " " << e1.get_last_name()
-      << "\nEmployee 2: "
-      << e2.get_first_name() << " " << e2.get_last_name() << "\n\n";
-  }
+  Date d3(7, 13, 2010);
 
-  // no objects exist, so call static member function get_count again
-  // using the class name and the scope resolution operator
-  cout << "\nNumber of employees after objects are deleted is "
-    << Employee::get_count() << endl;
+  cout << "\n\nTesting the prefix increasement operator" << endl;
+  cout << "  d3 is " << d3 << endl;
+  cout << "++d3 is " << ++d3 << endl;
+  cout << "  d3 is " << d3 << endl;
+  /* output
+    Testing the prefix increasement operator
+    d3 is July 13, 2010
+  ++d3 is July 14, 2010
+    d3 is July 14, 2010
+   */
+
+  cout << "\n\nTesting the prefix increment operator" << endl;
+  cout << "d3   is " << d3 << endl;
+  cout << "d3++ is" << d3++ << endl;
+  cout << "d3   is " << d3 <<endl;
+  /* output
+    Testing the prefix increment operator
+    d3   is July 14, 2010
+    d3++ isJuly 14, 2010
+    d3   is July 15, 2010
+   */
+
 }
 /**
- * 9.14 satic 类成员
-类的static成员通过类访问，只在类的作用域起作用
-基本类型的static成员默认为0.
-类的private， public 的 static 数据成员通过类的public成员函数或类的友元函数，
-没有任何类对象存在时，static依然存在。
-没有类对象时，访问类public static 的成员可以通过 数据成员名加上二元作用域分辨符（：：）
-没有类对象时，访问类private 或 protected 的static成员时，应提供public static成员函数
-并通过 数据成员名加上二元作用域分辨符（：：）
+ * 10.8 重载Date的运算符
+ * 重载运算符使得日期是否自增
+
+d1 is December 27, 2010
+d2 is January 1, 1900
 
 
-output
+d1 += 7 is January 3, 2011
 
-Number of employees before instantiation of any objects is 0
-Employee object constructor: Susan Baker
-Employee object constructor: Robert Jones
-Number of employees after objects are instantiated is 2
 
-Employee 1: Susan Baker
-Employee 2: Robert Jones
+  d2 is February 28, 2008
+++d2 is February 29, 2008
 
-Employ object destructor: Jones, Robert
-Employ object destructor: Baker, Susan
 
-Number of employees after objects are deleted is 0
-静态对象要在声明一次,别问我怎么知道的
+Testing the prefix increasement operator
+  d3 is July 13, 2010
+++d3 is July 14, 2010
+  d3 is July 14, 2010
+
+
+Testing the prefix increment operator
+d3   is July 14, 2010
+d3++ isJuly 14, 2010
+d3   is July 15, 2010
  */
