@@ -282,3 +282,19 @@ int main()
 
 -   [原题](https://github.com/chenboshuo/cpp_learning/blob/5add3a21dbf7f5f55dfae1ed918f0507f2ced929/homework/debug_integer.cpp)
 -   [修改](https://github.com/chenboshuo/cpp_learning/commit/6905a907f5411171f6163d891b615e8cebc647e9)
+
+## 4.6 6.定义一个有理数类，重载比较运算符<、<=、==、!=，试完成该程序。
+-   [题目](https://github.com/chenboshuo/cpp_learning/blob/db6b2bcf5f9be1b00c65b7e014ed68d5bf44f6a0/homework/rational.cpp)
+-   [代码](https://github.com/chenboshuo/cpp_learning/commit/d4a880ffe072d73aa4d4822e7bdb3f5c6765991e)
+
+## 4.7设计一个日期类Date,，要求：
+-   [x] 包含年(year)、月(month)和日(day)私有数据成员。
+-   [x] 包含构造函数，重载关于一日期加上天数的加法运算符+、重载关于一日期减去天数的减加运算符-、重载输出运算符<<与输入运算符>>等。
+
+代码基于[10.8 重载Date的运算符](https://github.com/chenboshuo/cpp_learning/commit/f2607785ca633323cfb7e85460eb126bb8d41be8)
+
+[结果](https://github.com/chenboshuo/cpp_learning/commit/cb79467141189eb189d2172c447d4d27c2384c12)
+
+## 4.8 设计一个时间类Time，要求：
+-   [] 包含时(hour)、分(minute)和秒(second)私有数据成员。
+-   [] 包含构造函数，重载关于一时间加上另一时间的加法运算符+、重载关于一时间减去另一时间的减加运算符-、重载输出运算符<<与输入运算符>>等。
