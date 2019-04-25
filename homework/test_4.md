@@ -75,8 +75,11 @@ int main()
   return 0;                    	// 返回值0, 返回操作系统
 }
 ```
+我的答案
+```plaintext
 `[1]`  Complex
 `[2]` b
+```
 
 -   [code](https://github.com/chenboshuo/cpp_learning/commit/61e5e99b4eb7e955e81547afe46bcf66f1a7e46b)
 
@@ -296,5 +299,11 @@ int main()
 [结果](https://github.com/chenboshuo/cpp_learning/commit/cb79467141189eb189d2172c447d4d27c2384c12)
 
 ## 4.8 设计一个时间类Time，要求：
--   [] 包含时(hour)、分(minute)和秒(second)私有数据成员。
--   [] 包含构造函数，重载关于一时间加上另一时间的加法运算符+、重载关于一时间减去另一时间的减加运算符-、重载输出运算符<<与输入运算符>>等。
+-   [x] 包含时(hour)、分(minute)和秒(second)私有数据成员, 包含构造函数。
+-   [x] 重载关于一时间加上另一时间的加法运算符+
+-   [x] 重载关于一时间减去另一时间的减加运算符-
+-   [x] 重载输出运算符<<与输入运算符>>等。
+
+代码基于[9.13 使用this指针（使函数串联形成可能）](https://github.com/chenboshuo/cpp_learning/commit/8bc2daf5cbaf8ecd3569c1a94d045a0c4b50ad5a#diff-7e80810f7604d4dc5e0149b9b6ffcc7b)
+
+[结果](https://github.com/chenboshuo/cpp_learning/commit/baf5b90112fe2f842d8105d36ffa3b0a33d73326)
