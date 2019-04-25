@@ -3,26 +3,58 @@
 int main(int argc, char const *argv[]) {
   Time t; // create Time object
 
-  // cascaded function calls
-  t.set_hour(18).set_minute(30).set_second(22);
+  // test output and input
+  cout << "please input as form hh:mm:ss" << endl;
+  std::cin >> t;
+  cout << t << endl;
+  /* output
+  please input as form hh:mm:ss
+  20:33:12
+  Universal tims is: 20:33:12
+  Standard time is: 08:33:12 PM
+   */
 
-  // output time in universal and standard formats;
-  cout << "Universal time: ";
-  t.print_universal();
+  // test +
+  Time t1(23,59,59);
+  Time t2(0,0,5);
+  cout << "\n\nt1(23, 59, 59) + t2(0, 0, 5) is " << endl;
+  cout << t1  + t2 << endl;
+  /*
+  t1(23, 59, 59) + t2(0, 0, 5) is
+  Universal tims is: 00:00:04
+  Standard time is: 12:00:04 AM
+   */
 
-  cout << "\nStandard time: ";
-  t.print_standard();
-
-  cout << "\n\nNew standard time: ";
-  t.set_time(20, 20, 20).print_standard();
-  cout << endl;
+  // test -
+  Time t3;
+  cout << "\n\nt3(0,0,0) - t1(23,59,59) is " << endl;
+  cout << t3 - t1 << endl;
+  /* output
+  t3(0,0,0) - t1(23,59,59) is
+  Universal tims is: 00:00:01
+  Standard time is: 12:00:01 AM
+   */
 }
-/*
-9.13 使用this指针（使函数串联形成可能）
+/*  实验 4.8 设计一个时间类Time，要求：
+包含时(hour)、分(minute)和秒(second)私有数据成员, 包含构造函数。
+重载关于一时间加上另一时间的加法运算符+
+重载关于一时间减去另一时间的减加运算符-
+重载输出运算符<<与输入运算符>>等。
+
 output
 
-Universal time: 18:30:22
-Standard time: 06:30:22 PM
+please input as form hh:mm:ss
+20:33:12
+Universal tims is: 20:33:12
+Standard time is: 08:33:12 PM
 
-New standard time: 08:20:20 PM
+
+t1(23, 59, 59) + t2(0, 0, 5) is
+Universal tims is: 00:00:04
+Standard time is: 12:00:04 AM
+
+
+t3(0,0,0) - t1(23,59,59) is
+Universal tims is: 00:00:01
+Standard time is: 12:00:01 AM
 */

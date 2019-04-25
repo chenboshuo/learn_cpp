@@ -10,12 +10,17 @@ using namespace std;
 
 // class definition
 class Time {
-private:
+  // reload operator
+  friend Time &operator+(Time a, Time b);
+  friend Time &operator-(Time a, Time b);
+  friend ostream &operator<<(ostream &output, const Time &t);
+  friend istream &operator>>(istream &input, Time &t);
+ private:
   unsigned int hour;// 0-23(24-hours clock format)
   unsigned int minute;// 0-59
   unsigned int second; // 0-59
 
-public:
+ public:
   explicit Time (int hour =0, int minute=0, int second=0);// default constructor
 
   // set funxtions
@@ -33,6 +38,7 @@ public:
   void print_universal() const;
   void print_standard() const;
   void tick(int s=1);// increase by s second
+
 };
 
 #endif
@@ -151,4 +157,56 @@ unsigned int &Time::bad_set_hour(int hh){
     hour = hh;
   }
   return hour;// dangous return
+}
+
+ostream &operator<<(ostream &output, const Time &t){
+  output << "Universal tims is: ";
+  t.print_universal();
+  output << "\nStandard time is: ";
+  t.print_standard();
+  return output;
+}
+
+
+// input form hh:mm:ss
+istream &operator>>(istream &input, Time &t){
+  input >> setw(2) >> t.hour;
+  input.ignore(1);  // skip ":"
+  input >> setw(2) >> t.minute;
+  input.ignore(1);  // skip ":"
+  input >> setw(2) >> t.second;
+  return input;
+}
+
+Time &operator+(Time a, Time b){
+  int h, m, s;
+  s = a.second + b.second;
+  m = a.minute + b.minute + s/60;
+  s %= 60;
+  h = (a.hour + b.hour + m/60) % 24;
+  m %= 60;
+
+  static Time sum(h, m, s);
+  return sum;
+}
+
+Time &operator-(Time a, Time b){
+  int h, m, s;
+  s = a.second - b.second;
+  m = a.minute - b.minute;
+  h = a.hour - b.hour;
+  if (s < 0) {
+    s += 60;
+    m--;
+  }
+  if (m < 0) {
+    m += 60;
+    h--;
+  }
+  if (h < 0) {
+    h += 24;
+  }
+
+  static Time ans(h,m,s);
+  return ans;
 }
