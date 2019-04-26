@@ -175,4 +175,4 @@ disks  = 3
 -   [头文件完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/Time.h) [主函数完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/time.cpp)
 
 ## 实验四 函数重载与运算符重载
--   [跳转](./homework./test_4.md)
+-   [跳转](./homework/test_4.md)

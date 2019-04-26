@@ -91,6 +91,13 @@ c++学习内容
 >>> [phone_number.cpp 主函数](./the_content_of_class/phone_number.cpp)
 >>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/phone_number.cpp)
+>>
+>> Array 类
+>>> [Array.h](./the_content_of_class/Array.h) | 头文件
+>>>
+>>> [test_array.cpp](./the_content_of_class/test_array.cpp) | 测试函数
+>>>
+>>> 所有版本
 
 
 ## 许可
