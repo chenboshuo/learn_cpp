@@ -1,3 +1,4 @@
+# Chapter 1 Getting Sterted
 ## 1.1 Wrinting a Simple Program
 -   Every C++ program contains one or more functions, one of which must be named `main`.The operating system runs a C++ program by calling `main`.
 

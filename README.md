@@ -1,4 +1,4 @@
-# cpp_learning
+# My C++ learning notes
 
 learning c++
 c++学习内容
@@ -7,6 +7,9 @@ c++学习内容
 [![Join the chat at https://gitter.im/chenboshuo/cpp_learning](https://badges.gitter.im/chenboshuo/cpp_learning.svg)](https://gitter.im/chenboshuo/cpp_learning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![HitCount](http://hits.dwyl.io/chenboshuo/cpp_learning.svg)](http://hits.dwyl.io/chenboshuo/cpp_learning)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/chenboshuo/cpp_learning.svg)
+
 ## 参考
 
 -   [课件](https://www.lanzous.com/i377dbg)

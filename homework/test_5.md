@@ -70,9 +70,9 @@ class B {
 class C: public A, public B
 {
 public:
-	C(int x, int y): A(x), B(y){ }				// 构造函数
-	     void Show() const{ // 显示b之值
-    cout << a << "," << b << endl;
+  C(int x, int y): A(x), B(y){ }				// 构造函数
+  void Show() const{ // 显示b之值
+  cout << a << "," << b << endl;
   }
 };
 
@@ -93,13 +93,13 @@ int main(){
 using namespace std;					// 使用标准命名空间std
 
 class A{
-private:
+ private:
   int a;							// 数据成员
 
-public:
-  A(int x):   [1]  { }				// 构造函数
+ public:
+  A(int x):   [1] { }				// 构造函数
   void Show() const{				// 显示a之值
-    cout << "a:" << a << endl;
+  cout << "a:" << a << endl;
   }
 };
 

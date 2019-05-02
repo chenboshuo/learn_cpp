@@ -1,3 +1,4 @@
+# Chapter 2 Variables and Basics types
 ## 2.1 Primitive Build-in Types
 C++ defines a set of primitive types that include the **arithmetic types** and a special type nemed **void**.The arithmetic types represent characters, integers, boolean values, and floating-point numbers. The void types has no assoicated values and can be used in only a few circustances, most commonly as the return type for functions that do not return a value.
 
