@@ -40,6 +40,17 @@ int main(){
 }
 ```
 
+输出结果
+```plaintext
+构造A
+构造B
+构造C
+析构C
+析构B
+析构A
+```
+
+
 ## 5.2 先阅读下列程序，写出执行结果。然后输入程序，调试程序，比较结果的正确性。
 ```cpp
 #include <iostream>						// 预处理命令
@@ -86,6 +97,12 @@ int main(){
 }
 
 ```
+输出
+```plt
+5,18
+5
+18
+```
 
 ## 5.3．下面程序主要测试类构造函数的初始化列表与作用域分辨符，请完成程序。
 ```cpp
@@ -124,6 +141,14 @@ int main(){
   return 0;                    		// 返回值0, 返回操作系统
 }
 ```
+
+```plaintext
+[1] a
+[2] A::a(x)
+[3] A::
+```
+
+
 ## 5.4 改正下面程序中的错误，使其能正常运行。
 ```cpp
 #include <iostream>						// 预处理命令					
@@ -162,6 +187,45 @@ int main(){					// 主函数
 
   return 0;          			// 返回值0, 返回操作系统				
 }				
+```
+Bug 比标准答案多太多了, 也看不懂意思, 就改了几个直到能运行为止
+```cpp
+#include <iostream>						// 预处理命令
+using namespace std;						// 使用标准命名空间std
+
+// 基类Base
+class Base{
+ private:
+  int m;								// 数据成员
+
+ public:
+  Base(int a = 0): m(a){ }					// 构造函数
+  Base(const Base &copy) : m(copy.m){ }	// 复制构造函数-----答案改的地方
+  void Show() const{						// 显示m之值
+    cout << "m:" << m << endl;
+  }
+};
+
+// 派生类Derived
+class Derived: private Base{
+ protected:
+  int n;							// 数据成员
+
+ public:
+  Derived(int a, int b){ n =b; }	// 构造函数
+  void Show() const{					// 显示相关信息
+  Base::Show();				// 调用基类Base的成员函数Show()
+  cout << "n:" << n << endl;	// 显示n之值
+  }
+};
+
+int main(){					// 主函数
+
+  Derived obj(10, 18);		// 定义对象
+  obj.Show();				// 显示相关信息
+
+  return 0;          			// 返回值0, 返回操作系统
+}
 ```
 
 ## 5.5．定义Person（人）类
