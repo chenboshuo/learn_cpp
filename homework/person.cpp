@@ -9,7 +9,7 @@ class Person{
   string sex;
 
  public:
-  Person(string n, int a, string s):name(n), age(a), sex(s){}
+  Person(string &n, int a, string &s):name(n), age(a), sex(s){}
 
   void Show() const{
   cout << "name:" << name << endl;	// 显示姓名
@@ -23,7 +23,7 @@ class Teacher: virtual public Person {
  protected:
   string title;						// 职称
  public:
-  Teacher(string n, int a, string s, string t): Person(n, a, s),title(t){}
+  Teacher(string n, int a, string s, const string &t): Person(n, a, s),title(t){}
   void Show() const{
     Person::Show();					// 调用基类Person的成员函数Show()
     cout << "title:" << title << endl;	// 显示职称
@@ -36,7 +36,7 @@ class Cadre: virtual public Person{
  protected:
   string post;					// 职务
  public:
-  Cadre(string nm, int ag, string sx, string pt): Person(nm, ag, sx),post(pt){}
+  Cadre(string nm, int ag, string sx, const string &pt): Person(nm, ag, sx),post(pt){}
   void Show() const{
     Person::Show();					// 调用基类Person的成员函数Show()
     cout << "post:" << post << endl;	// 显示职务
@@ -49,7 +49,7 @@ class TeacherCadre: public Teacher, public Cadre{
  protected:
   double wages;						// 工资
  public:
-  TeacherCadre(string nm, int ag, string sx, string tl, string pt, double wg)
+  TeacherCadre(string nm, int ag, string sx, string tl, const string &pt, double wg)
   : Person(nm, ag, sx),
     Teacher(nm, ag, sx, tl),
     Cadre(nm, ag, sx, pt),
@@ -74,3 +74,21 @@ int main(){
 
   return 0;                    			// 返回值0, 返回操作系统
 }
+/*
+name:Mr.Zhang
+age:48
+sex:man
+title:professor
+
+name:Mr.Li
+age:56
+sex:man
+post:dean
+
+name:Mr.wang
+age:50
+sex:woman
+title:professor
+post:dean
+wages:6890 RMB
+ */
