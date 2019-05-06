@@ -229,27 +229,35 @@ int main(){					// 主函数
 ```
 
 ## 5.5．定义Person（人）类
--   [ ] 由Person分别派生出Teacher（教师）类和Cadre（干部）类，
--   [ ] 再由Teacher（教师）类和Cadre（干部）类采用多重继承方式派生出新类TeacherCadre（教师兼干部）类，各类之间的继承关系如图1.1所示
+-   [x] 由Person分别派生出Teacher（教师）类和Cadre（干部）类，
+-   [x] 再由Teacher（教师）类和Cadre（干部）类采用多重继承方式派生出新类TeacherCadre（教师兼干部）类，各类之间的继承关系如图1.1所示
 ![各类之间的继承关系](./images/1_1.png)
--   [ ] 在Person类中包含的数据成员有姓名(name）、年龄(age)、性别(sex)。在Teacher类还包含数据成员职称(title)，在Cadre类中还包含数据成员职务(post)，在TeacherCadre类中还包含数据成员工资(wages)。
--   [ ] 在类体中定义成员函数。
--   [ ] 每个类都有构造函数与显示信息函数(Show)。
+-   [x] 在Person类中包含的数据成员有姓名(name）、年龄(age)、性别(sex)。在Teacher类还包含数据成员职称(title)，在Cadre类中还包含数据成员职务(post)，在TeacherCadre类中还包含数据成员工资(wages)。
+-   [x] 在类体中定义成员函数。
+-   [x] 每个类都有构造函数与显示信息函数(Show)。
 
-## 5.6 6．定义Staff（员工）类
--   [ ] 由Staff分别派生出Saleman（销售员）类和Manager（经理）类，
--   [ ] 再由Saleman（销售员）类和Manager（经理）类
--   [ ] 采用多重继承方式派生出新类SaleManager（销售经理）类
+-   [代码](https://github.com/chenboshuo/cpp_learning/commit/00dc25797cf6b8d21fae47be983630a953b638fe)
+
+## 5.6 定义Staff（员工）类
+-   [x] 由Staff分别派生出Salesman（销售员）类和Manager（经理）类，
+-   [x] 再由Salesman（销售员）类和Manager（经理）类
+-   [x] 采用多重继承方式派生出新类SaleManager（销售经理）类
 
 各类之间的继承关系如图1.2所示。
+
 ![各类之间的继承关系](./images/1_2.png)
 
--   [ ] 在Staff类中包含的数据成员有编号(num）、姓名(name)、出勤率(rateOfAttend)、基本工资(basicSal)和奖金(prize)。在Saleman类中还包含数据成员销售员提成比例(deductRate)和个人销售额(personAmount)，在Manager类中还包含数据成员经理提成比例(totalDeductRate)和总销售额(totalAmount)。在SaleManager类中不包含其它数据成员。
--   [ ] 各类人员的实发工资公式如下：
+-   [x] 在Staff类中包含的数据成员有编号(num）、姓名(name)、出勤率(rateOfAttend)、基本工资(basicSal)和奖金(prize)。在Salesman类中还包含数据成员销售员提成比例(deductRate)和个人销售额(personAmount)，在Manager类中还包含数据成员经理提成比例(totalDeductRate)和总销售额(totalAmount)。在SaleManager类中不包含其它数据成员。
+-   [x] 各类人员的实发工资公式如下：
 ```plaintext
 员工实发工资 = 基本工资 + 奖金 * 出勤率
 销售员实发工资 = 基本工资 + 奖金 * 出勤率 + 个人销售额 * 销售员提成比例
 经理实发工资 = 基本工资 + 奖金 * 出勤率 + 总销售额 * 经理提成比例
 销售经理实发工资 =基本工资 + 奖金 * 出勤率 + 个人销售额 * 销售员提成比例+ 总销售额 * 经理提成比例
 ```
--   [ ] 每个类都有构造函数、输出基本信息函数(Output)和输出实发工资函数(OutputWage)。
+-   [x] 每个类都有构造函数、输出基本信息函数(Output)和输出实发工资函数(OutputWage)。
+-   [ ] 学生现实后还可灵活处理，比如在Staff（员工）类中增加静态累加器count，用count值产生员工编号，增加输入经理基本信息函数(Input)，在main函数中用一个简单菜单循环选择输入与输出各类人员的信息。
+
+这英语水平, ~~saleman~~, *salesman*
+
+-   [完成代码](https://github.com/chenboshuo/cpp_learning/commit/49f1c584f0e51157947260059a715133cee11d2d)

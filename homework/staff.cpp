@@ -25,8 +25,8 @@ public:
     virtual void output(){
       cout << "No. " << num  << "    name: " << name << endl;;
       cout << "rate of attend: " << rate_of_attend << " %"<< endl;
-      cout << "Basic salsry: " << basic_salary << endl;
-      cout << "Prise: "<< prize << endl;
+      cout << "Basic salary: " << basic_salary << endl;
+      cout << "Prize: "<< prize << endl;
       cout << "real wages: " << calculate_wages() << endl;
     }
 };
@@ -51,8 +51,8 @@ public:
       void output() {
         cout << "No. " << num << "    name: " << name << endl;;
         cout << "rate of attend: " << rate_of_attend << " %" << endl;
-        cout << "Basic salsry: " << basic_salary << endl;
-        cout << "Prise: " << prize << endl;
+        cout << "Basic salary: " << basic_salary << endl;
+        cout << "Prize: " << prize << endl;
         cout << "Personal amount: " << person_amount << endl;
         cout << "deduct rate: " << deduct_rate << " %" << endl;
         cout << "real wages: " << calculate_wages() << endl;
@@ -85,8 +85,8 @@ public:
     void output(){
       cout << "No. " << num  << "    name: " << name << endl;;
       cout << "rate of attend: " << rate_of_attend << " %"<< endl;
-      cout << "Basic salsry: " << basic_salary << endl;
-      cout << "Prise: "<< prize << endl;
+      cout << "Basic salary: " << basic_salary << endl;
+      cout << "Prize: "<< prize << endl;
       cout << "Total amount: " << total_amount << endl;
       cout << "Total deduct rate: " << total_deduct_rate << " %" << endl;
       cout << "real wages: " << calculate_wages() << endl;
@@ -117,8 +117,8 @@ class SalesManager : public SalesMan, public Manager{
       void output(){
         cout << "No. " << num  << "    name: " << name << endl;;
         cout << "rate of attend: " << rate_of_attend << " %"<< endl;
-        cout << "Basic salsry: " << basic_salary << endl;
-        cout << "Prise: "<< prize << endl;
+        cout << "Basic salary: " << basic_salary << endl;
+        cout << "Prize: "<< prize << endl;
         cout << "Total amount: " << total_amount << endl;
         cout << "Total deduct rate: " << total_deduct_rate << " %" << endl;
         cout << "Personal amount: " << person_amount << endl;
@@ -135,8 +135,8 @@ int main(int argc, char const *argv[]) {
   /* output
     No. 001    name: a staff
     rate of attend: 50 %
-    Basic salsry: 5000
-    Prise: 1000
+    Basic salary: 5000
+    Prize: 1000
     real wages: 5500
    */
 
@@ -147,8 +147,8 @@ int main(int argc, char const *argv[]) {
   /* output
   No. 002    name: a SalesMan
   rate of attend: 100 %
-  Basic salsry: 10000
-  Prise: 1000
+  Basic salary: 10000
+  Prize: 1000
   Personal amount: 50000
   deduct rate: 10 %
   real wages: 16000
@@ -161,8 +161,8 @@ int main(int argc, char const *argv[]) {
   /*
   No. 003    name: a manager
   rate of attend: 20 %
-  Basic salsry: 5000
-  Prise: 10000
+  Basic salary: 5000
+  Prize: 10000
   Total amount: 100000
   Total deduct rate: 20 %
   real wages: 27000
@@ -174,8 +174,8 @@ int main(int argc, char const *argv[]) {
   /* output
     No. 003    name: a manager
     rate of attend: 20 %
-    Basic salsry: 5000
-    Prise: 10000
+    Basic salary: 5000
+    Prize: 10000
     Total amount: 100000
     Total deduct rate: 20 %
     real wages: 27000
@@ -187,15 +187,15 @@ int main(int argc, char const *argv[]) {
  * output
  * No. 001    name: a staff
 rate of attend: 50 %
-Basic salsry: 5000
-Prise: 1000
+Basic salary: 5000
+Prize: 1000
 real wages: 5500
 
 
 No. 002    name: a SalesMan
 rate of attend: 100 %
-Basic salsry: 10000
-Prise: 1000
+Basic salary: 10000
+Prize: 1000
 Personal amount: 50000
 deduct rate: 10 %
 real wages: 16000
@@ -203,8 +203,8 @@ real wages: 16000
 
 No. 003    name: a manager
 rate of attend: 20 %
-Basic salsry: 5000
-Prise: 10000
+Basic salary: 5000
+Prize: 10000
 Total amount: 100000
 Total deduct rate: 20 %
 real wages: 27000
