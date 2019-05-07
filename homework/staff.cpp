@@ -170,22 +170,25 @@ int main(int argc, char const *argv[]) {
 
   // 测试SalesManager
   cout << "\n\n";
-  SalesManager("003", "a salesmanger", 80, 8000, 6000, 30, 600, 5, 10000);
+  SalesManager a_salesmanager("004", "a salesmanger", 80, 8000, 6000, 30, 600, 5, 10000);
+  a_salesmanager.output();
   /* output
-    No. 003    name: a manager
-    rate of attend: 20 %
-    Basic salary: 5000
-    Prize: 10000
-    Total amount: 100000
-    Total deduct rate: 20 %
-    real wages: 27000
+    No. 004    name: a salesmanger
+    rate of attend: 80 %
+    Basic salary: 8000
+    Prize: 6000
+    Total amount: 10000
+    Total deduct rate: 5 %
+    Personal amount: 600
+    deduct rate: 30 %
+    real wages: 18100
    */
   return 0;
 }
 
 /*
  * output
- * No. 001    name: a staff
+No. 001    name: a staff
 rate of attend: 50 %
 Basic salary: 5000
 Prize: 1000
@@ -209,4 +212,49 @@ Total amount: 100000
 Total deduct rate: 20 %
 real wages: 27000
 
+
+No. 003    name: a salesmanger
+rate of attend: 80 %
+Basic salary: 8000
+Prize: 6000
+Total amount: 10000
+Total deduct rate: 5 %
+Personal amount: 600
+deduct rate: 30 %
+real wages: 18100
+Finished in 4 ms
+No. 001    name: a staff
+rate of attend: 50 %
+Basic salary: 5000
+Prize: 1000
+real wages: 5500
+
+
+No. 002    name: a SalesMan
+rate of attend: 100 %
+Basic salary: 10000
+Prize: 1000
+Personal amount: 50000
+deduct rate: 10 %
+real wages: 16000
+
+
+No. 003    name: a manager
+rate of attend: 20 %
+Basic salary: 5000
+Prize: 10000
+Total amount: 100000
+Total deduct rate: 20 %
+real wages: 27000
+
+
+No. 004    name: a salesmanger
+rate of attend: 80 %
+Basic salary: 8000
+Prize: 6000
+Total amount: 10000
+Total deduct rate: 5 %
+Personal amount: 600
+deduct rate: 30 %
+real wages: 18100
  */
