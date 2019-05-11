@@ -31,6 +31,10 @@ return 0;                     		// 返回值0, 返回操作系统
 }
 
 ```
+我的答案
+```plaintext
+调用Derived的f()
+```
 
 ## 6.2 先阅读下列程序，写出执行结果。然后输入程序，调试程序，比较结果的正确性。
 ``` cpp
@@ -67,6 +71,12 @@ int main(){
 }
 
 ```
+预测输出结果
+
+```plaintext
+调用Base Show()
+调用Derived Show()
+```
 
 ## 6.3 程序填空。请完成程序，使程序具有如下的输出：
 
@@ -83,7 +93,7 @@ using namespace std;					// 使用标准命名空间std
 class Base{
  private:
   int m;							// 数据成员
-  public:
+ public:
   Base(int a): m(a){ }				// 构造函数
   virtual void Show() const {
     cout << m << endl;
@@ -114,6 +124,10 @@ int main(){
 
   return 0;                    		// 返回值0, 返回操作系统
 }
+```
+
+```plaintext
+Base::show()
 ```
 
 ## 6.4 改正下面程序中的错误，使其能正常运行。
@@ -151,6 +165,14 @@ int main(){   // 主函数main(void)
 
 ```
 
+```cpp
+p->ShowB();			// 调用ShowB()
+```
+改为
+```cpp
+p->ShowA();
+```
+
 # 6.5 编写程序，
 -   [ ] 定义抽象基类Shape(形状)，
 -   [ ] 由它派生出2个派生类：Circle(圆形) 和Rectangle(矩形)，
@@ -163,3 +185,9 @@ int main(){   // 主函数main(void)
 -   [ ] 用函数函数ShowArea()分别显示各种图形的面积，
 -   [ ] 最后还要显示所有图形的总面积。
 -   [ ] 要求用基类指针数组，使它的每一个元素指向一一个派生类对象。
+
+## 6.7 【实例编程】
+-   [ ] 定义一个类animal，该类中可以存放动物的名字，并有一个identify函数用于显示动物的种类。
+-   [ ] 定义两个类cat和dog，都继承自animal，并重载identify函数，不但要显示动物的种类，还要显示动物的名字。
+-   [ ] 定义tiger类，继承自cat，重载identify函数，显示动物的种类和名字。
+-   [ ] 定义一个动物园类zoo，管理动物，根据下面的提示编写动物类及相关函数。注意指针虚函数的用法。
