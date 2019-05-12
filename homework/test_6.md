@@ -173,21 +173,29 @@ p->ShowB();			// 调用ShowB()
 p->ShowA();
 ```
 
+答案是这么改的
+```cpp
+virtual void Show() const{ cout << "基类A" << endl; }						 
+
+void Show() const{ cout << "派生类B" << endl; }									 
+p->Show();					// 调用Show()									
+```
+
 # 6.5 编写程序，
--   [ ] 定义抽象基类Shape(形状)，
--   [ ] 由它派生出2个派生类：Circle(圆形) 和Rectangle(矩形)，
--   [ ] 用函数Show()分别显示各种图形的相关信息，
--   [ ] 最后还要显示所有图形的总面积。
+-   [x] 定义抽象基类Shape(形状)，
+-   [x] 由它派生出2个派生类：Circle(圆形) 和Rectangle(矩形)，
+-   [x] 用函数Show()分别显示各种图形的相关信息，
+-   [x] 最后还要显示所有图形的总面积。
+
+-   [学校的答案](https://github.com/chenboshuo/cpp_learning/commit/7cfbad2d802d6ce8589c39238208464f86a127fa)
 
 ## 6.6 编写程序，
--   [ ] 定义抽象基类Shape(形状)，
--   [ ] 由它派生出3个派生类: Circle(圆形)、Rectangle(矩形)和Square (正方形)
--   [ ] 用函数函数ShowArea()分别显示各种图形的面积，
--   [ ] 最后还要显示所有图形的总面积。
--   [ ] 要求用基类指针数组，使它的每一个元素指向一一个派生类对象。
+-   [x] 定义抽象基类Shape(形状)，
+-   [x] 由它派生出3个派生类: Circle(圆形)、Rectangle(矩形)和Square (正方形)
+-   [x] 用函数函数ShowArea()分别显示各种图形的面积，
+-   [x] 最后还要显示所有图形的总面积。
+-   [x] 要求用基类指针数组，使它的每一个元素指向一一个派生类对象。
 
-## 6.7 【实例编程】
--   [ ] 定义一个类animal，该类中可以存放动物的名字，并有一个identify函数用于显示动物的种类。
--   [ ] 定义两个类cat和dog，都继承自animal，并重载identify函数，不但要显示动物的种类，还要显示动物的名字。
--   [ ] 定义tiger类，继承自cat，重载identify函数，显示动物的种类和名字。
--   [ ] 定义一个动物园类zoo，管理动物，根据下面的提示编写动物类及相关函数。注意指针虚函数的用法。
+-   [相关修改](https://github.com/chenboshuo/cpp_learning/commit/c8d66103bf5c79eb1d7601c66ddb4712405bc0cd)
+
+- [一个索引超范围了](https://github.com/chenboshuo/cpp_learning/commit/2941b799aaa3070954b1e941d009db5ebd8f8ff2)
