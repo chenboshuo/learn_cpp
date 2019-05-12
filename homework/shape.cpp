@@ -73,8 +73,8 @@ int main(){
       double r;					// 半径
       cout << "Please input radius:";
       cin >> r;					// 输入半径
-      p[1] = new Circle(r);			// 生成圆对象
-      p[1]->show_area();					// 显示相关信息
+      p[0] = new Circle(r);			// 生成圆对象
+      p[0]->show_area();					// 显示相关信息
       break;
     case 2:							// 矩形
       double h, w;					// 高宽
@@ -82,15 +82,15 @@ int main(){
       cin >> h;					// 输入高
       cout << "Please input width: ";
       cin >> w;					// 输入宽
-      p[2] = new Rectangle(h, w);		// 生成矩形对象
-      p[2] -> show_area();					// 显示相关信息
+      p[1] = new Rectangle(h, w);		// 生成矩形对象
+      p[1] -> show_area();					// 显示相关信息
       break;
     case 3:
       double l;
       cout << "Please input the length: " << endl;
       cin >> l;
-      p[3] = new Square(l);
-      p[3] -> show_area();
+      p[2] = new Square(l);
+      p[2] -> show_area();
       break;
     default:							// 其它情况, 表示选择有误
       cout << "Error"<< endl;
