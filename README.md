@@ -95,13 +95,18 @@ c++学习内容
 >>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/phone_number.cpp)
 >>
->> Array 类
+>> -   [ ] Array 类
+>>
 >>> [Array.h](./the_content_of_class/Array.h) | 头文件
 >>>
 >>> [test_array.cpp](./the_content_of_class/test_array.cpp) | 测试函数
 >>>
 >>> 所有版本
-
+>>
+>> Stack 类
+>>> [stack.h](./the_content_of_class/stack.h) | 头文件
+>>> [stack.cpp](./the_content_of_class/stack.cpp) | 主函数
+>>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/stack.h)
 
 ## 许可
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
