@@ -462,3 +462,48 @@ As with reference, we can define pointers that point to either const or nonconst
 const double pi = 3.14;
 double *ptr = &pi; // error: ptr is a plain pointer
 const double *cptr = &pi;
+*cptr = 42;
+```
+
+In we noted that there are two expections to the rule that the types of a pointer and the object to which it points must match. The first expection is that we can use a pointer to `const` to point to nonconst object:
+```cpp
+double dval = 3.14;  // dval is a double; its value can be changed
+cptr = &dval;  // ok: but can't change dval through cptr
+```
+
+Like a reference to const, a pointer to `const` says nothing about whether the object to which the pointer points is `const`. Defining a pointer as a pointer as a pointer to const affects only what we can do with the pointer. It is important to remember that there there is no guarantee that an object pointed to by a pointer to const won't change.
+
+#### const Pointers
+
+Unlike a reference, pointers are objects. Hence, as with any other type, we can have a pointer that is itself const. Like any other const, a **const pointer** must be initialized, and once initialized, and once initialized, its value.
+```cpp
+int errNumb = 0;
+int *const curErr = &errNumb;  // curErr will always point to errNumb
+const double pi = 3.1415926;
+const double *const pip = &pi;  // pip is a const pointer to a const object.
+```
+
+The fact that a pointer is itself const says nothing about whether we can use the pointer to change the underlying object. Whether we can change that object depends entirely on the type to which the pointer points. For example. `pip` is a const pointer to const. Neither the value of the object adressed by `pip` nor the adress stored in `pip` can be changed. On the other hand, `curErr` adresses a plain nonconst int. We can use `curErr` to change the value of `errNumb`
+
+### Top-Level const
+
+As we've seen, a pointer is an object that can point to a different object. As a result, we can talk independently about whether a pointer is const and whether the objects to which it can point are `const`. We use the term **top-level const** to indicate that pointer itself is a `const` as **low-level const**
+```cpp
+int i = 0;
+int *const p1 = &i;      // we can't change the value of p1; const is top-level
+const int ci = 42;       // we can't change ci; const is top-level
+const int *p2 = &ci;     // we can change p2; const is low-level
+const int *const p3 = p2;// right-most const is top-level, left-most is not.
+const int &r = ci;       // const in reference types is always low-level
+```
+
+The distination between top-level and low-level matters when we copy an object. When we copy an object from or copied into is const.
+
+```cpp
+i = ci;  // ok:copying the of ci; top-level const in ci is ignored
+p2 = p3; // ok:pointed-to type matvhes; top-level const in p3 is ignored
+```
+
+On the other hand, low-level const is never ignored. When we copy an object, both objects must have the same low-level const qualification or there must be a conversion between the types of two objects. In general, we can convert a nonconst to const but not the other way round:
+```cpp
+int *p = p3;
