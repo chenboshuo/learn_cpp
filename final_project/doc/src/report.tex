@@ -4,6 +4,7 @@
 
 \date{\today}
 \author{陈伯硕}
+\bibliographystyle{plain} % 声明参考文献格式
 
 % % 修改字体
 % \usepackage{type1cm}  %（其中的 cm 为 Computer Modern 的缩写）
@@ -47,6 +48,8 @@
 测试所设
 计程序的功能。
 \section{程序设计总结}
-% \bibliography{reference} % 提示从refence数据库获取文献信息,来打印参考文献
-列出参考的相关资料和书籍。
+
+\nocite{Lippman:2012:CP:2423877}% 只在参考文献中显示,不直接引用
+\bibliography{reference} % 提示从reference数据库获取文献信息,来打印参考文献
+
 \end{document}
