@@ -1,13 +1,10 @@
-# My C++ learning notes
+# My C++ learning notes C++学习比价
 
-learning c++
-c++学习内容
-
+![language](https://img.shields.io/badge/language-c++-DeepPink.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0161e45ea9534d5db6674a716393313a)](https://app.codacy.com/app/chenboshuo/cpp_learning?utm_source=github.com&utm_medium=referral&utm_content=chenboshuo/cpp_learning&utm_campaign=Badge_Grade_Settings)
 [![Join the chat at https://gitter.im/chenboshuo/cpp_learning](https://badges.gitter.im/chenboshuo/cpp_learning.svg)](https://gitter.im/chenboshuo/cpp_learning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![HitCount](http://hits.dwyl.io/chenboshuo/cpp_learning.svg)](http://hits.dwyl.io/chenboshuo/cpp_learning)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/chenboshuo/cpp_learning.svg)
 
 ## 参考
@@ -107,6 +104,8 @@ c++学习内容
 >>> [stack.h](./the_content_of_class/stack.h) | 头文件
 >>> [stack.cpp](./the_content_of_class/stack.cpp) | 主函数
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/stack.h)
+>
+>  [final_project 期末项目](./final_project)
 
 ## 许可
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
