@@ -12,20 +12,6 @@
 -   [课件](https://www.lanzous.com/i377dbg)
 -   [C++ Primer](https://m.tb.cn/h.3IxqiS9)
 
-```plaintext
-英文版 c++ primer
-【券后价】79.60元
-【下单链接】https://m.tb.cn/h.3EV6ZUT
------------------
-复制这条信息，￥KNsQbuh4Mvm￥ ，打开【手机淘宝】即可下单
-```
-```plaintext
-现货正版 C++ Primer中文版
-【券后价】79.60元
-【下单链接】https://m.tb.cn/h.3vB6hWp
------------------
-复制这条信息，￥OfJ3buhVolB￥ ，打开【手机淘宝】即可下单
-```
 ## 结构
 > [help 收集同学的bug,很有意义](./help)
 >
@@ -106,6 +92,7 @@
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/stack.h)
 >
 >  [final_project 期末项目](./final_project)
+>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/dev/final_project)
 
 ## 许可
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
