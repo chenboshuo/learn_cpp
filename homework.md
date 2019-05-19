@@ -174,7 +174,8 @@ disks  = 3
 -   [代码对比](https://github.com/chenboshuo/cpp_learning/commit/0dfdbce07017abafac564199c5b9710a789dd576)
 -   [头文件完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/Time.h) [主函数完整代码](https://github.com/chenboshuo/cpp_learning/blob/0dfdbce07017abafac564199c5b9710a789dd576/the_content_of_class/time.cpp)
 
-## 实验四 函数重载与运算符重载
--   [跳转](./homework/test_4.md)
-## 实验五 继承与派生继承与派生
--   [跳转](./homework/test_5.md)
+## 实验
+-   [实验四 函数重载与运算符重载](./homework/test_4.md)
+-   [实验五 继承与派生继承与派生](./homework/test_5.md)
+-   [实验六 虚函数与多态性（一）](./homework/test_6.md)
+-   [实验七 虚函数与多态性（二）](./homework/test_7.md)
