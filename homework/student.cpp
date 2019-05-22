@@ -15,10 +15,12 @@ class Student {
       english_total_score += english;
     };
 
-  void show_base() {
-    cout << "name: " << name
-      << "\nnumber: "<< num << "\nreport:\n"
-      << "\nmath: " << math_score << "\nEnglish: " << english_score << endl;
+  friend ostream &operator<<(ostream &out, const Student &s){
+    out << "name: " << s.name
+      << "\nnumber: "<< s.num << "\nreport:\n"
+      << "\nmath: " << s.math_score
+      << "\nEnglish: " << s.english_score << endl;
+    return out;
   }
   void show_static() {
     cout << "\n\nTotal students is: " << count
@@ -37,8 +39,8 @@ int Student::english_total_score = 0;
 
 int main(int argc, char const *argv[]) {
   Student a("a", 1, 99, 98), b("b", 2, 59, 61);
-  a.show_base();
-  b.show_base();
+  cout << a;
+  cout << b;
   a.show_static();
   b.show_static();
   return 0;
