@@ -1,4 +1,4 @@
-# My C++ learning notes C++学习比价
+# My C++ learning notes C++学习笔记
 
 ![language](https://img.shields.io/badge/language-c++-DeepPink.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0161e45ea9534d5db6674a716393313a)](https://app.codacy.com/app/chenboshuo/cpp_learning?utm_source=github.com&utm_medium=referral&utm_content=chenboshuo/cpp_learning&utm_campaign=Badge_Grade_Settings)
@@ -8,10 +8,12 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/chenboshuo/cpp_learning.svg)
 
 ## 参考
-
--   [课件](https://www.lanzous.com/i377dbg)
 -   [C++ Primer](https://m.tb.cn/h.3IxqiS9)
 
+## 资源
+-   [学校公开课件](https://www.lanzous.com/i377dbg)
+
+-   [考试系统插件](https://files.gitter.im/xaufe/cpp/uwpa/CBTESv7RichClientAddin_7.19.420.exe)
 ## 结构
 > [help 收集同学的bug,很有意义](./help)
 >
