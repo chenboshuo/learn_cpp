@@ -143,6 +143,12 @@ int main(){
 
 ## 9.5 编写一个使用数组类模板Array对数组进行排序、求最大值和求元素和的程序，并采用相关数据进行测试。
 
+-   [学校的代码](https://github.com/chenboshuo/cpp_learning/commit/454c4e07d192703de20389dd8917085b36adbcef)
+
 ## 9.6 对数组进行排序、求最大值和求元素和的函数采用静态成员函数的方式封装成数组算法类模板ArrayAlg，并采用相关数据进行测试。
 
+-   [代码](https://github.com/chenboshuo/cpp_learning/commit/6d729ab7db54ab150ea54139bc8f235fef949e34)
+
 ## 9.7 对数组进行排序、求最大值和求元素和的算法都编写为函数模板，采用相关数据进行测试。
+
+-   [代码](https://github.com/chenboshuo/cpp_learning/commit/22930d0b288fb761777c089815ef7d05b8315c86)
