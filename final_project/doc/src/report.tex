@@ -1,6 +1,13 @@
 \documentclass[UTF8]{ctexart}
 
+% 参考文献
 \bibliographystyle{plain} % 声明参考文献格式
+\usepackage{url}
+
+
+% 设置页边距
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
 
 % 插入PDF
 \usepackage{pdfpages}
@@ -65,7 +72,7 @@
         \caption{date 结构图}% 给插图加上编号和标题
         \label{fig:date}
       \end{figure}
-    \subsection{Room 类}
+  \subsection{Room 类}
 
     简单的room实现如图\ref{fig:room}
 
@@ -86,7 +93,14 @@
     %   \caption{guest 结构图}
     %   \label{fig:guest}
     % \end{figure}
-
+  \subsection{Guest 类}
+    简单的Guest 类如图\ref{fig:structure_guest}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale = 1]{structure_guest.png}
+        \caption{guest 结构图}
+        \label{fig:structure_guest}
+      \end{figure}
 \section{调试分析}
   % 内容包括： 调试过程中遇到的问题是如何解决的以及对设计与实现的回顾
   % 讨论和分析；
@@ -97,21 +111,31 @@
   % 测试所设
   % 计程序的功能。
   \subsection{单元测试}
-    对于每个头文件, 对应一个测试.cpp文件,分别对date(图\ref{fig:test_date}),room(图\ref{fig:test_room})
+    对于每个头文件, 对应一个测试.cpp文件,分别对date(图\ref{fig:test_date}),room(图\ref{fig:test_room}),guest(图\ref{fig:test_gust})
     \begin{figure}[H]
-      \includegraphics[scale=0.6]{test_date}
+      \centering
+      \includegraphics[scale=1]{test_date}
       \caption{date.cpp 对date类的测试}
       \label{fig:test_date}
     \end{figure}
 
   \begin{figure}[H]
-    \includegraphics[scale=0.6]{test_room}
+    \centering
+    \includegraphics[scale=1]{test_room}
     \caption{room.cpp 对room的测试}
     \label{fig:test_room}
   \end{figure}
+
+  \begin{figure}[H]
+      \centering
+      \includegraphics[scale=1]{test_guest}
+      \caption{guest.cpp 对guest类的测试}
+      \label{fig:test_guest}
+    \end{figure}
 \section{程序设计总结}
 
-\nocite{Lippman:2012:CP:2423877}% 只在参考文献中显示,不直接引用
+\nocite{cpp_primier}% 只在参考文献中显示,不直接引用
+\nocite{cpp_document}
 \bibliography{reference} % 提示从reference数据库获取文献信息,来打印参考文献
 
 \end{document}
