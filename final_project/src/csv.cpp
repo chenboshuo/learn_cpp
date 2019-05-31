@@ -25,7 +25,7 @@ int main(int argc, char const *argv[]) {
   room_csv.read_csv();
   room_csv.show();
 
-  Room a("101", "single room");
+  Room a("1024", "single room");
   room_csv.to_csv(a);
   room_csv.show();
   return 0;
