@@ -1,21 +1,21 @@
-room_number, room_type, status
-101, standard room, full
-102, presidential suite, empty
-103, single room, empty
-104, couple suite, empty
-105, business room, empty
-106, luxury suite, empty
-107, standard room, full
-108, presidential suite, empty
-109, single room, empty
-110, couple suite, empty
-111, business room, full
-112, luxury suite, empty
-113, standard room, empty
-114, presidential suite, full
-115, single room, empty
-116, couple suite, empty
-117, business room, full
-118, luxury suite, empty
-119, luxury suite, empty
-120, luxury suite, empty
+room_number,room_type,status
+101,standard room,full
+102,presidential suite,empty
+103,single room,empty
+104,couple suite,empty
+105,business room,empty
+106,luxury suite,empty
+107,standard room,full
+108,presidential suite,empty
+109,single room,empty
+110,couple suite,empty
+111,business room,full
+112,luxury suite,empty
+113,standard room,empty
+114,presidential suite,full
+115,single room,empty
+116,couple suite,empty
+117,business room,full
+118,luxury suite,empty
+119,luxury suite,empty
+120,luxury suite,empty

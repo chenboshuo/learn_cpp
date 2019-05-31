@@ -53,7 +53,10 @@ class Room {
       return 1;
     }
   }
-
+  void record(){
+    cout << room_number << "," << room_type
+      << "," << (status ? "full" :"empty") << endl;
+  }
 
 
  private:
