@@ -12,11 +12,11 @@ class Room {
    /**
     * constructor 构造函数
     * @param room_number    房间的编号(默认为" Unkonwn")
-    * @param room_type 房间类型(默认为""statand room"")
+    * @param room_type 房间类型(默认为"standard room)
     * @param status    状态(0代表空)
     */
   Room (string room_number = "Unkonwn",
-        string room_type = "statand room",
+        string room_type = "standard room",
         bool status = false)
    :room_number(room_number), room_type(room_type), status(status){};
 
