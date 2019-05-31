@@ -72,6 +72,7 @@
         \caption{date 结构图}% 给插图加上编号和标题
         \label{fig:date}
       \end{figure}
+
   \subsection{Room 类}
 
     简单的room实现如图\ref{fig:room}
@@ -96,6 +97,43 @@
         \label{fig:structure_guest}
       \end{figure}
 \section{调试分析}
+  \subsection{csv 问题}
+    使用csv文件格式时注意每个单元格不要带",",否则会视为两个数据单元
+
+  \subsection{文件写入问题}
+    测试中发现, 运行写入文件的代码之后展示表格的时候没有新增的记录信息(如图\ref{fig:bug_2})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_2}
+      \caption{错误的录入}
+      \label{fig:bug_2}
+    \end{figure}
+    原因:
+
+    程序读取信息时调用函数"read\_csv()", 但是在调用函数"to\_csv()"写入文件时没有改变存储数据的数组"str\_array"
+
+
+    解决方案:
+
+    如图\ref{fig:bug_2_fixed},在"to\_csv()"函数体中调用一次"read\_csv()",即可重新载入数据,方便数据的再次查看
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_2_fixed}
+      \caption{修复问题}
+      \label{fig:bug_2_fixed}
+    \end{figure}
+
+    优化:
+
+    在实际应用中,可能写入CSV之后不在使用,造成系统开销增大,可以设置标志(flag)在"show()"函数使用时检测是否调用过"to\_csv()",修改后测试结果如图\ref{fig:bug_2_more}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_2_more}
+      \caption{引入标志来减少开销}
+      \label{fig:bug_2_more}
+    \end{figure}
+
 
 
 \section{用户使用说明}
