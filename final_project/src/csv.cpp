@@ -13,9 +13,11 @@ int main(int argc, char const *argv[]) {
   Csv guest_csv("data/guest.csv");
   cout << "This is the guest information:\n\n";
   guest_csv.read_csv();
+  guest_csv.show();
 
   cout << "This is the room information:\n\n";
   Csv room_csv("data/room.csv");
   room_csv.read_csv();
+  room_csv.show();
   return 0;
 }

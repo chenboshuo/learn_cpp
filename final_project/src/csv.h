@@ -22,7 +22,7 @@ class Csv {
 
   }
   /**
-   * 读取并显示文件
+   * 读取并储存CSV
    */
   void read_csv() {
     ifstream csv_file(name, ios::in);
@@ -35,7 +35,12 @@ class Csv {
       }
       str_array.push_back(line_array);
     }
+  }
 
+  /**
+   * 绘制CSV表
+   */
+  void show(){
     // 绘制表格(第一行框架)
     cout << "\t+";
     for(size_t h = 0; h < str_array[0].size(); ++h){
