@@ -45,9 +45,10 @@ class Guest {
     cout << "Guest room check out" << endl;
   }
 
-  void record() {
-    cout << id_card << "," << chick_in_date << ","
-      << name << "," << (gender ? "woman": "man") << endl;
+  friend ofstream &operator<<(ofstream & out, Guest &a) {
+    out << a.id_card << "," << a.chick_in_date << ","
+      << a.name << "," << (a.gender ? "woman": "man") << endl;
+    return out;
   }
 
  private:

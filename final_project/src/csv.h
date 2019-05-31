@@ -9,18 +9,16 @@
 #include <sstream>
 #include <iomanip>
 
+#include "room.h"
+#include "guest.h"
+
 using namespace std;
 
 class Csv {
  public:
   Csv (string name):name(name){
-  };
-  /**
-   * 析构函数, 关闭文件
-   */
-  ~Csv(){
-
   }
+
   /**
    * 读取并储存CSV
    */
@@ -68,6 +66,19 @@ class Csv {
     cout << "\n";
   }
 
+  /**
+   * 写入(针对room.csv)
+   */
+  void to_csv(Room a) {
+    ofstream outfile(name, ios::app);
+    outfile << a;
+  }
+
+  void to_csv(Guest a) {
+    ofstream outfile;
+    outfile.open(name, ios::app);
+    outfile << a;
+  }
  private:
   string name;
   string line_str;

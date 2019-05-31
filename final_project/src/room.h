@@ -53,9 +53,10 @@ class Room {
       return 1;
     }
   }
-  void record(){
-    cout << room_number << "," << room_type
-      << "," << (status ? "full" :"empty") << endl;
+  friend ofstream &operator<<(ofstream & out, Room &a){
+    out << a.room_number << "," << a.room_type
+      << "," << (a.status ? "full" :"empty") << endl;
+    return out;
   }
 
 
