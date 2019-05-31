@@ -171,7 +171,6 @@ void Date::increment() {
   }
 }
 
-// TODO
 void Date::decrement(){
   if (day > 2) {
     --day;
@@ -192,11 +191,7 @@ void Date::decrement(){
 
 // overload output operator
 ostream &operator<<(ostream &output, const Date &d){
-  static string month_name[13] = {"", "January", "February",
-    "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
-  };
-  output << month_name[d.month] << ' ' << d.day << ", "<< d.year;
+  output << d.year << "-" << d.month << "-" << d.day;
   return output;  // enablees cascading
 }
 

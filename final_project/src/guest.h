@@ -45,6 +45,11 @@ class Guest {
     cout << "Guest room check out" << endl;
   }
 
+  void record() {
+    cout << id_card << "," << chick_in_date << ","
+      << name << "," << (gender ? "woman": "man") << endl;
+  }
+
  private:
   string id_card;
   Date chick_in_date;
