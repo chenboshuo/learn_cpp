@@ -23,8 +23,8 @@ class Guest {
    : id_card(id_card),
    name(name){
     this->chick_in_date = chick_in_date;
-    if(gender == "famale" || "woman" || "girl"){
-      gender = 1;
+    if(gender == "female" || "woman" || "girl"){
+      this->gender = 1;
     }
   };
 
