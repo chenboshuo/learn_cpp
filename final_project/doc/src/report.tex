@@ -134,7 +134,28 @@
       \label{fig:bug_2_more}
     \end{figure}
 
+  \subsection{文件多次写入}
+    经过以上调整优化, 发现每个表格打印了两次(如图\ref{fig:bug_3})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_3}
+      \caption{表格由于错误打印两次}
+      \label{fig:bug_3}
+    \end{figure}
 
+  错误原因:
+
+  由于"read\_csv()"是使用函数"push\_back()"入栈,重新调用相当于在原有二维数组的基础上增加内容,从而导致内容多次出现, 产生错误, 增加系统开销.
+
+  解决:
+  重构"to\_csv()"函数, 将相应内容直接写到文件和数组中, 不再调用其他函数,具体修改如图\ref{fig:bug_3_fix}
+
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_3_fix}
+      \caption{重新修改写入程序,直接写入数组和文件}
+      \label{fig:bug_3_fix}
+    \end{figure}
 
 \section{用户使用说明}
   说明如何使用你编写的程序，详细列出每一步的操作步骤。
