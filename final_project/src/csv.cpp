@@ -17,8 +17,9 @@ int main(int argc, char const *argv[]) {
 
   // 测试写入文件
   Date today(1,2,2018);
-  Guest a_woman("108", today, "a", "girl");
+  Guest a_woman("108", today, "admin", "girl");
   guest_csv.to_csv(a_woman);
+  guest_csv.show();
 
   cout << "This is the room information:\n\n";
   Csv room_csv("data/room.csv");

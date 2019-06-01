@@ -51,6 +51,18 @@ class Guest {
     return out;
   }
 
+  string get_id_card(){
+    return id_card;
+  }
+  string get_check_in_date(){
+    return chick_in_date.get_date();
+  }
+  string get_name(){
+    return name;
+  }
+  string get_gender(){
+    return (gender ? "female" : "male");
+  }
  private:
   string id_card;
   Date chick_in_date;

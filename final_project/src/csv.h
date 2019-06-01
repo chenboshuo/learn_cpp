@@ -11,6 +11,7 @@
 
 #include "room.h"
 #include "guest.h"
+#include "date.h"
 
 using namespace std;
 
@@ -75,16 +76,19 @@ class Csv {
     vector<string> line_array = {a.get_room_number(), a.get_room_type(),
                                  a.get_status()};
     outfile << a.get_room_number() << "," << a.get_room_type() << ","
-      << a.get_status();
+      << a.get_status() << endl;
     outfile.close();
     str_array.push_back(line_array);
   }
 
   void to_csv(Guest a) {
-    ofstream outfile;
-    outfile.open(name, ios::app);
-    outfile << a;
+    ofstream outfile(name, ios::app);
+    vector<string> line_array = {a.get_id_card(), a.get_check_in_date(),
+                                 a.get_name(), a.get_gender()};
+    outfile << a.get_id_card() << "," << a.get_check_in_date() << ","
+      << a.get_name() << "," << a.get_gender() << endl;
     outfile.close();
+    str_array.push_back(line_array);
   }
  private:
   string name;

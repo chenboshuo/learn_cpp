@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 #ifndef DATE_H
@@ -35,6 +36,11 @@ class Date {
   Date operator-(int n);
   static bool is_leap_year(int y);  // is date in a leap year
   bool end_of_month(int d) const;
+
+  // get function
+  string get_date(){
+    return (to_string(year) + "-" + to_string(month) + "-" + to_string(day));
+  }
 };
 
 // Date constructor
