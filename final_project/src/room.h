@@ -53,12 +53,14 @@ class Room {
       return 1;
     }
   }
-  friend ofstream &operator<<(ofstream & out, Room &a){
-    out << a.room_number << "," << a.room_type
-      << "," << (a.status ? "full" :"empty") << endl;
-    return out;
-  }
-
+  // friend ofstream &operator<<(ofstream & out, Room &a){
+  //   out << a.room_number << "," << a.room_type
+  //     << "," << (a.status ? "full" :"empty") << endl;
+  //   return out;
+  // }
+  string get_room_number(){return room_number;}
+  string get_room_type(){return room_type;}
+  string get_status(){return (status ? "full" : "empty");}
 
  private:
   string room_number;

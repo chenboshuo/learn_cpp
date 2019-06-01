@@ -4,8 +4,8 @@
 #include <fstream>
 
 #include "csv.h"
-#include "Date.h"
-#include "Guest.h"
+#include "date.h"
+#include "guest.h"
 
 using namespace std;
 
@@ -25,6 +25,7 @@ int main(int argc, char const *argv[]) {
   room_csv.read_csv();
   room_csv.show();
 
+  cout << "\n\nAdd a single room:" << endl;
   Room a("1024", "single room");
   room_csv.to_csv(a);
   room_csv.show();

@@ -34,16 +34,12 @@ class Csv {
       str_array.push_back(line_array);
     }
     csv_file.close();
-    flag = 0;
   }
 
   /**
    * 绘制CSV表
    */
   void show(){
-    if (flag) { // 检测标志,看是否改变csv
-      read_csv(); // 由于文件改变, 需要重新读取
-    }
     // 绘制表格(第一行框架)
     cout << "\t+";
     for(size_t h = 0; h < str_array[0].size(); ++h){
@@ -76,10 +72,12 @@ class Csv {
    */
   void to_csv(Room a) {
     ofstream outfile(name, ios::app);
-    outfile << a;
+    vector<string> line_array = {a.get_room_number(), a.get_room_type(),
+                                 a.get_status()};
+    outfile << a.get_room_number() << "," << a.get_room_type() << ","
+      << a.get_status();
     outfile.close();
-    outfile.close();
-    flag = 1;
+    str_array.push_back(line_array);
   }
 
   void to_csv(Guest a) {
@@ -87,12 +85,10 @@ class Csv {
     outfile.open(name, ios::app);
     outfile << a;
     outfile.close();
-    flag = 1;
   }
  private:
   string name;
   string line_str;
   vector<vector<string>> str_array;
-  bool flag = 0;
 };
 #endif
