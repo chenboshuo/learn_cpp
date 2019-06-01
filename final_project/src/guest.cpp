@@ -8,7 +8,7 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-  Date today(1,2,2018);
+  Date today(1,2,2010);
   Guest a_man("100000", today,"Mr.a");
   a_man.show();
   // a_man.record();

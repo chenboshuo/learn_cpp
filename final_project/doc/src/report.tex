@@ -107,6 +107,28 @@
       \end{figure}
 
 \section{调试分析}
+  \subsection{guest 类的日期传递问题}
+    在guest类中日期总是如图\ref{fig:bug_4},无法传递正确日期
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale = 1]{bug_4}
+      \caption{所有日期都是1900-1-1}
+      \label{fig:bug_4}
+    \end{figure}
+    经过测试(如图\ref{fig:bug_4_1}), date的复制构造函数没有问题
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{bug_4_1}
+      \caption{date的复制构造函数}
+      \label{fig:bug_4_1}
+    \end{figure}
+    如图\ref{fig:bug_4_fix}最后在构造函数加了一个this指针解决,具体原因未知.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale = 1]{bug_4_fix}
+      \caption{加了一个this指针解决}
+      \label{fig:bug_4_fix}
+    \end{figure}
   \subsection{csv 问题}
     使用csv文件格式时注意每个单元格不要带",",否则会视为两个数据单元
 

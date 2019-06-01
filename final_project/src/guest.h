@@ -17,12 +17,12 @@ class Guest {
    * @param gender        性别(男性为0, 女性为1)
    */
   Guest (string id_card,
-         Date chick_in_date,
+         Date &chick_in_date,
          string name,
          string gender = "man")
    : id_card(id_card),
    name(name){
-    chick_in_date = chick_in_date ;
+    this->chick_in_date = chick_in_date;
     if(gender == "famale" || "woman" || "girl"){
       gender = 1;
     }
