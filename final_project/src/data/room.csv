@@ -28,5 +28,6 @@ room_number,room_type,status
 1024,single room,empty
 1024,single room,empty
 1024,single room,empty
-100,single room,full
+100,single room,empty
 1026,single room,empty
+100,single room,full

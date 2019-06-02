@@ -197,7 +197,7 @@ class Csv {
     int index = find_room(number_str);
     if (index < 0 || information[index][2] == "empty") {
       string n;
-      cout << "please confirm room number\n and enter the correct room number:"
+      cout << "\tplease confirm room number\n and enter the correct room number:"
       << "(or you can enter \"q\" to quit)" << endl;
       std::cin >> n;
       if (n == "q") {
@@ -206,7 +206,7 @@ class Csv {
       check_out(n);
       return 0;
     }
-    cout << "check out succssful" << endl;
+    cout << "\tcheck out succssful" << endl;
     information[index][2] = "empty";
     to_csv();
     return 1;

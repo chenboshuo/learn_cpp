@@ -26,5 +26,7 @@ int main(int argc, char const *argv[]) {
   // 测试房间号查找;
   m.find_room("101");
   m.find_room("-1");
+
+  m.check_out("100");
   return 0;
 }
