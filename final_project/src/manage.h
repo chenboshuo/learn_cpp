@@ -35,9 +35,17 @@ class Manage {
     guest_csv.show();
   }
 
-  void new_guest(Guest a) {
+  /**
+   * 模拟入住
+   * @param a           客人
+   * @param room_number 房间号
+   */
+  void check_in(Guest a, string room_number) {
     Csv guest_csv("data/guest.csv");
     guest_csv.to_csv(a);
+    Csv room_csv("data/room.csv");
+    room_csv.read_csv();
+    room_csv.check_in(room_number);
   }
 
   void show_empty_room() {

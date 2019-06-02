@@ -194,10 +194,37 @@ class Csv {
    * @return 成功为1, 不成功为0
    */
   int check_out(string number_str) {
+    cout << "\tThis is the information of "<< number_str << endl;
     int index = find_room(number_str);
     if (index < 0 || information[index][2] == "empty") {
       string n;
-      cout << "\tplease confirm room number\n and enter the correct room number:"
+      cout << "\tplease confirm room number\n\t and enter the correct room number:"
+      << "(or you can enter \"q\" to quit)" << endl;
+      std::cin >> n;
+      if (n == "q") {
+        return 0;
+      }
+      check_out(n);
+      return 0;
+    }
+    cout << "\tcheck in succssful" << endl;
+    information[index][2] = "empty";
+    to_csv();
+    return 1;
+  }
+
+  /**
+   * 模拟入住
+   * 将字符串 empty 改为 full
+   * @param number_str 房间号
+   * @return 成功为1, 不成功为0
+   */
+  int check_in(string number_str) {
+    cout << "\tThis is the information of "<< number_str << endl;
+    int index = find_room(number_str);
+    if (index < 0 || information[index][2] == "full") {
+      string n;
+      cout << "\tplease confirm room number\n\t and enter the correct room number:"
       << "(or you can enter \"q\" to quit)" << endl;
       std::cin >> n;
       if (n == "q") {
@@ -207,7 +234,7 @@ class Csv {
       return 0;
     }
     cout << "\tcheck out succssful" << endl;
-    information[index][2] = "empty";
+    information[index][2] = "full";
     to_csv();
     return 1;
   }

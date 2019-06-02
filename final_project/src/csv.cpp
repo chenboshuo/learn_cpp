@@ -37,6 +37,9 @@ int main(int argc, char const *argv[]) {
 
   // 测试退房
   cout << room_csv.check_out("107");
+
+  // 测试入住
+  cout << room_csv.check_in("107") << endl;
   // cout << room_csv.check_out("110");
   return 0;
 }
