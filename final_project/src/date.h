@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <string>
+#include <ctime>
 using namespace std;
 
 #ifndef DATE_H
@@ -27,7 +28,8 @@ class Date {
   // unsigned int check_day(int test_day) const;
 
  public:
-  explicit Date (int m=1, int d=1, int y=1900); // default constructor
+  explicit Date (int m, int d, int y); // constructor
+  explicit Date (); // defult today Date
   void set_date(int m, int d, int y);  // set month, day, year
   Date &operator++();  // prefix increment operator
   Date operator++(int);  // postfix increment operator
@@ -46,6 +48,20 @@ class Date {
 // Date constructor
 Date::Date(int m, int d, int y){
   set_date(m, d, y);
+}
+
+// Date of today
+Date::Date(){
+  time_t nowtime;
+  nowtime = time(NULL); //获取日历时间
+
+
+  struct tm *local;
+  local=localtime(&nowtime);  //获取当前系统时间
+
+  year = local->tm_year+1900 ;
+  month =  local->tm_mon+1 ;
+  day = local->tm_mday;
 }
 
 // initialize static member; one class only
