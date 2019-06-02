@@ -230,7 +230,7 @@ class Csv {
       if (n == "q") {
         return 0;
       }
-      check_out(n);
+      check_in(n);
       return 0;
     }
     cout << "\tcheck in succssful" << endl;
