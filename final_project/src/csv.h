@@ -207,7 +207,7 @@ class Csv {
       check_out(n);
       return 0;
     }
-    cout << "\tcheck in succssful" << endl;
+    cout << "\tcheck out succssful" << endl;
     information[index][2] = "empty";
     to_csv();
     return 1;

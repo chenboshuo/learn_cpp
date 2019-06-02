@@ -46,6 +46,11 @@ int main(int argc, char const *argv[]) {
         std::cin >> room_number;
         Guest new_guest(id_card,today,name, gender) ;
         m.check_in(new_guest, room_number);
+      }else if(flag==5){
+        string room_number;
+        cout << "Please input the room number: ";
+        std::cin >> room_number;
+        m.check_out(room_number);
       }else{
         exit(0);
       }
