@@ -90,6 +90,39 @@ class Csv {
     outfile.close();
     str_array.push_back(line_array);
   }
+
+  /**
+   * 寻找空房间(不太简洁的暴力)
+   */
+  void find_empty_room() {
+    // 绘制表格(第一行框架)
+    cout << "\t+";
+    for(size_t h = 0; h < str_array[0].size(); ++h){
+      for(size_t k = 0; k < 19; ++k){
+        cout << "-";
+      }
+      cout << "+";
+    }
+    cout << "\n";
+    // 表格主主体数据
+    for(size_t i = 0; i < str_array.size(); ++i){
+      if(str_array [i][2] == "empty"){
+        cout << "\t|";
+        for(size_t j = 0; j < str_array[i].size(); ++j){
+          cout << setw(19) << str_array [i][j] << "|";
+        }
+        cout << "\n\t+" ;
+        for(size_t h = 0; h < str_array[i].size(); ++h){
+          for(size_t k = 0; k < 19; ++k){
+            cout << "-";
+          }
+          cout << "+";
+        }
+        cout << "\n";
+      }
+    }
+    cout << "\n";
+  }
  private:
   string name;
   string line_str;

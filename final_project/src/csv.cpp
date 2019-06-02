@@ -27,8 +27,10 @@ int main(int argc, char const *argv[]) {
   room_csv.show();
 
   cout << "\n\nAdd a single room:" << endl;
-  Room a("1024", "single room");
+  Room a("1026", "single room");
   room_csv.to_csv(a);
   room_csv.show();
+  cout << "\n\n find:" << endl;
+  room_csv.find_empty_room();
   return 0;
 }
