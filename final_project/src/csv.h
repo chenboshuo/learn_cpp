@@ -121,7 +121,7 @@ class Csv {
     cout << "\n";
     // 表格主主体数据
     for(size_t i = 0; i < information.size(); ++i){
-      if(information [i][2] == "empty"){
+      if(i==0||information [i][2] == "empty"){
         cout << "\t|";
         for(size_t j = 0; j < information[i].size(); ++j){
           cout << setw(19) << information [i][j] << "|";
@@ -233,7 +233,7 @@ class Csv {
       check_out(n);
       return 0;
     }
-    cout << "\tcheck out succssful" << endl;
+    cout << "\tcheck in succssful" << endl;
     information[index][2] = "full";
     to_csv();
     return 1;
