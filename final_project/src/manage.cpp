@@ -51,6 +51,21 @@ int main(int argc, char const *argv[]) {
         cout << "Please input the room number: ";
         std::cin >> room_number;
         m.check_out(room_number);
+      }else if(flag==6){
+        string room_number;
+        cout << "input your room number: ";
+        cin >> room_number;
+        cout << "\n";
+        m.find_room(room_number);
+      }else if(flag==7){
+        string room_number, room_type;
+        cout << "Please input the information of the room" << endl;
+        cout << "number name: ";
+        std::cin >> room_number;
+        cout << "room type: ";
+        std::cin >> room_type;
+        Room a_room(room_number, room_type);
+        m.new_room(a_room);
       }else{
         exit(0);
       }
