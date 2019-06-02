@@ -123,6 +123,54 @@ class Csv {
     }
     cout << "\n";
   }
+
+  /**
+   * 根据房间号寻找代码
+   * @param number_str 房间号
+   */
+  void find_room(string number_str){
+    bool find = false;
+    // 绘制表格(第一行框架)
+    cout << "\t+";
+    for(size_t h = 0; h < str_array[0].size(); ++h){
+      for(size_t k = 0; k < 19; ++k){
+        cout << "-";
+      }
+      cout << "+";
+    }
+    cout << "\n";
+    // 表格主主体数据
+    for(size_t i = 0; i < str_array.size(); ++i){
+      if(str_array [i][0] == number_str){
+        find = true;
+        cout << "\t|";
+        for(size_t j = 0; j < str_array[i].size(); ++j){
+          cout << setw(19) << str_array [i][j] << "|";
+        }
+        cout << "\n\t+" ;
+        for(size_t h = 0; h < str_array[i].size(); ++h){
+          for(size_t k = 0; k < 19; ++k){
+            cout << "-";
+          }
+          cout << "+";
+        }
+        cout << "\n";
+      }
+    }
+    if (!find) {
+      cout << "\t|                the room number not found                  |"
+        << endl;
+      // 绘制表格(第一行框架)
+    cout << "\t+";
+    for(size_t h = 0; h < str_array[0].size(); ++h){
+      for(size_t k = 0; k < 19; ++k){
+        cout << "-";
+      }
+      cout << "+";
+    }
+    cout << "\n";
+    }
+  }
  private:
   string name;
   string line_str;

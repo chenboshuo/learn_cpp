@@ -22,5 +22,9 @@ int main(int argc, char const *argv[]) {
 
   // 测试查找空房间
   m.show_empty_room();
+
+  // 测试房间号查找;
+  m.find_room("101");
+  m.find_room("-1");
   return 0;
 }

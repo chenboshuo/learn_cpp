@@ -45,6 +45,12 @@ class Manage {
     room_csv.read_csv();
     room_csv.find_empty_room();
   }
+
+  void find_room(string number_str) {
+    Csv room_csv("data/room.csv");
+    room_csv.read_csv();
+    room_csv.find_room(number_str);
+  }
  private:
 
 };
