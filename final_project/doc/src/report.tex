@@ -32,9 +32,18 @@
 
 \section{问题描述}
   设计一个程序实现对宾馆房间的基本管理，可以实现：
-  客房信息的录入功能；客人入住
-  登记、客人退房结算；客房信息浏览功能，浏览全部客户的信息，客房信息和客户信息分别
-  保存于不同文件；客房信息查询，查询空房间情况，实现按房间号查询等。
+  \begin{itemize}
+    \item 客房信息的录入功能；
+    \item 客人入住登记
+    \item 客人退房结算
+    \item 客房信息浏览功能
+    \item 浏览全部客户的信息，
+    \item 客房信息和客户信息分别保存于不同文件；
+    \item 客房信息查询，
+    \item 查询空房间情况，
+    \item 实现按房间号查询等。
+  \end{itemize}
+
 
 \section{基本要求}
   （1）至少包含四个类：Date 类（日期）,客房 Room 类，主要包含客房信息（房号,类
@@ -113,6 +122,14 @@
         \label{fig:structure_csv}
       \end{figure}
 
+  \subsection{Manage 类}
+    将对所有操作封装成类,结果如图\ref{fig:structure_manage}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale = 1]{structure_manage}
+        \caption{manage 结构图}
+        \label{fig:structure_manage}
+      \end{figure}
 \section{调试分析}
   \subsection{guest 类的日期传递问题}
     在guest类中日期总是如图\ref{fig:bug_4},无法传递正确日期
@@ -136,6 +153,7 @@
       \caption{加了一个this指针解决}
       \label{fig:bug_4_fix}
     \end{figure}
+
   \subsection{csv 问题}
     使用csv文件格式时注意每个单元格不要带",",否则会视为两个数据单元
 
@@ -182,19 +200,10 @@
       \label{fig:bug_3}
     \end{figure}
 
-  错误原因:
+    错误原因:
 
-  由于"read\_csv()"是使用函数"push\_back()"入栈,重新调用相当于在原有二维数组的基础上增加内容,从而导致内容多次出现, 产生错误, 增加系统开销.
+    由于"read\_csv()"是使用函数"push\_back()"入栈,重新调用相当于在原有二维数组的基础上增加内容,从而导致内容多次出现, 产生错误, 增加系统开销.
 
-  解决:
-  重构"to\_csv()"函数, 将相应内容直接写到文件和数组中, 不再调用其他函数,具体修改如图\ref{fig:bug_3_fix}
-
-  \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.8\textwidth]{bug_3_fix}
-      \caption{重新修改写入程序,直接写入数组和文件}
-      \label{fig:bug_3_fix}
-    \end{figure}
 
 \section{用户使用说明}
   说明如何使用你编写的程序，详细列出每一步的操作步骤。
@@ -203,7 +212,7 @@
   % 测试所设
   % 计程序的功能。
   \subsection{单元测试}
-    对于每个头文件, 对应一个测试.cpp文件,分别对date(图\ref{fig:test_date}),room(图\ref{fig:test_room}),guest(图\ref{fig:test_guest}),csv(图\ref{fig:test_csv})
+    对于每个头文件, 对应一个测试.cpp文件,分别对date(图\ref{fig:test_date}),room(图\ref{fig:test_room}),guest(图\ref{fig:test_guest}),csv(图\ref{fig:test_csv}),manamge(图\ref{fig:test_manage})
     \begin{figure}[H]
       \centering
       \includegraphics[scale=1]{test_date}
@@ -230,6 +239,13 @@
       \caption{csv.cpp 对csv类的测试}
       \label{fig:test_csv}
     \end{figure}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.4]{test_manage}
+      \caption{manage.cpp 对manage类的测试}
+      \label{fig:test_manage}
+    \end{figure}
+
 \section{程序设计总结}
   在这次程序设计中, 探索各个模块的应用和项目的结构,开始习惯查阅参考文档$^{\cite{cpp_document}}$, 同时开始学习开源目录的代码规范$^{\cite{styleguide}}$, 写代码开始注重简洁.
 
