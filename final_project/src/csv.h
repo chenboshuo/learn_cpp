@@ -32,7 +32,7 @@ class Csv {
       while (getline(ss, str, ',')) {
         line_array.push_back(str);
       }
-      str_array.push_back(line_array);
+      information.push_back(line_array);
     }
     csv_file.close();
   }
@@ -43,7 +43,7 @@ class Csv {
   void show(){
     // 绘制表格(第一行框架)
     cout << "\t+";
-    for(size_t h = 0; h < str_array[0].size(); ++h){
+    for(size_t h = 0; h < information[0].size(); ++h){
       for(size_t k = 0; k < 19; ++k){
         cout << "-";
       }
@@ -51,13 +51,13 @@ class Csv {
     }
     cout << "\n";
     // 表格主主体数据
-    for(size_t i = 0; i < str_array.size(); ++i){
+    for(size_t i = 0; i < information.size(); ++i){
       cout << "\t|";
-      for(size_t j = 0; j < str_array[i].size(); ++j){
-        cout << setw(19) << str_array [i][j] << "|";
+      for(size_t j = 0; j < information[i].size(); ++j){
+        cout << setw(19) << information [i][j] << "|";
       }
       cout << "\n\t+" ;
-      for(size_t h = 0; h < str_array[i].size(); ++h){
+      for(size_t h = 0; h < information[i].size(); ++h){
         for(size_t k = 0; k < 19; ++k){
           cout << "-";
         }
@@ -69,7 +69,8 @@ class Csv {
   }
 
   /**
-   * 写入(针对room.csv)
+   * 在后面写入新的房间
+   * @param a 房间的属性
    */
   void to_csv(Room a) {
     ofstream outfile(name, ios::app);
@@ -78,7 +79,7 @@ class Csv {
     outfile << a.get_room_number() << "," << a.get_room_type() << ","
       << a.get_status() << endl;
     outfile.close();
-    str_array.push_back(line_array);
+    information.push_back(line_array);
   }
 
   void to_csv(Guest a) {
@@ -88,16 +89,30 @@ class Csv {
     outfile << a.get_id_card() << "," << a.get_check_in_date() << ","
       << a.get_name() << "," << a.get_gender() << endl;
     outfile.close();
-    str_array.push_back(line_array);
+    information.push_back(line_array);
   }
 
+  /**
+   * 重写csv文件
+   */
+  void to_csv(void) {
+    ofstream outfile(name, ios::out);
+    for(size_t i = 0; i < information.size(); ++i){
+      size_t j;
+      for(j = 0; j < information[i].size()-1; ++j){
+        outfile << information[i][j] << ",";
+      }
+      outfile << information[i][j] << endl;
+    }
+    outfile.close();
+  }
   /**
    * 寻找空房间(不太简洁的暴力)
    */
   void find_empty_room() {
     // 绘制表格(第一行框架)
     cout << "\t+";
-    for(size_t h = 0; h < str_array[0].size(); ++h){
+    for(size_t h = 0; h < information[0].size(); ++h){
       for(size_t k = 0; k < 19; ++k){
         cout << "-";
       }
@@ -105,14 +120,14 @@ class Csv {
     }
     cout << "\n";
     // 表格主主体数据
-    for(size_t i = 0; i < str_array.size(); ++i){
-      if(str_array [i][2] == "empty"){
+    for(size_t i = 0; i < information.size(); ++i){
+      if(information [i][2] == "empty"){
         cout << "\t|";
-        for(size_t j = 0; j < str_array[i].size(); ++j){
-          cout << setw(19) << str_array [i][j] << "|";
+        for(size_t j = 0; j < information[i].size(); ++j){
+          cout << setw(19) << information [i][j] << "|";
         }
         cout << "\n\t+" ;
-        for(size_t h = 0; h < str_array[i].size(); ++h){
+        for(size_t h = 0; h < information[i].size(); ++h){
           for(size_t k = 0; k < 19; ++k){
             cout << "-";
           }
@@ -127,12 +142,12 @@ class Csv {
   /**
    * 根据房间号寻找代码
    * @param number_str 房间号
+   * @return 成功为索引值, 不成功为-1
    */
-  void find_room(string number_str){
-    bool find = false;
+  int find_room(string number_str){
     // 绘制表格(第一行框架)
     cout << "\t+";
-    for(size_t h = 0; h < str_array[0].size(); ++h){
+    for(size_t h = 0; h < information[0].size(); ++h){
       for(size_t k = 0; k < 19; ++k){
         cout << "-";
       }
@@ -140,40 +155,65 @@ class Csv {
     }
     cout << "\n";
     // 表格主主体数据
-    for(size_t i = 0; i < str_array.size(); ++i){
-      if(str_array [i][0] == number_str){
-        find = true;
+    for(size_t i = 0; i < information.size(); ++i){
+      if(information [i][0] == number_str){
         cout << "\t|";
-        for(size_t j = 0; j < str_array[i].size(); ++j){
-          cout << setw(19) << str_array [i][j] << "|";
+        for(size_t j = 0; j < information[i].size(); ++j){
+          cout << setw(19) << information [i][j] << "|";
         }
         cout << "\n\t+" ;
-        for(size_t h = 0; h < str_array[i].size(); ++h){
+        for(size_t h = 0; h < information[i].size(); ++h){
           for(size_t k = 0; k < 19; ++k){
             cout << "-";
           }
           cout << "+";
         }
         cout << "\n";
+        return i;
       }
     }
-    if (!find) {
-      cout << "\t|                the room number not found                  |"
-        << endl;
+
+    cout << "\t|                the room number not found                  |"
+      << endl;
       // 绘制表格(第一行框架)
     cout << "\t+";
-    for(size_t h = 0; h < str_array[0].size(); ++h){
+    for(size_t h = 0; h < information[0].size(); ++h){
       for(size_t k = 0; k < 19; ++k){
         cout << "-";
       }
       cout << "+";
     }
     cout << "\n";
+    return -1;
+  }
+
+  /**
+   * 模拟退房
+   * 将字符串full 改为 empty
+   * @param number_str 房间号
+   * @return 成功为1, 不成功为0
+   */
+  int check_out(string number_str) {
+    int index = find_room(number_str);
+    if (index < 0 || information[index][2] == "empty") {
+      string n;
+      cout << "please confirm room number\n and enter the correct room number:"
+      << "(or you can enter \"q\" to quit)" << endl;
+      std::cin >> n;
+      if (n == "q") {
+        return 0;
+      }
+      check_out(n);
+      return 0;
     }
+    cout << "check out succssful" << endl;
+    information[index][2] = "empty";
+    to_csv();
+    return 1;
   }
  private:
   string name;
   string line_str;
-  vector<vector<string>> str_array;
+  vector<vector<string>> information;
 };
 #endif

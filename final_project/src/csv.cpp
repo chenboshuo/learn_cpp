@@ -32,7 +32,11 @@ int main(int argc, char const *argv[]) {
   room_csv.show();
   cout << "\n\n find:" << endl;
   room_csv.find_empty_room();
-  room_csv.find_room("1024");
-  room_csv.find_room("-1"); // 测试找不到
+  cout << room_csv.find_room("1024") << endl;
+  cout << room_csv.find_room("-1") << endl; // 测试找不到
+
+  // 测试退房
+  cout << room_csv.check_out("107");
+  // cout << room_csv.check_out("110");
   return 0;
 }
