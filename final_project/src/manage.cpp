@@ -86,12 +86,27 @@ int main(int argc, char const *argv[]) {
       string room_number(argv[5]);
       Guest new_guest(id_card, today, name, gender);
       m.check_in(new_guest, room_number);
+    }else if(!strcmp(argv[1], "out")){
+      string room_number(argv[2]);
+      m.check_out(room_number);
+    }else if(!strcmp(argv[1], "find")){
+      string room_number(argv[2]);
+      m.find_room(room_number);
+    }else if(!strcmp(argv[1], "add")){
+      string room_number(argv[2]);
+      string room_type(argv[3]);
+      Room a_room(room_number, room_type);
+      m.new_room(a_room);
     }else{
       cout << "usage: "
         << "manage show room : Show all room.\n"
         << "manage show guset : Show all guest.\n"
         << "manage show empty : Find empty room.\n"
-        << "manage in <id card> <name> <gender> <room number>.\n"<< endl;
+        << "manage in <id card> <name> <gender> <room number>:Check in.\n"
+        << "manage out <room number>:Check out.\n"
+        << "manage find <room number>:Find the room by room number.\n"
+        << "manage add <room number> <room type>:Add a new room.\n"
+        << endl;
     }
   }
 
