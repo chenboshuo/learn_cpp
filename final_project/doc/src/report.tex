@@ -70,7 +70,14 @@
   % 程序所能达到的功能；测试数据：
   % 包括正确的输入及其输出结果和含有错误的输入及其输出结果。
 \section{概要设计}
-  说明本程序中主程序的流程以及各程序模块之间的层次(调用) 关系。
+  程序模块之间的层次(调用) 关系如图\ref{fig:h}.
+  manage.cpp 作为主程序,实现用户界面和命令行控制, 它通过调用manage.h中的函数来实现,room.h,guest.h 分别实现对房间和住户的相关操作, csv.h 负责读写csv
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{h}
+    \caption{程序模块之间的层次(调用) 关系}
+    \label{fig:h}
+  \end{figure}
 \section{详细设计}
   % 实现概要设计中定义的所有数据类型，给出关键部分源程序的清单，要求程序有充分的注释语句，至少要注释每个函数参数的含义和函数返回值的含义。
 
@@ -224,7 +231,8 @@
       \label{fig:home}
     \end{figure}
     \begin{itemize}
-      \item 输入1，显示所有房间；·输入2，显示所有客人；
+      \item 输入1，显示所有房间；
+      \item 输入2，显示所有客人；
       \item 输入3，显示所有空房间；
       \item 输入4，进行入住登记；
       \item 输入5，进行退房；
@@ -232,77 +240,170 @@
       \item 输入7，增加新的房间；
     \end{itemize}
     按其他键可以退出程序，查看响应信息后，按回车返回主页
-    \subsubsection{显示所有房间}
-      输入1后,如图\ref{fig:1}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{1}
-        \caption{显示所有房间}
-        \label{fig:1}
-      \end{figure}
-    \subsubsection{显示所有客户}
-      输入2后,如图\ref{fig:2}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{2}
-        \caption{显示所有客户}
-        \label{fig:2}
-      \end{figure}
-    \subsubsection{显示所有空房间}
-      输入3后,如图\ref{fig:3}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{3}
-        \caption{显示所有空房间}
-        \label{fig:3}
-      \end{figure}
-    \subsubsection{进行入住登记}
-      输入4之后如图\ref{fig:4_1}首先显示提示信息，按照提示输入，即可成功入住，名字和房间会进行相应更改，更改后如图\ref{fig:4_2}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{4_1}
-        \caption{按照提示输入信息,进行入住登记}
-        \label{fig:4_1}
-      \end{figure}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{4_2}
-        \caption{入住成功}
-        \label{fig:4_2}
-      \end{figure}
+  \subsection{命令行控制}
+    为了实现高效控制, 也可以使用命令行,输入manage -h即可查看所有命令(如图\ref{fig:c_h})
+    有以下命令
+    \begin{itemize}
+      \item manage show room : Show all room.显示所有房间
+      \item manage show guset : Show all guest.显示所有客人
+      \item manage show empty : Find empty room.显示所有空房间
+      \item manage in $<$id card$>$ $<$name$>$ $<$gender$>$ $<$room number$>$:Check in.进行入住登记
+      \item manage out $<$room number$>$:Check out.进行退房
+      \item manage find $<$room number$>$:Find the room by room number.按照提示进行房间号查询
+      \item manage add $<$room number$>$ $<$room type$>$:Add a new room.增加新的房间
+    \end{itemize}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_h}
+      \caption{命令行显示命令帮助}
+      \label{fig:c_h}
+    \end{figure}
+  \subsection{显示所有房间}
+    输入1后,如图\ref{fig:1}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{1}
+      \caption{显示所有房间}
+      \label{fig:1}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage show room
+    \end{quote}
+    即可显示所有房间(如图\ref{fig:c_1})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_1}
+      \caption{通过命令行显示所有房间}
+      \label{fig:c_1}
+    \end{figure}
+  \subsection{显示所有客户}
+    输入2后,如图\ref{fig:2}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{2}
+      \caption{显示所有客户}
+      \label{fig:2}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage show guest
+    \end{quote}
+    即可显示所有客人(如图\ref{fig:c_2})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_2}
+      \caption{显示所有客人}
+      \label{fig:c_2}
+    \end{figure}
+  \subsection{显示所有空房间}
+    输入3后,如图\ref{fig:3}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{3}
+      \caption{显示所有空房间}
+      \label{fig:3}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage show empty
+    \end{quote}
+    即可显示所有空房间(如图\ref{fig:c_3})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_3}
+      \caption{命令显示所有空房间}
+      \label{fig:c_3}
+    \end{figure}
+  \subsection{进行入住登记}
+    输入4之后如图\ref{fig:4_1}首先显示提示信息，按照提示输入，即可成功入住，名字和房间会进行相应更改，更改后如图\ref{fig:4_2}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{4_1}
+      \caption{按照提示输入信息,进行入住登记}
+      \label{fig:4_1}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{4_2}
+      \caption{入住成功}
+      \label{fig:4_2}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage in $<$id card$>$ $<$name> $<$gender$>$ $<$room number$>$
+    \end{quote}
+    即可进行入住登记(如图\ref{fig:c_4})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_4}
+      \caption{进行入住登记的命令}
+      \label{fig:c_4}
+    \end{figure}
+  \subsection{进行退房}
+    输入5后按照提示输入，即可成功退房，房间状态会进行相应更改，如图\ref{fig:5_1}所示
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{5_1}
+      \caption{按照提示输入信息,进行退房}
+      \label{fig:5_1}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage out <room number>
+    \end{quote}
+    即可进行退房(如图\ref{fig:c_5})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_5}
+      \caption{进行退房的命令}
+      \label{fig:c_5}
+    \end{figure}
+  \subsection{进行房间号查找}
+    输入6后按照提示输入房间号，即可查找房间，查找到时如图\ref{fig:6_1}所示，查找不到如图\ref{fig:6_2}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{6_1}
+      \caption{查找到的信息}
+      \label{fig:6_1}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{6_2}
+      \caption{查找不到的错误信息}
+      \label{fig:6_2}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage find $<$room number$>$
+    \end{quote}
+    即可进行房间号的查找(如图\ref{fig:c_6})
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_6}
+      \caption{进行房间号的查找的命令}
+      \label{fig:c_6}
+    \end{figure}
 
-    \subsubsection{进行退房}
-      输入5后按照提示输入，即可成功退房，房间状态会进行相应更改，如图\ref{fig:5_1}所示
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{5_1}
-        \caption{按照提示输入信息,进行退房}
-        \label{fig:5_1}
-      \end{figure}
-
-    \subsubsection{进行房间号查找}
-      输入6后按照提示输入房间号，即可查找房间，查找到时如图\ref{fig:6_1}所示，查找不到如图\ref{fig:6_2}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{6_1}
-        \caption{查找到的信息}
-        \label{fig:6_1}
-      \end{figure}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{6_2}
-        \caption{查找不到的错误信息}
-        \label{fig:6_2}
-      \end{figure}
-
-    \subsubsection{增加新的房间}
-      输入7后按照提示输入房间号和类型，即可添加房间并且写入csv，如图\ref{fig:7}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{7}
-        \caption{添加房间及其结果}
-        \label{fig:7}
-      \end{figure}
+  \subsection{增加新的房间}
+    输入7后按照提示输入房间号和类型，即可添加房间并且写入csv，如图\ref{fig:7}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{7}
+      \caption{添加房间及其结果}
+      \label{fig:7}
+    \end{figure}
+    或者通过命令行输入:
+    \begin{quote}
+      manage add $<$room number$>$ $<$room type$>$
+    \end{quote}
+    即可进行房间的添加(如图\ref{fig:c_7}),注意,房间类型由于带空格,需要加英文半角双引号(""),否则命令会识别错误
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{c_7}
+      \caption{进行房间的添加的命令}
+      \label{fig:c_7}
+    \end{figure}
 \section{测试结果}
   % 设计测试数据，或具体给出测试数据。要求测试数据完整和严格，能全面地
   % 测试所设
