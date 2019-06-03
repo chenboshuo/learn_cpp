@@ -1,6 +1,7 @@
 // filename: manage.cpp
 #include <iostream>
 #include <string>
+#include <cstring>
 
 #include "date.h"
 #include "room.h"
@@ -73,23 +74,26 @@ int main(int argc, char const *argv[]) {
       system("cls"); // 清空屏幕
 
     }
+  }else{
+    if(!strcmp(argv[1], "show") &&!strcmp( argv[2], "room")){
+      m.show_room();
+    }else if(!strcmp(argv[1], "show") &&!strcmp( argv[2], "guest")){
+      m.show_guest();
+    }else if(!strcmp(argv[1], "show") &&!strcmp( argv[2], "empty")){
+      m.show_empty_room();
+    }else if(!strcmp(argv[1], "in")){
+      string id_card(argv[2]), name(argv[3]), gender(argv[4]);
+      string room_number(argv[5]);
+      Guest new_guest(id_card, today, name, gender);
+      m.check_in(new_guest, room_number);
+    }else{
+      cout << "usage: "
+        << "manage show room : Show all room.\n"
+        << "manage show guset : Show all guest.\n"
+        << "manage show empty : Find empty room.\n"
+        << "manage in <id card> <name> <gender> <room number>.\n"<< endl;
+    }
   }
 
-  // // 测试查找空房间
-  // m.show_empty_room();
-  //
-  // // 录入客人信息
-  // Date today(1,10,2005);
-  // Guest a_woman("119010", today, "what", "female");
-  // m.check_in(a_woman, "107");
-  // m.show_guest();
-  //
-  //
-  // // 测试房间号查找;
-  // m.find_room("101");
-  // m.find_room("-1");
-  //
-  // // 测试退房
-  // m.check_out("100");
   return 0;
 }
