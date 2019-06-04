@@ -33,3 +33,4 @@ room_number,room_type,status
 100,single room,full
 10086,single,empty
 123,single room,empty
+10010,stand room,empty
