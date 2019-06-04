@@ -40,3 +40,9 @@
 *.log
 *.gz
 *.toc
+*.xml
+*.bcf
+
+# temp test
+temp.txt
+.vscode
