@@ -6,7 +6,7 @@
 从数据成员A[]的头开始，
 依次每20个数的平均值组成一个新数，
 这样可以获得10个新数并存入数据成员B[]中，
-接着把数据成员B[]中的数按从小到大的顺序重新存入数据成员B[]中。
+接着把数据成员B[]中的数按从小到大的顺sx序重新存入数据成员B[]中。
 最后调用成员输出函数putdata（）把数据成员B[]中的结果输出到文件0UT.DAT中。
 请使用Dev C++打开考生文件夹
 D:JSJWZH\CbtesExam\VC_B001\下的proj3.cpp。
@@ -34,13 +34,13 @@ class Sample {
   void putdata(Sample &s);  // 写结果函数
 };
 void Sample::funSort(Sample &s) {
-  for (int i = 0; i < Max; ++i) { B[i / 20] += A[i] * 1.0 / 20; }
+  for (int i = 0; i < Max; ++i) { s.B[i / 20] += A[i] * 1.0 / 20; }
   for (int i = 0; i < 10; ++i) {
     for (int j = 0; j < 9 - i; ++j) {
-      if (B[j] > B[j + 1]) {
+      if (s.B[j] > s.B[j + 1]) {
         double _;
-        _ = B[j], B[j] = B[j + 1];
-        B[j + 1] = _;
+        _ = s.B[j], s.B[j] = s.B[j + 1];
+        s.B[j + 1] = _;
       }
     }
   }
