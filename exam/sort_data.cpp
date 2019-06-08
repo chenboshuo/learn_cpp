@@ -33,12 +33,24 @@ class Sample {
   void funSort(Sample &s);  // 要求考生编写的函数
   void putdata(Sample &s);  // 写结果函数
 };
-void Sample::funSort(Sample &s) {}
+void Sample::funSort(Sample &s) {
+  for (int i = 0; i < Max; ++i) { B[i / 20] += A[i] * 1.0 / 20; }
+  for (int i = 0; i < 10; ++i) {
+    for (int j = 0; j < 9 - i; ++j) {
+      if (B[j] > B[j + 1]) {
+        double _;
+        _ = B[j], B[j] = B[j + 1];
+        B[j + 1] = _;
+      }
+    }
+  }
+}
 int main() {
   int i;
   Sample s;
   s.getdata(s);
-  cout << "读取的数据如下:" << endl;
+  // cout << "读取的数据如下:" << endl;
+  cout << "Data:" << endl;
   for (int i = 0; i < Max; i++) {
     cout << s.getNumberA(s, i) << " ";
     if ((i + 1) % 10 == 0) cout << endl;
@@ -46,7 +58,8 @@ int main() {
   cout << endl;
   s.funSort(s);
   s.putdata(s);
-  cout << "输出结果:" << endl;
+  // cout << "输出结果:" << endl;
+  cout << "outcome:" << endl;
   for (i = 0; i < 10; i++) cout << s.getNumberB(s, i) << " ";
   cout << endl;
 }
