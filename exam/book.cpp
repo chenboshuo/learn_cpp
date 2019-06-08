@@ -43,6 +43,7 @@ class book : public object {
   }
   void showbook() {
     show();
+    // cout << "  作者:" << author;
     cout << "  作者:" << author;
   }
 };
@@ -57,13 +58,18 @@ class reader : public object {
   void rentbook(book &b) {
     //**********found**********
     //  _____________ ;
-    b.show();
+    // b.show(); // 这个错了,排版会乱
+    rent[top] = b;
     top++;
   }
   void showreader() {
-    cout << "读者:";
+    cout << "Reader:";
+    // cout << "读者:";
+
     show();
-    cout << endl << "所借图书:" << endl;
+    // cout << endl << "所借图书:" << endl;
+    cout << endl << "Books:" << endl;
+
     for (int i = 0; i < top; i++) {
       cout << " " << i + 1 << ":";
       //**********found**********
@@ -74,8 +80,10 @@ class reader : public object {
   }
 };
 int main() {
-  book b1("C语言", 100, "谭浩强"), b2("数据结构", 110, "严蔚敏");
-  reader r1("王华", 1234);
+  // book b1("C语言", 100, "谭浩强"), b2("数据结构", 110, "严蔚敏");
+  // reader r1("王华", 1234);
+  book b1("C", 100, "Tan"), b2("Data", 110, "Yan");
+  reader r1("Wang", 1234);
   r1.rentbook(b1);
   r1.rentbook(b2);
   r1.showreader();
