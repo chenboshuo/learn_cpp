@@ -28,12 +28,15 @@
 > [课上内容](./the_content_of_class)
 >> [hello world 第一个程序](./the_content_of_class/hello_world.cpp)
 >>
->>[inverse_string 直接在命令行反转字符串](./the_content_of_class./inverse_string.cpp)
->> [simple_string_processing.cpp C++对字符串的简单处理](./the_content_of_class./simple_string_processing.cpp)
+>>[inverse_string 直接在命令行反转字符串](./the_content_of_class/inverse_string.cpp)
+>>
+>> [simple_string_processing.cpp C++对字符串的简单处理](./the_content_of_class/simple_string_processing.cpp)
 >>
 >> GradeBook 类
 >>> [头文件](./the_content_of_class/GradeBook.cpp) |
+>>>
 >>> [主函数](./the_content_of_class/Gradebook.h) |
+>>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/GradeBook.cpp)
 >>
 >> [array 数组的相关用法](./the_content_of_class/array.cpp)
@@ -58,7 +61,9 @@
 >>
 >> Time 类
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/Time.h) |
+>>>
 >>> [头文件](./the_content_of_class/Time.h)  |
+>>>
 >>> [主函数](./the_content_of_class/time.cpp)
 >>
 >> [order_of_destror 析构函数的调用顺序](./the_content_of_class/order_of_destror.cpp)
@@ -67,7 +72,9 @@
 >>
 >> Date 和 Employee
 >>> [Date.h](./the_content_of_class/Date.h) |
+>>>
 >>> [Employee.h](./) |
+>>>
 >>> [date.cpp 主函数](./the_content_of_class/date.cpp)
 >>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/date.cpp)
@@ -90,11 +97,14 @@
 >>
 >> Stack 类
 >>> [stack.h](./the_content_of_class/stack.h) | 头文件
+>>>
 >>> [stack.cpp](./the_content_of_class/stack.cpp) | 主函数
+>>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/stack.h)
 >
 >  [final_project 期末项目](./final_project)
 >> [说明](./final_project/doc/README.pdf)
+>>
 >> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/final_project)
 
 ## 许可
