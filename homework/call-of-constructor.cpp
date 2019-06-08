@@ -19,14 +19,10 @@ Destructing an object of A
  */
 #include <iostream>
 class Test {
-private:
-public:
-  Test (){
-    std::cout << "Constructing an object of A" << '\n';
-  };
-  ~Test (){
-    std::cout << "Destructing an object of A" << '\n';
-  };
+ private:
+ public:
+  Test() { std::cout << "Constructing an object of A" << '\n'; };
+  ~Test() { std::cout << "Destructing an object of A" << '\n'; };
 };
 
 int main(int argc, char const *argv[]) {

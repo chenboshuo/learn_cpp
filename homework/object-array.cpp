@@ -34,19 +34,17 @@
 using namespace std;
 
 class Student {
-private:
+ private:
   string number;
   int score;
 
-public:
-  Student (string n, int s){
+ public:
+  Student(string n, int s) {
     number = n;
     score = s;
   };
 
-  void showScore() {
-    std::cout << number << " " << score << '\n';
-  }
+  void showScore() { std::cout << number << " " << score << '\n'; }
   // virtual ~Student ();
 };
 
@@ -57,7 +55,7 @@ int main(int argc, char const *argv[]) {
     string number;
     int score;
     std::cin >> number >> score;
-    Student a_student(number,score);
+    Student a_student(number, score);
     a_student.showScore();
   }
   return 0;

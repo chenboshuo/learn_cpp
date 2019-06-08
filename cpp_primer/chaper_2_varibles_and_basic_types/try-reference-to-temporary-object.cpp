@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -19,11 +19,11 @@ int main(int argc, char const *argv[]) {
    * C++ programmers often use the word temporary
    * as an abbreviation for temporary object.
    */
-  cout << "ri:"<< ri << endl;
+  cout << "ri:" << ri << endl;
   cout << "dval:" << dval << endl;
   dval = 4.55;
   cout << "Afer change dval's value" << endl;
-  cout << "ri:"<< ri << endl;
+  cout << "ri:" << ri << endl;
   cout << "dval:" << dval << endl;
   return 0;
 }

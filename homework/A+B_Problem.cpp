@@ -29,9 +29,7 @@
  */
 #include <iostream>
 int main(int argc, char const *argv[]) {
-  int a,b;
-  while (std::cin >> a >> b) {
-    std::cout << a + b << '\n';
-  }
+  int a, b;
+  while (std::cin >> a >> b) { std::cout << a + b << '\n'; }
   return 0;
 }

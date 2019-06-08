@@ -1,12 +1,12 @@
 // initializing an array in a declation
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-  int n[10] = {32, 27, 64, 18, 95, 14, 90, 70, 60, 37};
+  int n[10] = { 32, 27, 64, 18, 95, 14, 90, 70, 60, 37 };
 
-  cout << "Elements" << setw(13) << "value"<<'\n';
+  cout << "Elements" << setw(13) << "value" << '\n';
   /*
    * setw(int n)
    * 预设宽度,规定其后内容所占宽度

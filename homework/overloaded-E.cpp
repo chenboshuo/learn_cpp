@@ -23,11 +23,11 @@ cout<<max(45.23,2.3)<<endl;
 int compare 5
 double compare 45.23
  */
-#include<iostream>
+#include <iostream>
 using namespace std;
 //不允许改动程序其它地方。
 //在此处添加重载函数，使得程序按要求正常输出。
-int max(int a,int b){
+int max(int a, int b) {
   if (a > b) {
     return a;
   } else {
@@ -35,7 +35,7 @@ int max(int a,int b){
   }
 }
 
-double max(double a,double b){
+double max(double a, double b) {
   if (a > b) {
     return a;
   } else {
@@ -43,10 +43,8 @@ double max(double a,double b){
   }
 }
 
-
-int main()
-{
-cout<<"int compare "<<max(4,5)<<endl;
-cout<<"double compare "<<max(45.23,2.3)<<endl;
-    return 0;
+int main() {
+  cout << "int compare " << max(4, 5) << endl;
+  cout << "double compare " << max(45.23, 2.3) << endl;
+  return 0;
 }

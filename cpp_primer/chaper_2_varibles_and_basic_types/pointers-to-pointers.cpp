@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -8,10 +8,12 @@ int main(int argc, char const *argv[]) {
   int **ppi = &pi;
 
   cout << "The value of ival\n"
-    << "direct value:\n" << ival << '\n'
-    << "indirect value:\n" << *pi << '\n'
-    << "double in direct value\n" << **ppi
-    <<endl;
+       << "direct value:\n"
+       << ival << '\n'
+       << "indirect value:\n"
+       << *pi << '\n'
+       << "double in direct value\n"
+       << **ppi << endl;
   return 0;
 }
 /**

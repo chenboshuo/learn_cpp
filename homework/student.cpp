@@ -6,31 +6,31 @@ using namespace std;
 
 class Student {
   static int math_total_score, english_total_score;  // 数学总成绩, 英语总成绩
-  static int count; // 人数
+  static int count;                                  // 人数
  public:
-  Student (string nm, int nu, int math, int english)
-    :name(nm), num(nu),math_score(math), english_score(english){
-      ++count;
-      math_total_score += math;
-      english_total_score += english;
-    };
+  Student(string nm, int nu, int math, int english)
+      : name(nm), num(nu), math_score(math), english_score(english) {
+    ++count;
+    math_total_score += math;
+    english_total_score += english;
+  };
 
-  friend ostream &operator<<(ostream &out, const Student &s){
-    out << "name: " << s.name
-      << "\nnumber: "<< s.num << "\nreport:\n"
-      << "\nmath: " << s.math_score
-      << "\nEnglish: " << s.english_score << endl;
+  friend ostream &operator<<(ostream &out, const Student &s) {
+    out << "name: " << s.name << "\nnumber: " << s.num << "\nreport:\n"
+        << "\nmath: " << s.math_score << "\nEnglish: " << s.english_score
+        << endl;
     return out;
   }
   void show_static() {
     cout << "\n\nTotal students is: " << count
-      << "\nmath total score: " << math_total_score
-      << "\nEnglish total score: " << english_total_score<< endl;
+         << "\nmath total score: " << math_total_score
+         << "\nEnglish total score: " << english_total_score << endl;
   }
+
  private:
   string name;
-  int num; // 学号
-  int math_score, english_score; // 数学, 英语成绩
+  int num;                        // 学号
+  int math_score, english_score;  // 数学, 英语成绩
 };
 
 int Student::count = 0;

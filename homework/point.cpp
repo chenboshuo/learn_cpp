@@ -28,26 +28,24 @@
  */
 #include <iostream>
 class Point {
-private:
-  int x,y;// 存储坐标
+ private:
+  int x, y;  // 存储坐标
 
-public:
+ public:
   void setPoint(int value_x, int value_y) {
     x = value_x;
     y = value_y;
   }
 
-  void showPoint(void) {
-    std::cout << "(" << x << "," << y << ")" << '\n';
-  }
+  void showPoint(void) { std::cout << "(" << x << "," << y << ")" << '\n'; }
 };
 
 int main(int argc, char const *argv[]) {
   Point object;
-  object.setPoint(10,11);
+  object.setPoint(10, 11);
   object.showPoint();
 
   return 0;
 }
-// output 
+// output
 // (10,11)

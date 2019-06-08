@@ -1,32 +1,22 @@
 /** Gradebook.cpp
  * GradeBook object using a two-dimensional array of grades
  */
-#include <array>
 #include "Gradebook.h"
+#include <array>
 using namespace std;
-
-
 
 // funstion main begins program execution
 int main(int argc, char const *argv[]) {
   // two-dimensional array of students grades
-  array<array<int, GradeBook::tests>, GradeBook::students> grades =
-    {87, 96, 70,
-     68, 87, 90,
-     94, 100, 90,
-     100, 81, 82,
-     83, 65, 86,
-     78, 87, 65,
-     85, 75, 83,
-     91, 94, 100,
-     76, 76, 84,
-     87, 93, 73};
+  array<array<int, GradeBook::tests>, GradeBook::students> grades = {
+    87, 96, 70, 68, 87, 90, 94, 100, 90,  100, 81, 82, 83, 65, 86,
+    78, 87, 65, 85, 75, 83, 91, 94,  100, 76,  76, 84, 87, 93, 73
+  };
   std::string courseName = "CS101 C++ programing";
-  GradeBook myGradeBook( courseName, "yourself",grades);
+  GradeBook myGradeBook(courseName, "yourself", grades);
 
-  myGradeBook.display_message(); // display welcome messages
+  myGradeBook.display_message();  // display welcome messages
   myGradeBook.process_grades();
-
 }
 /* output
 Welcome to the Grade Book for

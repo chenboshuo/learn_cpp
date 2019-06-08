@@ -15,7 +15,7 @@
  * @param  divisors 存储因子的数组
  * @return          1代表是完数
  */
-int isperfect(int a, int *divisors){
+int isperfect(int a, int *divisors) {
   int sum = 0;
   int j = 0;
   for (int i = 1; i < a; i++) {
@@ -24,7 +24,7 @@ int isperfect(int a, int *divisors){
       divisors[j++] = i;
     }
   }
-  if (a == sum ) {
+  if (a == sum) {
     return 1;
   } else {
     return 0;
@@ -32,13 +32,12 @@ int isperfect(int a, int *divisors){
 }
 int main(int argc, char const *argv[]) {
   // 在程序中使用这个函数, 该程序确定1-1000 之间所有完数.
-  for (int i = 1; i < 1001 ; i++) {
-    int divisors[i] = {0};
-    if (isperfect(i,divisors)) {
-      std::cout << i <<" is perfect number. and its divisors is: " << "\n\n";
-      for (int j = 0; divisors[j] ; j++) {
-        std::cout << divisors[j] << ' ';
-      }
+  for (int i = 1; i < 1001; i++) {
+    int divisors[i] = { 0 };
+    if (isperfect(i, divisors)) {
+      std::cout << i << " is perfect number. and its divisors is: "
+                << "\n\n";
+      for (int j = 0; divisors[j]; j++) { std::cout << divisors[j] << ' '; }
       std::cout << "\n--------------------------------------\n";
     }
   }

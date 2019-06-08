@@ -1,10 +1,10 @@
 #include <iostream>
 
 class Account {
-private:
+ private:
   float balance;
 
-public:
+ public:
   /**
    * 设置余额
    * @param money 余额
@@ -42,10 +42,7 @@ public:
    * 返回余额
    * @return 余额
    */
-  float getBalance(){
-    return balance;
-  }
-
+  float getBalance() { return balance; }
 };
 
 int main(int argc, char const *argv[]) {

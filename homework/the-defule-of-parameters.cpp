@@ -20,26 +20,19 @@
 88 66 88
 88 66 99 99
  */
-#include <iostream>
 #include <limits.h>
-int max(int a, int b, int c = INT_MIN){
+#include <iostream>
+int max(int a, int b, int c = INT_MIN) {
   int _ = a;
-  if (a > _) {
-    _ = a;
-  }
-  if (b > _){
-    _ =b;
-  }
-  if (c > _) {
-    _ = c;
-  }
+  if (a > _) { _ = a; }
+  if (b > _) { _ = b; }
+  if (c > _) { _ = c; }
   return _;
 }
 int main(int argc, char const *argv[]) {
-
-  int b1,b2,b3;
+  int b1, b2, b3;
   std::cin >> b1 >> b2 >> b3;
-  std::cout << b1 << " "<< b2 << " " <<max(b1,b2) << '\n';
-  std::cout << b1 << " "<< b2 << " "<< b3 <<" " <<max(b1,b2,b3) << '\n';
+  std::cout << b1 << " " << b2 << " " << max(b1, b2) << '\n';
+  std::cout << b1 << " " << b2 << " " << b3 << " " << max(b1, b2, b3) << '\n';
   return 0;
 }

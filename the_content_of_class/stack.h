@@ -10,38 +10,25 @@
  *
  */
 
-template <typename T>
-class Stack {
+template<typename T> class Stack {
  public:
   // return the top element of the stack (返回栈顶的元素的引用)
-  T& top(){
-    return stack.front();
-  }
+  T &top() { return stack.front(); }
 
   // push an element onto the Stack (在栈顶放置一个新元素)
-  void push(const T &push_value) {
-    stack.push_front(push_value);
-  }
+  void push(const T &push_value) { stack.push_front(push_value); }
 
   // pop an element from the stack (删除栈顶元素)
-  void pop() {
-    stack.pop_front();
-  }
+  void pop() { stack.pop_front(); }
 
   // determine whether stack is empty
-  bool is_empty() const{
-    return stack.empty();
-  }
+  bool is_empty() const { return stack.empty(); }
 
   // return size of stack
-  size_t size() const{
-    return stack.size();
-  }
+  size_t size() const { return stack.size(); }
 
  private:
-  std::deque<T>stack;  // internal representation of the Stack
+  std::deque<T> stack;  // internal representation of the Stack
 };
-
-
 
 #endif

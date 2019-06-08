@@ -1,14 +1,14 @@
+#include <cstring>  // prototype for strtok
 #include <iostream>
-#include <cstring>// prototype for strtok
 using namespace std;
-
 
 int main(int argc, char const *argv[]) {
   char sentence[] = "This is a sentence with 7 tokens";
   char *tokenPtr;
 
   std::cout << "The string to be tokensized is:\n"
-    << sentence << "\n\nThe tokens are\n"<< '\n';
+            << sentence << "\n\nThe tokens are\n"
+            << '\n';
 
   // begin tokenization of sentence
   tokenPtr = strtok(sentence, " ");
@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]) {
     tokenPtr = strtok(NULL, " ");
   }
 
-  std::cout << "\nAfter strtok, sentence = "<< sentence << '\n';
+  std::cout << "\nAfter strtok, sentence = " << sentence << '\n';
   return 0;
 }
 /**

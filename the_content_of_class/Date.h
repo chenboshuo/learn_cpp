@@ -1,18 +1,19 @@
 // filename:Date.h
-#include<iostream>
 #include <array>
+#include <iomanip>
+#include <iostream>
 #include <stdexcept>
 #include <string>
-#include <iomanip>
 using namespace std;
 
 #ifndef DATE_H
-#define DATE_H
+#  define DATE_H
 
 // class definition
 class Date {
   friend ostream &operator<<(ostream &output, const Date &d);
   friend istream &operator>>(istream &input, Date &d);
+
  private:
   unsigned int month;
   unsigned int day;
@@ -26,10 +27,10 @@ class Date {
   // unsigned int check_day(int test_day) const;
 
  public:
-  explicit Date (int m=1, int d=1, int y=1900); // default constructor
-  void set_date(int m, int d, int y);  // set month, day, year
-  Date &operator++();  // prefix increment operator
-  Date operator++(int);  // postfix increment operator
+  explicit Date(int m = 1, int d = 1, int y = 1900);  // default constructor
+  void set_date(int m, int d, int y);                 // set month, day, year
+  Date &operator++();                     // prefix increment operator
+  Date operator++(int);                   // postfix increment operator
   Date &operator+=(int additional_days);  // add days, modify object
   Date operator+(int n);
   Date operator-(int n);
@@ -38,13 +39,11 @@ class Date {
 };
 
 // Date constructor
-Date::Date(int m, int d, int y){
-  set_date(m, d, y);
-}
+Date::Date(int m, int d, int y) { set_date(m, d, y); }
 
 // initialize static member; one class only
-const array<int, 13> Date::days_per_month =
-  {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+const array<int, 13> Date::days_per_month = { 0,  31, 28, 31, 30, 31, 30,
+                                              31, 31, 30, 31, 30, 31 };
 
 /**
  * Date constructor (should do range checking)
@@ -52,7 +51,7 @@ const array<int, 13> Date::days_per_month =
  * @param d day
  * @param y year
  */
-void Date::set_date(int m, int d, int y){
+void Date::set_date(int m, int d, int y) {
   if (m > 0 && m <= 12) {
     month = m;
   } else {
@@ -68,13 +67,13 @@ void Date::set_date(int m, int d, int y){
   if ((month == 2 && is_leap_year(year) && d >= 1 && d <= 29) ||
       (d >= 1 && d <= days_per_month[month])) {
     day = d;
-  }else
+  } else
     throw invalid_argument("Day is out of range for current month and year");
 }
 
 // overload postfix increment operator
-Date &Date::operator++(){
-  increment();  // increment date
+Date &Date::operator++() {
+  increment();   // increment date
   return *this;  // reference return to create value
 }
 
@@ -83,7 +82,7 @@ Date &Date::operator++(){
  * note that the dummy(假的,虚拟的) integer parameter
  * does not have a parameter name
  */
-Date Date::operator++(int){
+Date Date::operator++(int) {
   Date temp = *this;  // hold current state of object
   increment();
 
@@ -92,54 +91,42 @@ Date Date::operator++(int){
 }
 
 // add specified number of days of days to date
-Date &Date::operator+=(int additional_days){
-  if (additional_days >= 0){
-    for(int i = 0; i < additional_days; ++i){
-      increment();
-    }
-  }else{
+Date &Date::operator+=(int additional_days) {
+  if (additional_days >= 0) {
+    for (int i = 0; i < additional_days; ++i) { increment(); }
+  } else {
     additional_days *= -1;
-    for(int i = 0; i < additional_days; ++i){
-      decrement();
-    }
+    for (int i = 0; i < additional_days; ++i) { decrement(); }
   }
   return *this;
 }
 
 // reload + operator
-Date Date::operator+(int n){
+Date Date::operator+(int n) {
   Date temp = *this;
-  if (n>=0) {
-    for(int i = 0; i < n; ++i){
-      temp.increment();
-    }
-  }else{
-    n *= -1; // make n a posititve number
-    for(int i = 0; i < n; ++i){
-      temp.decrement();
-    }
+  if (n >= 0) {
+    for (int i = 0; i < n; ++i) { temp.increment(); }
+  } else {
+    n *= -1;  // make n a posititve number
+    for (int i = 0; i < n; ++i) { temp.decrement(); }
   }
   return temp;
 }
 
 // reload - operator
-Date Date::operator-(int n){
+Date Date::operator-(int n) {
   Date temp = *this;
-  if (n>=0) {
-    for(int i = 0; i < n; ++i){
-      temp.decrement();
-    }
-  }else{
-    n *= -1; // make n a posititve number
-    for(int i = 0; i < n; ++i){
-      temp.increment();
-    }
+  if (n >= 0) {
+    for (int i = 0; i < n; ++i) { temp.decrement(); }
+  } else {
+    n *= -1;  // make n a posititve number
+    for (int i = 0; i < n; ++i) { temp.increment(); }
   }
   return temp;
 }
 
-bool Date::is_leap_year(int y){
-  if (y % 400 == 0 ||( y % 100 !=0 && y % 4 == 0)) {
+bool Date::is_leap_year(int y) {
+  if (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0)) {
     return true;
   } else {
     return false;
@@ -147,7 +134,7 @@ bool Date::is_leap_year(int y){
 }
 
 // determine whether the day is the last year of the month
-bool Date::end_of_month(int d) const{
+bool Date::end_of_month(int d) const {
   if (month == 2 && is_leap_year(year)) {
     return (d == 29);
   } else {
@@ -172,17 +159,17 @@ void Date::increment() {
 }
 
 // TODO
-void Date::decrement(){
+void Date::decrement() {
   if (day > 2) {
     --day;
   } else {
     if (month > 2 && month != 3) {
       --month;
       day = days_per_month[month];
-    } else if(month == 3){
+    } else if (month == 3) {
       month = 2;
       day = (is_leap_year(year)) ? 29 : 28;
-    }else{
+    } else {
       --year;
       month = 12;
       day = 31;
@@ -191,21 +178,21 @@ void Date::decrement(){
 }
 
 // overload output operator
-ostream &operator<<(ostream &output, const Date &d){
-  static string month_name[13] = {"", "January", "February",
-    "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
+ostream &operator<<(ostream &output, const Date &d) {
+  static string month_name[13] = {
+    "",     "January", "February",  "March",   "April",    "May",     "June",
+    "July", "August",  "September", "October", "November", "December"
   };
-  output << month_name[d.month] << ' ' << d.day << ", "<< d.year;
+  output << month_name[d.month] << ' ' << d.day << ", " << d.year;
   return output;  // enablees cascading
 }
 
 // input form yyyy-mm-dd
-istream &operator>>(istream &input,Date &d){
+istream &operator>>(istream &input, Date &d) {
   input >> setw(4) >> d.year;
-  input.ignore(1); // skip "-"
+  input.ignore(1);  // skip "-"
   input >> setw(2) >> d.month;
-  input.ignore(1); // skip "-"
+  input.ignore(1);  // skip "-"
   input >> setw(2) >> d.day;
   return input;
 }

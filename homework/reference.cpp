@@ -20,7 +20,7 @@
 66 88
  */
 #include <iostream>
-void swap(int &a, int &b){
+void swap(int &a, int &b) {
   int _;
   _ = a;
   a = b;
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[]) {
   int b;
   std::cin >> a >> b;
   std::cout << a << ' ' << b << '\n';
-  swap(a,b);
+  swap(a, b);
   std::cout << a << ' ' << b << '\n';
   return 0;
 }

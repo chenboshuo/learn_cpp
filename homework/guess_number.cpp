@@ -20,9 +20,9 @@
  * 如果玩家10次猜中,打印"Ahah! You know the secret".
  * 如果超过10次猜中,打印"you should be able to do better!"
  */
-#include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <iostream>
 using namespace std;
 
 /**
@@ -30,30 +30,26 @@ using namespace std;
  * @param  x 范围
  * @return   随机数
  */
-inline int random(int x){
-  srand((unsigned) time(NULL));
+inline int random(int x) {
+  srand((unsigned)time(NULL));
   return rand() % x;
 }
-
 
 int main(int argc, char const *argv[]) {
   while (1) {
     int target = random(1000);
-    int guess = 1001; // 为了防止生成随机数直接与该变量相等
-    int guess_times; //存储猜的次数
+    int guess = 1001;  // 为了防止生成随机数直接与该变量相等
+    int guess_times;   //存储猜的次数
 
     std::cout << "I can have a number between 1 and 1000.\n"
-    << "Can you guess my number?\n"
-    << "Plase type your first guess\n" << '\n';
+              << "Can you guess my number?\n"
+              << "Plase type your first guess\n"
+              << '\n';
 
-    for(guess_times = 1; target != guess; guess_times++) {
+    for (guess_times = 1; target != guess; guess_times++) {
       std::cin >> guess;
-      if(guess > target){
-        std::cout << "\n\tToo high. try again" << '\n';
-      }
-      if(guess < target){
-        std::cout << "\n\tToo low. try again" << '\n';
-      }
+      if (guess > target) { std::cout << "\n\tToo high. try again" << '\n'; }
+      if (guess < target) { std::cout << "\n\tToo low. try again" << '\n'; }
     }
 
     // 输出提示语,判断游戏等级
@@ -71,9 +67,7 @@ int main(int argc, char const *argv[]) {
     // 判断结束
     char sign = 0;
     std::cin >> sign;
-    if (sign == 'n') {
-      break;
-    }
+    if (sign == 'n') { break; }
     std::cout << "\n----------------------------------------" << '\n';
   }
   return 0;

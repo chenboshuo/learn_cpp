@@ -3,23 +3,19 @@
 using namespace std;
 class Base {
  public:
-  virtual void display(){
+  virtual void display() {
     cout << "Base's display function was called" << endl;
   }
 };
 
-class FirstB :public Base{
+class FirstB : public Base {
  public:
-  void display() {
-    cout << "FirstB's display function was called " << endl;
-  }
+  void display() { cout << "FirstB's display function was called " << endl; }
 };
 
-class SecondB :public Base{
+class SecondB : public Base {
  public:
-  void display() {
-    cout << "SecondB's display function was called " << endl;
-  }
+  void display() { cout << "SecondB's display function was called " << endl; }
 };
 
 int main(int argc, char const *argv[]) {
@@ -29,13 +25,13 @@ int main(int argc, char const *argv[]) {
   SecondB b_2;
 
   ptr = &b;
-  ptr -> display();
+  ptr->display();
 
   ptr = &b_1;
-  ptr -> display();
+  ptr->display();
 
   ptr = &b_2;
-  ptr -> display();
+  ptr->display();
   return 0;
 }
 /*

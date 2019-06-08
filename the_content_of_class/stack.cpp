@@ -6,14 +6,14 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-  Stack<double> double_stack;  // create a Stack of double
+  Stack<double> double_stack;          // create a Stack of double
   const size_t double_slace_size = 5;  // slack
-  double double_value = 1.1;  // first value to push
+  double double_value = 1.1;           // first value to push
 
   cout << "Pushing elements onto double_stack" << endl;
 
   // push 5 doubles onto double_stack
-  for(size_t i = 0; i < double_slace_size; ++i){
+  for (size_t i = 0; i < double_slace_size; ++i) {
     double_stack.push(double_value);
     cout << double_value << " ";
     double_value += 1.1;
@@ -23,8 +23,8 @@ int main(int argc, char const *argv[]) {
 
   // pop elements from double_stack
   while (!double_stack.is_empty()) {
-    cout << double_stack.top() << " " ; // dispaly the top element
-    double_stack.pop();  // remove the top element
+    cout << double_stack.top() << " ";  // dispaly the top element
+    double_stack.pop();                 // remove the top element
   }
   return 0;
 }

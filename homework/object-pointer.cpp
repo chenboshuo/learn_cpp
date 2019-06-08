@@ -28,23 +28,19 @@
 using namespace std;
 
 class Student {
-private:
+ private:
   string number;
   int score;
 
-public:
-  Student (string n="", int s=-1){
+ public:
+  Student(string n = "", int s = -1) {
     number = n;
     score = s;
   };
 
-  void showScore() {
-    std::cout << number << " " << score << '\n';
-  }
+  void showScore() { std::cout << number << " " << score << '\n'; }
 
-  int getScore(){
-    return score;
-  }
+  int getScore() { return score; }
   // virtual ~Student ();
 };
 
@@ -57,12 +53,10 @@ public:
 // }
 // 这个函数仅用于找出最大数,无法返回学号
 
-Student find_max(Student* a, int len){
+Student find_max(Student *a, int len) {
   Student _ = *a;
   for (int i = 1; i < len; i++) {
-    if (a[i].getScore() > _.getScore()) {
-      _ = a[i];
-    }
+    if (a[i].getScore() > _.getScore()) { _ = a[i]; }
   }
   return _;
 }

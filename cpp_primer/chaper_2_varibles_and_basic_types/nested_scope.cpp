@@ -2,10 +2,9 @@
 /* program for illstration only:It is bad style for a function
  * to use a global variable and also defined a local variable with the same name
  */
-int reused = 42; // reused has global scope
+int reused = 42;  // reused has global scope
 int main(int argc, char const *argv[]) {
-  int unique = 0; // unique has a block scope
-
+  int unique = 0;  // unique has a block scope
 
   std::cout << "output#1:" << reused << " " << unique << '\n';
   // uses global reused

@@ -9,35 +9,34 @@ class ThreeDimShape {
   virtual void show_suprtfical_area() = 0;
 };
 
-class Ball : public ThreeDimShape{
+class Ball : public ThreeDimShape {
  public:
-  Ball (double redius): redius(redius){};
+  Ball(double redius) : redius(redius){};
   void show_volum() {
     cout << "The volum of the ball is: "
-         <<  (PI * redius * redius * redius * 4.0)/3.0 << endl;
+         << (PI * redius * redius * redius * 4.0) / 3.0 << endl;
   }
 
   void show_suprtfical_area() {
-    cout << "The suprtifical area of the ball is: "
-         << 4 * PI * redius * redius<< endl;
+    cout << "The suprtifical area of the ball is: " << 4 * PI * redius * redius
+         << endl;
   }
+
  private:
   double redius;
 };
 
-class Cylinder : public ThreeDimShape{
+class Cylinder : public ThreeDimShape {
  public:
-  Cylinder (double redius, double height)
-   : redius(redius), height(height){};
+  Cylinder(double redius, double height) : redius(redius), height(height){};
 
   void show_volum() {
-    cout << "The volum of the Cylinder is: "
-      <<  PI * redius * redius * height
-      << endl;
+    cout << "The volum of the Cylinder is: " << PI * redius * redius * height
+         << endl;
   }
   void show_suprtfical_area() {
-    cout << "The suprtfical area is: "
-    <<  2 * PI * redius * redius *height<< endl;
+    cout << "The suprtfical area is: " << 2 * PI * redius * redius * height
+         << endl;
   }
 
  private:
@@ -49,7 +48,7 @@ int main(int argc, char const *argv[]) {
   double redius;
   double height;
 
-  cout << "Please input the redius of a ball: " ;
+  cout << "Please input the redius of a ball: ";
   std::cin >> redius;
   Ball a(redius);
   a.show_volum();

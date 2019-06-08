@@ -1,7 +1,7 @@
 // filename: time.cpp
 #include "Time.h"
 int main(int argc, char const *argv[]) {
-  Time t; // create Time object
+  Time t;  // create Time object
 
   // test output and input
   cout << "please input as form hh:mm:ss" << endl;
@@ -15,10 +15,10 @@ int main(int argc, char const *argv[]) {
    */
 
   // test +
-  Time t1(23,59,59);
-  Time t2(0,0,5);
+  Time t1(23, 59, 59);
+  Time t2(0, 0, 5);
   cout << "\n\nt1(23, 59, 59) + t2(0, 0, 5) is " << endl;
-  cout << t1  + t2 << endl;
+  cout << t1 + t2 << endl;
   /*
   t1(23, 59, 59) + t2(0, 0, 5) is
   Universal tims is: 00:00:04

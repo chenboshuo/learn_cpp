@@ -27,14 +27,13 @@
 
 仅供参考。
 */
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Max
-{
-private:
-  int a,b,c;//数据成员a,b,c
-public:
+class Max {
+ private:
+  int a, b, c;  //数据成员a,b,c
+ public:
   //设置或读取a,b,c值的函数
   void setValue(int a1, int b1, int c1) {
     a = a1;
@@ -45,27 +44,24 @@ public:
   //成员函数max(a,b,c)
   int max() {
     int max = a;
-    if (b > max ) {
+    if (b > max) {
       max = b;
-    } else if (c > max ) {
+    } else if (c > max) {
       max = c;
     }
     return max;
   }
-
 };
 
-int main()
-{
-
+int main() {
   //创建对象
   Max object;
-  int a,b,c;
+  int a, b, c;
   cin >> a >> b >> c;
   //用对象去调用成员函数
-  object.setValue(a,b,c);
+  object.setValue(a, b, c);
   std::cout << object.max() << '\n';
-return 0;
+  return 0;
 }
 /**
  * intput

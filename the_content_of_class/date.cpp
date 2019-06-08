@@ -5,10 +5,9 @@
 
 using namespace std;
 
-
 int main(int argc, char const *argv[]) {
   Date d1(12, 27, 2010);
-  Date d2; // defaults to January 1, 1900
+  Date d2;  // defaults to January 1, 1900
 
   cout << "d1 is " << d1 << endl;
   cout << "d2 is " << d2 << endl;
@@ -46,7 +45,7 @@ int main(int argc, char const *argv[]) {
   cout << "\n\nTesting the prefix increment operator" << endl;
   cout << "d3   is " << d3 << endl;
   cout << "d3++ is" << d3++ << endl;
-  cout << "d3   is " << d3 <<endl;
+  cout << "d3   is " << d3 << endl;
   /* output
     Testing the prefix increment operator
     d3   is July 14, 2010
@@ -68,7 +67,7 @@ int main(int argc, char const *argv[]) {
   // test "-"
   Date d5(3, 1, 2000);
   cout << "d5 is " << d5 << endl;
-  cout << "d5 - 1 is " << (d5-1) << endl;
+  cout << "d5 - 1 is " << (d5 - 1) << endl;
   cout << "d5 is " << d5 << endl;
   /*
   d5 is March 1, 2000
@@ -76,9 +75,9 @@ int main(int argc, char const *argv[]) {
   d5 is March 1, 2000
    */
 
-  d5.set_date(1,1,2000);
+  d5.set_date(1, 1, 2000);
   cout << "\nd5 is " << d5 << endl;
-  cout << "d5 - 1 is " << (d5-1) << endl;
+  cout << "d5 - 1 is " << (d5 - 1) << endl;
   /*
   d5 is January 1, 2000
   d5 - 1 is December 31, 1999

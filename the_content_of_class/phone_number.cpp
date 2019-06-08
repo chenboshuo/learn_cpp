@@ -2,7 +2,7 @@
 #include "PhoneNumber.h"
 
 int main(int argc, char const *argv[]) {
-  PhoneNumber phone; // create object phone
+  PhoneNumber phone;  // create object phone
 
   cout << "Enter phone number in the form (xxx) xxx-xxxx" << endl;
 
@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]) {
   // the non-member function call operator >> (cin, phone)
   cin >> phone;
 
-  cout << "The phone number entered was: " ;
+  cout << "The phone number entered was: ";
 
   cout << phone << endl;  // calls << (cout, phone)
   return 0;

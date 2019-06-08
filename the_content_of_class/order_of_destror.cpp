@@ -1,27 +1,26 @@
+#include <iostream>
 #include <string>
-#include<iostream>
 
 using namespace std;
 
 class Create_and_destory {
-private:
+ private:
   int objectID;
   string message;
 
-public:
-  Create_and_destory (int id, string message_string)
-  : objectID(id), message(message_string){
-    std::cout << "Object" << objectID << "  constructor runs  "
-      << message  <<'\n';
+ public:
+  Create_and_destory(int id, string message_string)
+      : objectID(id), message(message_string) {
+    std::cout << "Object" << objectID << "  constructor runs  " << message
+              << '\n';
   }
 
-
-  virtual ~Create_and_destory (){
+  virtual ~Create_and_destory() {
     // output newline for certain objects
-    cout << (objectID == 1 || objectID == 6? "\n" : "");
+    cout << (objectID == 1 || objectID == 6 ? "\n" : "");
 
-    std::cout << "Object" << objectID << "  destructor runs  "
-      << message  <<'\n';
+    std::cout << "Object" << objectID << "  destructor runs  " << message
+              << '\n';
   }
 };
 
@@ -33,14 +32,14 @@ void create(void) {
   cout << "\nCREATE FUNCTION: EXECUTION ENDS" << '\n';
 }
 
-Create_and_destory first(1, "(global before main)");// global object
+Create_and_destory first(1, "(global before main)");  // global object
 
 int main(int argc, char const *argv[]) {
   cout << "\nMAIN FUNCTION: EXECUTION BEGINS" << endl;
   Create_and_destory second(2, "(local automic in main)");
   static Create_and_destory third(3, "(local static in main)");
 
-  create();// call function to create objects
+  create();  // call function to create objects
 
   cout << "\nMAIN FUNCTION: EXECUTION RESUMES" << endl;
   Create_and_destory fourth(4, "(local automatic in main)");

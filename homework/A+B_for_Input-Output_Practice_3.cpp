@@ -9,11 +9,14 @@ Your task is to Calculate a + b.
 
 输入
 
-Input contains multiple test cases. Each test case contains a pair of integers a and b, one pair of integers per line. A test case containing 0 0 terminates the input and this test case is not to be processed.
+Input contains multiple test cases. Each test case contains a pair of integers a
+and b, one pair of integers per line. A test case containing 0 0 terminates the
+input and this test case is not to be processed.
 
 输出
 
-For each pair of input integers a and b you should output the sum of a and b in one line, and with one line of output for each line in input.
+For each pair of input integers a and b you should output the sum of a and b in
+one line, and with one line of output for each line in input.
 
 样例输入
 
@@ -29,13 +32,11 @@ For each pair of input integers a and b you should output the sum of a and b in 
  */
 #include <iostream>
 int main(int argc, char const *argv[]) {
-  int a,b;
+  int a, b;
   while (1) {
     std::cin >> a >> b;
-    if (a == 0 && b==0) {
-      break;
-    }
-    std::cout << a+b << '\n';
+    if (a == 0 && b == 0) { break; }
+    std::cout << a + b << '\n';
   }
   return 0;
 }

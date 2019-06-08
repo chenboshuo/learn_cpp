@@ -35,26 +35,18 @@ end of main
 
 #include <iostream>
 using namespace std;
-class A
-{
-public:
-A()
-{
-  cout<<"构造函数"<<endl;
-}
-~A(){
-  cout<<"析构函数"<<endl;
-}
-//增加代码
-
+class A {
+ public:
+  A() { cout << "构造函数" << endl; }
+  ~A() { cout << "析构函数" << endl; }
+  //增加代码
 };
-int main()
-{
-    A a;
-    A *p = new A();
+int main() {
+  A a;
+  A *p = new A();
 
-    delete p;//添加一行代码
+  delete p;  //添加一行代码
 
-cout<<"end of main"<<endl;
-    return 0;
+  cout << "end of main" << endl;
+  return 0;
 }

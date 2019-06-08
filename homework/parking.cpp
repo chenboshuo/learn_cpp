@@ -7,47 +7,40 @@
  * 程序应以整齐的表格形式打印结果，并计算昨天收费的总和。
  * 使用calculateCharge来确定每个客户的停车费用。
  */
+#include <cmath>    // ceil
+#include <iomanip>  // setw
 #include <iostream>
-#include <cmath> // ceil
-#include <iomanip> // setw
 
 using namespace std;
 
 class Parking {
-private:
+ private:
   int time = 0;
   float charge = 2;
 
-
-public:
+ public:
   /**
    * 设定停车时间
    * @param t 停车时间
    */
-  void setTime(float t ) {
-    if (t == 0 || t > 24) { // 确认数据的有效性
-    cout << "Please varify data validity" << '\n';
+  void setTime(float t) {
+    if (t == 0 || t > 24) {  // 确认数据的有效性
+      cout << "Please varify data validity" << '\n';
     }
     time = ceil(t);
     /**
      * ceil
      *
-     * Rounds x upward, returning the smallest integral value that is not less than x.
-     * 返回不大于t的最大值
-     * Return Value
-     * The smallest integral value that is not less than x (as a floating-point value).
+     * Rounds x upward, returning the smallest integral value that is not less
+     * than x. 返回不大于t的最大值 Return Value The smallest integral value that
+     * is not less than x (as a floating-point value).
      */
   }
 
-
   float calculateCharge() {
-    if (time == 0) {
-      return 0;
-    }
-    for (int t = time; t > 3; t--) {
-      charge += 0.5;
-    }
-    return charge < 10 ? charge : 10; // 保证费用小于10
+    if (time == 0) { return 0; }
+    for (int t = time; t > 3; t--) { charge += 0.5; }
+    return charge < 10 ? charge : 10;  // 保证费用小于10
   }
 };
 int main(int argc, char const *argv[]) {
@@ -73,15 +66,16 @@ int main(int argc, char const *argv[]) {
   // cout << car1.calculateCharge() << '\n';
 
   cout << "\n";
-  cout << "Car" << setw(13) << "Hours" << setw(15) << "Charge"<< '\n';
-  cout << fixed << "1" << setw(15) << setprecision(1)<< time1
-    << setw(15) << setprecision(2) << charge1 << '\n';
-  cout << fixed << "2" << setw(15) << setprecision(1)<< time2
-    << setw(15) << setprecision(2) << charge2 << '\n';
-  cout << fixed << "3" << setw(15) << setprecision(1)<< time3
-    << setw(15) << setprecision(2) << charge3 << '\n';
-  cout << fixed << "Total" << setw(11) << setprecision(1)<< time1+time2+time3
-       << setw(15) << setprecision(2) << charge1 + charge2 +charge3 << '\n';
+  cout << "Car" << setw(13) << "Hours" << setw(15) << "Charge" << '\n';
+  cout << fixed << "1" << setw(15) << setprecision(1) << time1 << setw(15)
+       << setprecision(2) << charge1 << '\n';
+  cout << fixed << "2" << setw(15) << setprecision(1) << time2 << setw(15)
+       << setprecision(2) << charge2 << '\n';
+  cout << fixed << "3" << setw(15) << setprecision(1) << time3 << setw(15)
+       << setprecision(2) << charge3 << '\n';
+  cout << fixed << "Total" << setw(11) << setprecision(1)
+       << time1 + time2 + time3 << setw(15) << setprecision(2)
+       << charge1 + charge2 + charge3 << '\n';
   // 不加fixed时setprecision 为保留有效数字
 
   return 0;
