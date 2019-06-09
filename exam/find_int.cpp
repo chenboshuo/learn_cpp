@@ -43,7 +43,16 @@ intArray::intArray(const char *filename) {
 
 //*************333***********
 intArray &intArray::operator=(const intArray &src) {
-  for (int i = 0; i < length; ++i) { array[i] = src.array[i]; }
+  int i;
+  //先删除旧数据。
+  delete[] array;
+  //重新确定数据数量。
+  length = src.length;
+  //分配存储空间。
+  array = new int[length];
+  //循环赋值。
+  for (i = 0; i < length; i++) { array[i] = src.array[i]; }
+  //返回对象自己的引用。
   return *this;
 }
 
