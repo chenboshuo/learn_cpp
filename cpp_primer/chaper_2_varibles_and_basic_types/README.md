@@ -506,4 +506,60 @@ p2 = p3; // ok:pointed-to type matvhes; top-level const in p3 is ignored
 
 On the other hand, low-level const is never ignored. When we copy an object, both objects must have the same low-level const qualification or there must be a conversion between the types of two objects. In general, we can convert a nonconst to const but not the other way round:
 ```cpp
-int *p = p3;
+int *p = p3; // error:p3 has a low-level const but p doesn't
+p2 = p3; // ok:p2 has the same low-level const qualification as p3
+p2 = &i; // ok we can convert int* to const int *
+int &r = ci;  // error: we can't bind an ordinary int& to a const int object.
+const int &r2 = 1;  // ok: we can bind const int to a plain int
+```
+`p3`has both a top-level and low-level const. When we copy p3, we can ignore its top level `const` but not the fact that it points to a plain(nonconst) int. On the other hand, we can assign p3 to p2. Both pointers have the same(low-level const)type. The fact that p3 is a const pointer(i.e.,that it has a top-level const) doesn't matter.
+
+### 2.4.4 constexpr and Conatant Expressions
+A **const expression** is an expression whose value cannot change and that can be evalusted at compile time. A literal is a constant expression. As we'll see, there are several contexts in the language that require constant expressions.
+
+Whether a given object(or expression) is a const expression depends on the types and the initializes. For example:
+```cpp
+const int max_files = 20;  // max_files is a constant expression
+const int limit = max_files + 1; // limit is a const expression
+int satff_size = 27;  // staff_size is not a constant expression
+const int sz = get_size(); // sz is not a constant expression
+```
+#### constexpr Variables
+In a large system, it can be difficult to determine(for certain) that an initializer is a constant expression. We might define a const variable with an initializer that we think is a constant expression. However, when we use that variable in a context that requires a constant expression. However, when we use that variable in a context that require a  context expression we may discover that the initializer was not a const expression. In general, the definition of an object and its use in such a context can widely sparated.
+
+Under the new stand, we can ask the complier to varify that a variable is a constant expression by declaring the variable in a **constexpr** declaration. Variables declared as constexpr are implicitly const and must be initialized by constant expressions:
+```cpp
+  constexpr int mf = 20;        // 20 is a constant expressions
+  constexpr int limit = mf + 1; // mf + 1 is a const expression
+  constexpr int sz = size();    // ok only if size is a constexpr function
+```
+Although we cannot use an ordinary function as an initializer for a constexpr variable. Such functions must be simple eough that the conplier can evluate at compile time. We can use constexpr functions in the initializer of a constexpr variable.
+
+#### Literal Types
+Because a content expression is one that can be evalued at compile time, there are limits on types that we can use in a `constexpr` declaration. The types we can use in a `constexpr` are known as `literal types` because they are simple enough to have iteral values.
+
+Of the types we used so far, the arithmetic, reference, and pointer types and literal types.
+Our `Sales_item` class and the library IO and string types are not literal types.
+Hence, we cannot define variables of these types as constexpr.
+
+Although we can define both pointers and reference as constptrs, the objects we used to initialize them are strictly limited.
+We can initialize a constexpr pointer from the from the nullptr literal or the literal(i.e., constant expression) also point to (or bind to) an object that remains as a fixed address.
+
+#### Pointers and constexpr
+It is important to understand that when we define a pointer in a xonstexpr declaration, the `constexpr` specifier to the pointer, not the type to which the pointer points:
+```cpp
+const int *p = nullpte;  // p is a pointer to a const int
+constexpr int *q = nullptr;  // q is a const pointer to int
+```
+
+Despite appearances, the type of p and q are quite different; `p` is a pointer to const, whereas `q` is a constant pointer. The difference is a consequence of the fact that contexpr imposes a top-level const on the objects it defines.
+
+Like any other const pointer, a constexpr may point to const or a nonconst type:
+```cpp
+constexpr = int *np = nullptr;  //np is a const pointer to int that is null .
+int j = 0;
+constexpr int i = 42;  // type of i is a const int
+// i and j must be defined outside any function
+constexpr const int *p = &i;  // p is a const pointer to the const int i
+constexpr int *p1 = &j; // p1 is a constant pointer to the int j
+```
