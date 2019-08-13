@@ -5,6 +5,8 @@
 #include <stdexcept>
 using namespace std;
 
+void outputArray(const Array &array_to_output);
+
 int main(int argc, char const *argv[]) {
   Array integers_1(7);
   Array integers_2;  // 10-element Array by default
@@ -114,7 +116,24 @@ int main(int argc, char const *argv[]) {
   }
   //   Attempt to assign 1000 to integers_1[15]
   // An expection occurred: Subscript out of range
+
+  // explict 构造函数与转换运算符
+  /**
+   * 除了拷贝构造函数,
+   * 任何单参数且不被声明为explict的构造函数可以被编译器用来进行隐式转换.
+   * 构造函数中的实参会被转换为函数中定义的类对象.
+   * 程序员不必使用强制类型转换运算符进行转换, 它是自动进行的.
+   * 但是, 在某些情况下, 隐式转换是不受欢迎的, 或者说这种转换很容易导致错误
+   */
+  cout << endl;
+  outputArray(integers_1);
+  outputArray(3);
   return 0;
+}
+void outputArray(const Array &array_to_output) {
+  cout << "The array received has " << array_to_output.get_size()
+       << " elements. The contents are:\n"
+       << array_to_output << endl;
 }
 
 // output
@@ -173,4 +192,23 @@ integers_1[5]1000
 Attempt to assign 1000 to integers_1[15]
 An expection occurred: Subscript out of range
 
+ */
+/**
+ * Array.h 有explict的时候报错
+ * array_test.cpp: In function 'int main(int, const char**)':
+ * array_test.cpp:129:15: error: invalid initialization of reference of type
+ * 'const Array&' from expression of type 'int' outputArray(3);
+ *                ^
+ * array_test.cpp:8:6: note: in passing argument 1 of 'void outputArray(const
+ * Array&)' void outputArray(const Array &array_to_output);
+ *       ^~~~~~~~~~~
+ *
+ * 去掉之后输出结果
+ * The array received has 10 elements. The contents are:
+ *            8           9           0           1
+ *            2        1000           4           5
+ *            6           7
+ *
+ * The array received has 3 elements. The contents are:
+ *            0           0           0
  */

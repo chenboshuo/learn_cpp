@@ -12,7 +12,8 @@ class Array {
   friend ostream &operator<<(ostream &output, const Array &a);
 
  public:
-  explicit Array(int array_size = 10);
+  // explicit Array(int array_size = 10);
+  Array(int array_size = 10);
   Array(const Array &right);
   ~Array();  // destructor
   size_t get_size() const;
