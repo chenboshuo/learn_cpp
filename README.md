@@ -101,6 +101,10 @@
 >>> [stack.cpp](./the_content_of_class/stack.cpp) | 主函数
 >>>
 >>> [所有版本](https://github.com/chenboshuo/cpp_learning/commits/master/the_content_of_class/stack.h)
+>>
+>> 标准库模板
+>>> [istream_iterator.cpp 输入输出迭代器](./the_content_of_class/istream_iterator.cpp)
+>>> [vector.cpp](./the_content_of_class/vector.cpp) 
 >
 >  [final_project 期末项目](./final_project)
 >> [说明](./final_project/doc/README.pdf)
