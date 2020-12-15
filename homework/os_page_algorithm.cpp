@@ -38,7 +38,7 @@ class PageReplacement {
 void P_String(int QString[]) {
   int i;
   srand((unsigned)time(NULL));
-  for (i = 0; i < PAGE_SIZE; i++) { QString[i] = rand() * 9 / RAND_MAX + 1; }
+  for (i = 0; i < PAGE_SIZE; i++) { QString[i] = rand()  % 10; }
   cout << "页面走向：";
   for (i = 0; i < PAGE_SIZE; i++) { cout << QString[i] << " "; }
   cout << endl;
