@@ -4,20 +4,23 @@
 #include <string>
 
 #define BLOCK_SIZE 3  // 定义最大块数
-#define PAGE_SIZE 12
+#define PAGE_SIZE 12  // 定义最大页数
 
 using namespace std;
+
 int QString[PAGE_SIZE];
 int Num = 0;
 struct pageInfor {
   int content;
   int timer;
 };
-
-class YZ_replace {
+/**
+ * 页面置换算法的类
+ */
+class PageReplacement {
  public:
-  YZ_replace();
-  ~YZ_replace();
+  PageReplacement();
+  ~PageReplacement();
   int findSpace();
   int findExist(int curpage);
   int findReplace();
@@ -40,7 +43,7 @@ void P_String(int QString[]) {
   for (i = 0; i < PAGE_SIZE; i++) { cout << QString[i] << " "; }
   cout << endl;
 }
-YZ_replace::YZ_replace() {
+PageReplacement::PageReplacement() {
   s = 0;
   block = new pageInfor[BLOCK_SIZE];
   for (int i = 0; i < BLOCK_SIZE; i++) {
@@ -48,7 +51,7 @@ YZ_replace::YZ_replace() {
     block[i].timer = 0;
   }
 }
-void YZ_replace::initia1(int QString[]) {
+void PageReplacement::initia1(int QString[]) {
   page = new pageInfor[PAGE_SIZE];
   for (int i = 0; i < PAGE_SIZE; i++) {
     page[i].content = QString[i];
@@ -57,27 +60,27 @@ void YZ_replace::initia1(int QString[]) {
   for (int i = 0; i < PAGE_SIZE; i++)
     for (int j = 0; j < BLOCK_SIZE; j++) memory_state[j][i] = 0;
 }
-YZ_replace::~YZ_replace() { s = 0; }
+PageReplacement::~PageReplacement() { s = 0; }
 
-int YZ_replace::findSpace() {
+int PageReplacement::findSpace() {
   for (int i = 0; i < BLOCK_SIZE; i++)
     if (block[i].content == -1) return i;
   return -1;
 }
-int YZ_replace::findExist(int curpage) {
+int PageReplacement::findExist(int curpage) {
   for (int i = 0; i < BLOCK_SIZE; i++)
     if (block[i].content == page[curpage].content) return i;
   return -1;
 }
 
-int YZ_replace::findReplace() {
+int PageReplacement::findReplace() {
   int pos = 0;
   for (int i = 0; i < BLOCK_SIZE; i++)
     if (block[i].timer >= block[pos].timer) pos = i;
   return pos;
 }
 
-void YZ_replace::FIFO() {
+void PageReplacement::FIFO() {
   int exist, space, position;
   for (int i = 0; i < PAGE_SIZE; i++) {
     exist = findExist(i);
@@ -107,7 +110,7 @@ void YZ_replace::FIFO() {
   }
 }
 
-void YZ_replace::BlockClear() {
+void PageReplacement::BlockClear() {
   for (int i = 0; i < BLOCK_SIZE; i++) {
     block[i].content = -1;
     block[i].timer = 0;
@@ -171,7 +174,7 @@ void Lru(int fold, Page *b) {
   }
 }
 
-void YZ_replace::OPT() {
+void PageReplacement::OPT() {
   int exist, space, position;
   for (int i = 0; i < PAGE_SIZE; i++) {
     exist = findExist(i);
@@ -238,17 +241,22 @@ int put() {
   d = trans(str);
   return d;
 }
-void Put() {
+/**
+ * 打印生成页面的提示，完成页面的生成
+ */
+void create_pages() {
   cout << "请选择产生页面的方法 a:随机产生  b:输入产生" << endl;
   cout << "您选择的菜单是:";
-  char F;
-  cin >> F;
-  while (F != 'a' && F != 'b') {
+  char input;
+  cin >> input;
+  while (input != 'a' && input != 'b') {
     cout << "输入错误，请重新输入:";
-    cin >> F;
+    cin >> input;
   }
-  if (F == 'a') P_String(QString);
-  if (F == 'b') {
+  if (input == 'a') {  // 随机生成字符串
+    P_String(QString);
+  }
+  if (input == 'b') {
     cout << "请输入各页面号:" << endl;
     for (int i = 0; i < PAGE_SIZE; i++) { QString[i] = put(); }
   }
@@ -263,10 +271,10 @@ int main() {
        << endl;
   int t = 1;
   while (t) {
-    Put();
-    YZ_replace test1;
-    YZ_replace test3;
-    char select;
+    create_pages();
+    PageReplacement test1;
+    PageReplacement test3;
+    char select;  // 记录用户输入
     do {
       cout << "请选择要应用的算法:<1>FIFO算法  <2>LRU算法  <3>OPT算法  <0>退出"
            << endl;
@@ -277,7 +285,7 @@ int main() {
         cout << "您的输入无效,请重新输入:" << endl;
         cin >> select;
       }
-      if (select == '0') {
+      if (select == '0') {  // 处理退出
         cout << "您选择的是菜单<0>" << endl;
         cout << "完成退出." << endl;
         t = 0;
@@ -297,7 +305,7 @@ int main() {
         }
         cout << "-------------------------------------------" << endl;
         cout << "命中率:" << test1.s << "/" << PAGE_SIZE << endl;
-        test1.~YZ_replace();
+        test1.~PageReplacement();
         cout << endl;
       }
       if (select == '2') {
@@ -340,7 +348,7 @@ int main() {
         }
         cout << "------------------------------------------" << endl;
         cout << "命中率:" << test3.s << "/" << PAGE_SIZE << endl;
-        test3.~YZ_replace();
+        test3.~PageReplacement();
         cout << endl;
       }
     } while (select == '1' || select == '2' || select == '3');
