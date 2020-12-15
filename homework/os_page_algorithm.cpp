@@ -3,12 +3,12 @@
 #include <iostream>
 #include <string>
 
-#define BLOCK_SIZE 3  // 定义最大块数
-#define PAGE_SIZE 12  // 定义最大页数
+#define BLOCK_SIZE 3        // 定义最大块数
+#define REFERENCE_TIMES 12  // 定义访问次数
 
 using namespace std;
 
-int QString[PAGE_SIZE];
+int QString[REFERENCE_TIMES];
 int Num = 0;
 struct pageInfor {
   int content;
@@ -30,21 +30,21 @@ class PageReplacement {
   void initia1(int string[]);
   pageInfor *block;
   pageInfor *page;
-  int memory_state[BLOCK_SIZE][PAGE_SIZE];
-  int s;
+  int memory_state[BLOCK_SIZE][REFERENCE_TIMES];
+  int hit_times;  // 记录命中次数
 
  private:
 };
 void P_String(int QString[]) {
   int i;
   srand((unsigned)time(NULL));
-  for (i = 0; i < PAGE_SIZE; i++) { QString[i] = rand()  % 10; }
+  for (i = 0; i < REFERENCE_TIMES; i++) { QString[i] = rand() % 10; }
   cout << "页面走向：";
-  for (i = 0; i < PAGE_SIZE; i++) { cout << QString[i] << " "; }
+  for (i = 0; i < REFERENCE_TIMES; i++) { cout << QString[i] << " "; }
   cout << endl;
 }
 PageReplacement::PageReplacement() {
-  s = 0;
+  hit_times = 0;
   block = new pageInfor[BLOCK_SIZE];
   for (int i = 0; i < BLOCK_SIZE; i++) {
     block[i].content = -1;
@@ -52,15 +52,17 @@ PageReplacement::PageReplacement() {
   }
 }
 void PageReplacement::initia1(int QString[]) {
-  page = new pageInfor[PAGE_SIZE];
-  for (int i = 0; i < PAGE_SIZE; i++) {
+  page = new pageInfor[REFERENCE_TIMES];
+  for (int i = 0; i < REFERENCE_TIMES; i++) {
     page[i].content = QString[i];
     page[i].timer = 0;
   }
-  for (int i = 0; i < PAGE_SIZE; i++)
+  for (int i = 0; i < REFERENCE_TIMES; i++)
     for (int j = 0; j < BLOCK_SIZE; j++) memory_state[j][i] = 0;
 }
-PageReplacement::~PageReplacement() { s = 0; }
+PageReplacement::~PageReplacement() {
+  hit_times = 0;  // TODO ??
+}
 
 int PageReplacement::findSpace() {
   for (int i = 0; i < BLOCK_SIZE; i++)
@@ -82,13 +84,13 @@ int PageReplacement::findReplace() {
 
 void PageReplacement::FIFO() {
   int exist, space, position;
-  for (int i = 0; i < PAGE_SIZE; i++) {
+  for (int i = 0; i < REFERENCE_TIMES; i++) {
     exist = findExist(i);
     if (exist != -1) {
       for (int b = 0; b < BLOCK_SIZE; b++) {
         memory_state[b][i] = memory_state[b][i - 1];
       }
-      s++;
+      hit_times++;
     } else {
       space = findSpace();
       if (space != -1) {
@@ -124,18 +126,18 @@ typedef struct page {
 
 Page b[BLOCK_SIZE];
 Page call[BLOCK_SIZE];
-int c[BLOCK_SIZE][PAGE_SIZE];
+int c[BLOCK_SIZE][REFERENCE_TIMES];
 int queue[100];
 int K;
 
-void InitL(Page *b, int c[BLOCK_SIZE][PAGE_SIZE]) {
+void InitL(Page *b, int c[BLOCK_SIZE][REFERENCE_TIMES]) {
   int i, j;
   for (i = 0; i < BLOCK_SIZE; i++) {
     b[i].num = -1;
-    b[i].time = PAGE_SIZE - i - 1;
+    b[i].time = REFERENCE_TIMES - i - 1;
   }
   for (i = 0; i < BLOCK_SIZE; i++)
-    for (j = 0; j < PAGE_SIZE; j++) c[i][j] = -1;
+    for (j = 0; j < REFERENCE_TIMES; j++) c[i][j] = -1;
 }
 int GetMax(Page *b) {
   int i;
@@ -176,13 +178,13 @@ void Lru(int fold, Page *b) {
 
 void PageReplacement::OPT() {
   int exist, space, position;
-  for (int i = 0; i < PAGE_SIZE; i++) {
+  for (int i = 0; i < REFERENCE_TIMES; i++) {
     exist = findExist(i);
     if (exist != -1) {
       for (int b = 0; b < BLOCK_SIZE; b++) {
         memory_state[b][i] = memory_state[b][i - 1];
       }
-      s++;
+      hit_times++;
     } else {
       space = findSpace();
       if (space != -1) {
@@ -194,7 +196,7 @@ void PageReplacement::OPT() {
       } else {
         for (int k = 0; k < BLOCK_SIZE; k++) {
           memory_state[k][i] = memory_state[k][i - 1];
-          for (int j = i; j < PAGE_SIZE; j++) {
+          for (int j = i; j < REFERENCE_TIMES; j++) {
             if (block[k].content != page[j].content) {
               block[k].timer = 1000;
             } else {
@@ -256,9 +258,9 @@ void create_pages() {
   if (input == 'a') {  // 随机生成字符串
     P_String(QString);
   }
-  if (input == 'b') {
+  if (input == 'b') {  //用户主动输入
     cout << "请输入各页面号:" << endl;
-    for (int i = 0; i < PAGE_SIZE; i++) { QString[i] = put(); }
+    for (int i = 0; i < REFERENCE_TIMES; i++) { QString[i] = put(); }
   }
   cout << endl;
   cout << "|---------------------------------------------------------------|"
@@ -269,8 +271,7 @@ int main() {
        << endl;
   cout << "|---------------------------------------------------------------|"
        << endl;
-  int t = 1;
-  while (t) {
+  while (1) {
     create_pages();
     PageReplacement test1;
     PageReplacement test3;
@@ -288,7 +289,7 @@ int main() {
       if (select == '0') {  // 处理退出
         cout << "您选择的是菜单<0>" << endl;
         cout << "完成退出." << endl;
-        t = 0;
+        exit(0);  // 退出程序
       }
 
       if (select == '1') {
@@ -299,12 +300,12 @@ int main() {
         test1.BlockClear();
         cout << "-------------------------------------------" << endl;
         for (p = 0; p < BLOCK_SIZE; p++) {
-          for (q = 0; q < PAGE_SIZE; q++)
+          for (q = 0; q < REFERENCE_TIMES; q++)
             cout << test1.memory_state[p][q] << " ";
           cout << endl;
         }
         cout << "-------------------------------------------" << endl;
-        cout << "命中率:" << test1.s << "/" << PAGE_SIZE << endl;
+        cout << "命中率:" << test1.hit_times << "/" << REFERENCE_TIMES << endl;
         test1.~PageReplacement();
         cout << endl;
       }
@@ -312,7 +313,7 @@ int main() {
         int i, j;
         K = -1;
         InitL(b, c);
-        for (i = 0; i < PAGE_SIZE; i++) {
+        for (i = 0; i < REFERENCE_TIMES; i++) {
           Lru(QString[i], b);
           c[0][i] = QString[i];
           for (j = 0; j < BLOCK_SIZE; j++) c[j][i] = b[j].num;
@@ -321,7 +322,7 @@ int main() {
         cout << "LRU算法状态:" << endl;
         cout << "------------------------------------------" << endl;
         for (i = 0; i < BLOCK_SIZE; i++) {
-          for (j = 0; j < PAGE_SIZE; j++) {
+          for (j = 0; j < REFERENCE_TIMES; j++) {
             if (c[i][j] == -1)
               cout << " 0";
             else
@@ -330,7 +331,8 @@ int main() {
           cout << " " << endl;
         }
         cout << "------------------------------------------" << endl;
-        cout << "命中率:" << (PAGE_SIZE - (K + 1)) << "/" << PAGE_SIZE;
+        cout << "命中率:" << (REFERENCE_TIMES - (K + 1)) << "/"
+             << REFERENCE_TIMES;
         cout << '\t';
         cout << endl;
       }
@@ -342,12 +344,12 @@ int main() {
         test3.BlockClear();
         cout << "------------------------------------------" << endl;
         for (p = 0; p < BLOCK_SIZE; p++) {
-          for (q = 0; q < PAGE_SIZE; q++)
+          for (q = 0; q < REFERENCE_TIMES; q++)
             cout << test3.memory_state[p][q] << " ";
           cout << endl;
         }
         cout << "------------------------------------------" << endl;
-        cout << "命中率:" << test3.s << "/" << PAGE_SIZE << endl;
+        cout << "命中率:" << test3.hit_times << "/" << REFERENCE_TIMES << endl;
         test3.~PageReplacement();
         cout << endl;
       }
