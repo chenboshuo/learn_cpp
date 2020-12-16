@@ -1,11 +1,10 @@
 #include <cmath>
 #include <ctime>
-// #include <cstdio>
 #include <iostream>
 #include <string>
 
 #define BLOCK_SIZE 3        // 定义最大块数
-#define REFERENCE_TIMES 12  // 定义访问次数
+#define REFERENCE_TIMES 20  // 定义访问次数
 #define NOT_EXIST -1        // -1 表示不存在
 using namespace std;
 
@@ -47,23 +46,50 @@ class PageReplacement {
     return NOT_EXIST;
   }
   /**
-   * 求要替换的快号
-   * @return [description]
+   * 将timer的值最大的内存快替换,
+   * timer的意义在不同算法中不同，
+   * 在FIFO中，timer为已经在内存中的时间，
+   * 在OPT算法中，timer为下一次出现的时间
+   * (我们用该函数将不在出现或者下次出现最晚的物理块替换)
+   * @param t 时刻
    */
-  int get_replace_position() {
+  void replace_block(int t) {
     int replace_pos = 0;
     for (int i = 0; i < BLOCK_SIZE; i++) {
       if (block[i].timer >= block[replace_pos].timer) {  //
         replace_pos = i;
       }
     }
-    return replace_pos;
+    block[replace_pos] = page_reference_series[t];  // 注意：新页的timer是0
+    memory_state[replace_pos][t] =
+        block[replace_pos].page_id;  // 记录替换后的结果
   }
   /**
    * 增加所有块的存在时间
    */
   void increase_timer() {
     for (int j = 0; j < BLOCK_SIZE; j++) block[j].timer++;
+  }
+
+  /**
+   * 是否是简单情况，
+   * 如果可以直接命中或者有空闲空间，我们认为这是简单情况，
+   * 在该函数直接处理
+   * @param  t 时刻t
+   * @return   是否是简单情况
+   */
+  bool is_easy_case(int t) {
+    if (can_hit(t)) {  // 如果在当前内存快中存在，直接命中，内存状态不变
+      hit_times++;
+      return true;
+    }
+    int space = get_space();
+    if (space != NOT_EXIST) {  // 如果有空闲空间，内存分配给对应页
+      block[space] = page_reference_series[t];  // 内存空块分配
+      memory_state[space][t] = block[space].page_id;
+      return true;
+    }
+    return false;
   }
 
  public:
@@ -82,8 +108,9 @@ class PageReplacement {
       page_reference_series[i].page_id = reference_series[i];
       page_reference_series[i].timer = 0;
     }
+    // 初始化记录序列
     for (int i = 0; i < REFERENCE_TIMES; i++) {
-      for (int j = 0; j < BLOCK_SIZE; j++) { memory_state[j][i] = 0; }
+      for (int j = 0; j < BLOCK_SIZE; j++) { memory_state[j][i] = -1; }
     }
   }
   ~PageReplacement() {
@@ -106,41 +133,51 @@ class PageReplacement {
    * 生成FIFO(first-in,first-out algorithm)页面置换算法的内存状况
    */
   void FIFO() {
-    int space, position;
     for (int t = 0; t < REFERENCE_TIMES; t++) {
       keep_old_memory_states(t);  // 将当前的状态初始化为t-1时刻的状态
-      if (can_hit(t)) {  // 如果在当前内存快中存在，直接命中，内存状态不变
-        hit_times++;
-      } else {
-        space = get_space();
-        if (space != NOT_EXIST) {  // 如果有空闲空间，内存分配给对应页
-          block[space] = page_reference_series[t];  // 内存空块分配
-          memory_state[space][t] = block[space].page_id;
-        } else {  // 没有空间
-          position = get_replace_position();
-          block[position] = page_reference_series[t];  // 注意：新页的timer是0
-          memory_state[position][t] =
-              block[position].page_id;  // 记录替换后的结果
-        }
+      if (!is_easy_case(t)) {  // 没有空间
+        replace_block(t);
       }
       increase_timer();
     }
   }
-  void OPT();
-  void BlockClear();
+  /**
+   * 利用OPT页面置换算法(optimal page replacement)，
+   * 根据访问序列来保证缺页率最小
+   * 记录内存状态
+   */
+  void OPT() {
+    for (int t = 0; t < REFERENCE_TIMES; t++) {
+      keep_old_memory_states(t);  // 初始化时刻t的内存状态
+      if (!is_easy_case(t)) {     // 没有命中且没有空间
+        for (int b = 0; b < BLOCK_SIZE; ++b) {
+          for (int peek = t; peek < REFERENCE_TIMES; peek++) {
+            if (block[b].page_id != page_reference_series[peek].page_id) {
+              block[b].timer = 1000;  // 设置一个很大的数
+            } else {
+              block[b].timer = peek;  // 出现的越晚，timer越大
+              break;
+            }
+          }
+        }
+        replace_block(t);
+      }
+    }
+  }
+
   void print_outcome() {
     cout << "-------------------------------------------" << endl;
-    // for (int p = 0; p < BLOCK_SIZE; p++) {
-    //   for (int q = 0; q < REFERENCE_TIMES; q++) {
-    //     cout << memory_state[p][q] << " ";
-    //   }
-    //   cout << endl;
-    // }
+
     cout << "访问\t内存状况" << endl;
     for (int i = 0; i < REFERENCE_TIMES; ++i) {
       cout << reference_series[i] << "\t";
       for (int b = 0; b < BLOCK_SIZE; ++b) {
-        cout << memory_state[b][i] << " ";
+        int o = memory_state[b][i];
+        if (o >= 0) {
+          cout << o << " ";
+        } else {
+          cout << ". ";
+        }
       }
       cout << endl;
     }
@@ -172,12 +209,12 @@ void gengerate_random_reference_series() {
 
 // void PageReplacement::
 
-void PageReplacement::BlockClear() {
-  for (int i = 0; i < BLOCK_SIZE; i++) {
-    block[i].page_id = -1;
-    block[i].timer = 0;
-  }
-}
+// void PageReplacement::BlockClear() {
+//   for (int i = 0; i < BLOCK_SIZE; i++) {
+//     block[i].page_id = -1;
+//     block[i].timer = 0;
+//   }
+// }
 
 typedef struct page {
   int num;
@@ -233,43 +270,6 @@ void Lru(int fold, Page *b) {
     b[val].time = 0;
     for (i = 0; i < BLOCK_SIZE; i++)
       if (i != val) b[i].time++;
-  }
-}
-
-void PageReplacement::OPT() {
-  int exist, space, position;
-  for (int i = 0; i < REFERENCE_TIMES; i++) {
-    exist = can_hit(i);
-    if (exist != -1) {
-      for (int b = 0; b < BLOCK_SIZE; b++) {
-        memory_state[b][i] = memory_state[b][i - 1];
-      }
-      hit_times++;
-    } else {
-      space = get_space();
-      if (space != -1) {
-        for (int b = 0; b < BLOCK_SIZE; b++) {
-          memory_state[b][i] = memory_state[b][i - 1];
-        }
-        block[space] = page_reference_series[i];
-        memory_state[space][i] = block[space].page_id;
-      } else {
-        for (int k = 0; k < BLOCK_SIZE; k++) {
-          memory_state[k][i] = memory_state[k][i - 1];
-          for (int j = i; j < REFERENCE_TIMES; j++) {
-            if (block[k].page_id != page_reference_series[j].page_id) {
-              block[k].timer = 1000;
-            } else {
-              block[k].timer = j;
-              break;
-            }
-          }
-        }
-        position = get_replace_position();
-        block[position] = page_reference_series[i];
-        memory_state[position][i] = block[position].page_id;
-      }
-    }
   }
 }
 
@@ -354,9 +354,9 @@ int main() {
       select = get_select();
 
       if (select == '1') {
-        PageReplacement test_FIFO;
         cout << "您选择使用FIFO页面置换算法" << endl;
         cout << "FIFO算法状态:" << endl;
+        PageReplacement test_FIFO;
         test_FIFO.FIFO();
         test_FIFO.print_outcome();
       } else if (select == '2') {
@@ -388,12 +388,9 @@ int main() {
       } else if (select == '3') {
         cout << "您选择使用OPT页面置换算法" << endl;
         cout << "OPT算法状态:" << endl;
-        // test_OPT.initial();
         PageReplacement test_OPT;
         test_OPT.OPT();
-        // test_OPT.BlockClear();
         test_OPT.print_outcome();
-        // test_OPT.~PageReplacement();
         cout << endl;
       }
     }
