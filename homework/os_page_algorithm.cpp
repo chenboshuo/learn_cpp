@@ -23,12 +23,50 @@ struct pageInfor {
 class PageReplacement {
  private:
   pageInfor *block;
-  pageInfor *page;
-
- public:
+  pageInfor *page_reference_series;
   int memory_state[BLOCK_SIZE][REFERENCE_TIMES];
   // memory_state[i][j] 表示内存i在第j次访问存储的页号
   int hit_times;  // 记录命中次数
+  /**
+   * 在时刻t保持t-1的内存状态
+   * @param t 访问的时刻
+   */
+  void keep_old_memory_states(int t) {
+    for (int b = 0; b < BLOCK_SIZE; b++) {
+      memory_state[b][t] = memory_state[b][t - 1];
+    }
+  }
+  /**
+   * 寻找空块，如果没有返回NOT_EXIST
+   * @return 空块的块号（索引）
+   */
+  int get_space() {
+    for (int b = 0; b < BLOCK_SIZE; b++) {
+      if (block[b].page_id == -1) { return b; }
+    }
+    return NOT_EXIST;
+  }
+  /**
+   * 求要替换的快号
+   * @return [description]
+   */
+  int get_replace_position() {
+    int replace_pos = 0;
+    for (int i = 0; i < BLOCK_SIZE; i++) {
+      if (block[i].timer >= block[replace_pos].timer) {  //
+        replace_pos = i;
+      }
+    }
+    return replace_pos;
+  }
+  /**
+   * 增加所有块的存在时间
+   */
+  void increase_timer() {
+    for (int j = 0; j < BLOCK_SIZE; j++) block[j].timer++;
+  }
+
+ public:
   PageReplacement() {
     hit_times = 0;
     // 初始化物理块
@@ -39,10 +77,10 @@ class PageReplacement {
     }
 
     // 从全局变量中读取访问序列
-    page = new pageInfor[REFERENCE_TIMES];
+    page_reference_series = new pageInfor[REFERENCE_TIMES];
     for (int i = 0; i < REFERENCE_TIMES; i++) {
-      page[i].page_id = reference_series[i];
-      page[i].timer = 0;
+      page_reference_series[i].page_id = reference_series[i];
+      page_reference_series[i].timer = 0;
     }
     for (int i = 0; i < REFERENCE_TIMES; i++) {
       for (int j = 0; j < BLOCK_SIZE; j++) { memory_state[j][i] = 0; }
@@ -51,51 +89,41 @@ class PageReplacement {
   ~PageReplacement() {
     hit_times = 0;  // TODO ??
   }
-  int findSpace();
 
   /**
-   * 寻找页号对应快号，如果没找到，返回NOT_EXIST(-1)
-   * @param  page_id 要查找的页号
-   * @return         要查找的块号
+   * 第i次访问是否命中，即第i次的页号page[i]有没有对应的块号block[b]
+   * @param  i 第i次访问
+   * @return   是否命中
    */
-  int get_block_id(int page_id) {
-    for (int i = 0; i < BLOCK_SIZE; i++) {
-      if (block[i].page_id == page[page_id].page_id) { return i; }
+  bool can_hit(int i) {
+    for (int b = 0; b < BLOCK_SIZE; b++) {
+      if (block[b].page_id == page_reference_series[i].page_id) { return true; }
     }
-    return NOT_EXIST;
+    return false;
   }
-  int findReplace();
 
   /**
    * 生成FIFO页面置换算法的内存状况
    */
   void FIFO() {
     int space, position;
-    for (int i = 0; i < REFERENCE_TIMES; i++) {
-      int exist = get_block_id(i);
-      if (exist != NOT_EXIST) {  // 如果在当前内存快中存在，直接命中
-        for (int b = 0; b < BLOCK_SIZE; b++) {
-          memory_state[b][i] = memory_state[b][i - 1];
-        }
+    for (int t = 0; t < REFERENCE_TIMES; t++) {
+      keep_old_memory_states(t);  // 将当前的状态初始化为t-1时刻的状态
+      if (can_hit(t)) {  // 如果在当前内存快中存在，直接命中，内存状态不变
         hit_times++;
       } else {
-        space = findSpace();
-        if (space != -1) {
-          for (int b = 0; b < BLOCK_SIZE; b++) {
-            memory_state[b][i] = memory_state[b][i - 1];
-          }
-          block[space] = page[i];
-          memory_state[space][i] = block[space].page_id;
-        } else {
-          for (int b = 0; b < BLOCK_SIZE; b++) {
-            memory_state[b][i] = memory_state[b][i - 1];
-          }
-          position = findReplace();
-          block[position] = page[i];
-          memory_state[position][i] = block[position].page_id;
+        space = get_space();
+        if (space != NOT_EXIST) {  // 如果有空闲空间，内存分配给对应页
+          block[space] = page_reference_series[t];  // 内存空块分配
+          memory_state[space][t] = block[space].page_id;
+        } else {  // 没有空间
+          position = get_replace_position();
+          block[position] = page_reference_series[t];  // 注意：新页的timer是0
+          memory_state[position][t] =
+              block[position].page_id;  // 记录替换后的结果
         }
       }
-      for (int j = 0; j < BLOCK_SIZE; j++) block[j].timer++;
+      increase_timer();
     }
   }
   void OPT();
@@ -121,16 +149,6 @@ class PageReplacement {
     // test_series.~PageReplacement(); // TODO ??
     cout << endl;
   }
-  // void initial() {
-  //   page = new pageInfor[REFERENCE_TIMES];
-  //   for (int i = 0; i < REFERENCE_TIMES; i++) {
-  //     page[i].page_id = reference_series[i];
-  //     page[i].timer = 0;
-  //   }
-  //   for (int i = 0; i < REFERENCE_TIMES; i++) {
-  //     for (int j = 0; j < BLOCK_SIZE; j++) { memory_state[j][i] = 0; }
-  //   }
-  // }
 };
 
 /**
@@ -148,18 +166,9 @@ void gengerate_random_reference_series() {
   cout << endl;
 }
 
-int PageReplacement::findSpace() {
-  for (int i = 0; i < BLOCK_SIZE; i++)
-    if (block[i].page_id == -1) return i;
-  return -1;
-}
+// int PageReplacement::
 
-int PageReplacement::findReplace() {
-  int pos = 0;
-  for (int i = 0; i < BLOCK_SIZE; i++)
-    if (block[i].timer >= block[pos].timer) pos = i;
-  return pos;
-}
+// int PageReplacement::
 
 // void PageReplacement::
 
@@ -230,25 +239,25 @@ void Lru(int fold, Page *b) {
 void PageReplacement::OPT() {
   int exist, space, position;
   for (int i = 0; i < REFERENCE_TIMES; i++) {
-    exist = get_block_id(i);
+    exist = can_hit(i);
     if (exist != -1) {
       for (int b = 0; b < BLOCK_SIZE; b++) {
         memory_state[b][i] = memory_state[b][i - 1];
       }
       hit_times++;
     } else {
-      space = findSpace();
+      space = get_space();
       if (space != -1) {
         for (int b = 0; b < BLOCK_SIZE; b++) {
           memory_state[b][i] = memory_state[b][i - 1];
         }
-        block[space] = page[i];
+        block[space] = page_reference_series[i];
         memory_state[space][i] = block[space].page_id;
       } else {
         for (int k = 0; k < BLOCK_SIZE; k++) {
           memory_state[k][i] = memory_state[k][i - 1];
           for (int j = i; j < REFERENCE_TIMES; j++) {
-            if (block[k].page_id != page[j].page_id) {
+            if (block[k].page_id != page_reference_series[j].page_id) {
               block[k].timer = 1000;
             } else {
               block[k].timer = j;
@@ -256,8 +265,8 @@ void PageReplacement::OPT() {
             }
           }
         }
-        position = findReplace();
-        block[position] = page[i];
+        position = get_replace_position();
+        block[position] = page_reference_series[i];
         memory_state[position][i] = block[position].page_id;
       }
     }
@@ -276,6 +285,7 @@ void input_reference_series() {
     }
     reference_series[i] = in;
   }
+  cin.clear();  // 清除多余输入，防止影响接下来的操作。
 }
 
 /**
@@ -316,7 +326,6 @@ int main() {
   while (1) {
     create_page_reference_series();
 
-    PageReplacement test_OPT;
     char select = '1';  // 记录用户输入
     while (select == '1' || select == '2' || select == '3') {
       cout << "请选择要应用的算法:<1>FIFO算法  <2>LRU算法  <3>OPT算法  <0>退出"
@@ -371,18 +380,11 @@ int main() {
         cout << "您选择的是菜单<3>" << endl;
         cout << "OPT算法状态:" << endl;
         // test_OPT.initial();
+        PageReplacement test_OPT;
         test_OPT.OPT();
-        test_OPT.BlockClear();
-        cout << "------------------------------------------" << endl;
-        for (int p = 0; p < BLOCK_SIZE; p++) {
-          for (int q = 0; q < REFERENCE_TIMES; q++)
-            cout << test_OPT.memory_state[p][q] << " ";
-          cout << endl;
-        }
-        cout << "------------------------------------------" << endl;
-        cout << "命中率:" << test_OPT.hit_times << "/" << REFERENCE_TIMES
-             << endl;
-        test_OPT.~PageReplacement();
+        // test_OPT.BlockClear();
+        test_OPT.print_outcome();
+        // test_OPT.~PageReplacement();
         cout << endl;
       }
     }
