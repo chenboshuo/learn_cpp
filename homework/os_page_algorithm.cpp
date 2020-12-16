@@ -103,7 +103,7 @@ class PageReplacement {
   }
 
   /**
-   * 生成FIFO页面置换算法的内存状况
+   * 生成FIFO(first-in,first-out algorithm)页面置换算法的内存状况
    */
   void FIFO() {
     int space, position;
@@ -320,6 +320,29 @@ void print_title() {
   cout << "|---------------------------------------------------------------|"
        << endl;
 }
+/**
+ * 提示用户输入直到输入正确结果，
+ * 并处理退出
+ * 返回用户的有效的选择
+ * @return 用户选择的算法
+ */
+char get_select() {
+  char select;
+  cout << "请选择要应用的算法:<1>FIFO算法  <2>LRU算法  <3>OPT算法  <0>退出"
+       << endl;
+  cout << "- ";
+  cin >> select;
+  while (select != '0' && select != '1' && select != '2' && select != '3' &&
+         select != 'q') {
+    cout << "您的输入无效,请重新输入:" << endl;
+    cin >> select;
+  }
+  if (select == '0' || select == 'q') {  // 处理退出
+    cout << "退出程序." << endl;
+    exit(0);  // 退出程序
+  }
+  return select;
+}
 
 int main() {
   print_title();
@@ -328,28 +351,15 @@ int main() {
 
     char select = '1';  // 记录用户输入
     while (select == '1' || select == '2' || select == '3') {
-      cout << "请选择要应用的算法:<1>FIFO算法  <2>LRU算法  <3>OPT算法  <0>退出"
-           << endl;
-      cout << "- ";
-      cin >> select;
-      while (select != '0' && select != '1' && select != '2' && select != '3' &&
-             select != 'q') {
-        cout << "您的输入无效,请重新输入:" << endl;
-        cin >> select;
-      }
-      if (select == '0' || select == 'q') {  // 处理退出
-        cout << "退出程序." << endl;
-        exit(0);  // 退出程序
-      }
+      select = get_select();
 
       if (select == '1') {
         PageReplacement test_FIFO;
-        cout << "您选择使用FIFO算法页面置换" << endl;
+        cout << "您选择使用FIFO页面置换算法" << endl;
         cout << "FIFO算法状态:" << endl;
         test_FIFO.FIFO();
         test_FIFO.print_outcome();
-      }
-      if (select == '2') {
+      } else if (select == '2') {
         int i, j;
         K = -1;
         InitL(b, c);
@@ -375,9 +385,8 @@ int main() {
              << REFERENCE_TIMES;
         cout << '\t';
         cout << endl;
-      }
-      if (select == '3') {
-        cout << "您选择的是菜单<3>" << endl;
+      } else if (select == '3') {
+        cout << "您选择使用OPT页面置换算法" << endl;
         cout << "OPT算法状态:" << endl;
         // test_OPT.initial();
         PageReplacement test_OPT;
