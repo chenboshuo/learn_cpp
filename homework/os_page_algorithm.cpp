@@ -75,11 +75,14 @@ class PageReplacement {
    * 是否是简单情况，
    * 如果可以直接命中或者有空闲空间，我们认为这是简单情况，
    * 在该函数直接处理
-   * @param  t 时刻t
-   * @return   是否是简单情况
+   * @param  t
+   * @param  t           时刻t
+   * @param  clean_timer 是否命中之后清空timer
+   * @return             是否是简单情况
    */
-  bool is_easy_case(int t) {
-    if (can_hit(t)) {  // 如果在当前内存快中存在，直接命中，内存状态不变
+  bool is_easy_case(int t, bool clean_timer = false) {
+    // 如果在当前内存快中存在，直接命中，内存状态不变
+    if (can_hit(t, clean_timer)) {
       hit_times++;
       return true;
     }
@@ -119,12 +122,16 @@ class PageReplacement {
 
   /**
    * 第i次访问是否命中，即第i次的页号page[i]有没有对应的块号block[b]
-   * @param  i 第i次访问
-   * @return   是否命中
+   * @param  i            第i次访问
+   * @param  claen_timer  是否命中之后清空计数器
+   * @return              是否命中
    */
-  bool can_hit(int i) {
+  bool can_hit(int i, bool clean_timer = false) {
     for (int b = 0; b < BLOCK_SIZE; b++) {
-      if (block[b].page_id == page_reference_series[i].page_id) { return true; }
+      if (block[b].page_id == page_reference_series[i].page_id) {
+        if (clean_timer) { block[b].timer = 0; }
+        return true;
+      }
     }
     return false;
   }
@@ -162,6 +169,21 @@ class PageReplacement {
         }
         replace_block(t);
       }
+    }
+  }
+
+  /**
+   * least-recently-used(LRU)算法记录内存使用状况
+   * 用过去的情况近似未来的情况，
+   * 我们替换最久未使用的页
+   */
+  void LRU() {
+    for (int t = 0; t < REFERENCE_TIMES; ++t) {
+      keep_old_memory_states(t);
+      if (!is_easy_case(t, true) /*命中则清空计数器*/) {  //
+        replace_block(t);
+      }
+      increase_timer();
     }
   }
 
@@ -215,63 +237,6 @@ void gengerate_random_reference_series() {
 //     block[i].timer = 0;
 //   }
 // }
-
-typedef struct page {
-  int num;
-  int time;
-} Page;
-
-Page b[BLOCK_SIZE];
-Page call[BLOCK_SIZE];
-int c[BLOCK_SIZE][REFERENCE_TIMES];
-int queue[100];
-int K;
-
-void InitL(Page *b, int c[BLOCK_SIZE][REFERENCE_TIMES]) {
-  int i, j;
-  for (i = 0; i < BLOCK_SIZE; i++) {
-    b[i].num = -1;
-    b[i].time = REFERENCE_TIMES - i - 1;
-  }
-  for (i = 0; i < BLOCK_SIZE; i++)
-    for (j = 0; j < REFERENCE_TIMES; j++) c[i][j] = -1;
-}
-int GetMax(Page *b) {
-  int i;
-  int max = -1;
-  int tag = 0;
-  for (i = 0; i < BLOCK_SIZE; i++) {
-    if (b[i].time > max) {
-      max = b[i].time;
-      tag = i;
-    }
-  }
-  return tag;
-}
-int Equation(int fold, Page *b) {
-  int i;
-  for (i = 0; i < BLOCK_SIZE; i++) {
-    if (fold == b[i].num) return i;
-  }
-  return -1;
-}
-void Lru(int fold, Page *b) {
-  int i;
-  int val;
-  val = Equation(fold, b);
-  if (val >= 0) {
-    b[val].time = 0;
-    for (i = 0; i < BLOCK_SIZE; i++)
-      if (i != val) b[i].time++;
-  } else {
-    queue[++K] = fold;
-    val = GetMax(b);
-    b[val].num = fold;
-    b[val].time = 0;
-    for (i = 0; i < BLOCK_SIZE; i++)
-      if (i != val) b[i].time++;
-  }
-}
 
 void input_reference_series() {
   cout << "请输入" << REFERENCE_TIMES << "个页面号作为访问序列:" << endl;
@@ -360,38 +325,16 @@ int main() {
         test_FIFO.FIFO();
         test_FIFO.print_outcome();
       } else if (select == '2') {
-        int i, j;
-        K = -1;
-        InitL(b, c);
-        for (i = 0; i < REFERENCE_TIMES; i++) {
-          Lru(reference_series[i], b);
-          c[0][i] = reference_series[i];
-          for (j = 0; j < BLOCK_SIZE; j++) c[j][i] = b[j].num;
-        }
-        cout << "您选择的是菜单<2>" << endl;
-        cout << "LRU算法状态:" << endl;
-        cout << "------------------------------------------" << endl;
-        for (i = 0; i < BLOCK_SIZE; i++) {
-          for (j = 0; j < REFERENCE_TIMES; j++) {
-            if (c[i][j] == -1)
-              cout << " 0";
-            else
-              cout << " " << c[i][j];
-          }
-          cout << " " << endl;
-        }
-        cout << "------------------------------------------" << endl;
-        cout << "命中率:" << (REFERENCE_TIMES - (K + 1)) << "/"
-             << REFERENCE_TIMES;
-        cout << '\t';
-        cout << endl;
+        PageReplacement test_LRU;
+        test_LRU.LRU();
+        test_LRU.print_outcome();
       } else if (select == '3') {
         cout << "您选择使用OPT页面置换算法" << endl;
         cout << "OPT算法状态:" << endl;
         PageReplacement test_OPT;
         test_OPT.OPT();
         test_OPT.print_outcome();
-        cout << endl;
+        // cout << endl;
       }
     }
   }
